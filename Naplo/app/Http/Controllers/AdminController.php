@@ -108,5 +108,6 @@ class AdminController extends Controller
             $data->save();
         }
         else return redirect('asd');
+        return redirect('felvetel');
     }
 }

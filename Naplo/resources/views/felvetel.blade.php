@@ -160,7 +160,7 @@
                                     @endforeach
                                 </select><br>
                             @endif
-                            @if($tantargydb == 0)
+                            @if($osztalydb == 0)
                                 <p class="text-center">
                                     <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
