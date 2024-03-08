@@ -8,9 +8,11 @@
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
     <title>Napló</title>
 </head>
+<body data-theme="light" class="color-bg-background">
 <!--Vágás-->
 @yield('content')
 <!--Vágás-->
+</body>
 <footer class="bg-dark p-1 fixed-bottom">
     <div class="row">
         <div class="col">

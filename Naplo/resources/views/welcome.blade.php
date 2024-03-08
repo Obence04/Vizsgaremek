@@ -1,4 +1,4 @@
-@extends('welcomelayout')
+@extends('layout_belepes')
 @section('content')
 <body>
     <main class="container">

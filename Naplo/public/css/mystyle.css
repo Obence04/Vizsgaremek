@@ -1,3 +1,136 @@
+:root{
+    --text: #0e0812;
+    --text-secondary: #2B0935;
+    --background: #fbf8fc;
+    --primary: #9450b9;
+    --secondary: #bf94d6;
+    --accent: #b077cf;
+}
+
+
+body[data-theme="light"]{
+    --text: #0e0812;
+    --text-secondary: #2B0935;
+    --background: #fbf8fc;
+    --primary: #9450b9;
+    --secondary: #bf94d6;
+    --accent: #b077cf;
+}
+
+body[data-theme="dark"]{
+    --text: #F7DBFF;
+    --text-secondary: #F9E5FF;
+    --background: #2A0934;
+    --primary: #C91BFE;
+    --secondary: #8601AF;
+    --accent: #3A004C;
+}
+
+/*body[data-theme="blue2"]{
+    --text: #051542;
+    --background: #EAEFFF;
+    --primary: #2F66FE;
+    --secondary: #678FFE;
+    --accent: #4778FF;
+}*/
+
+body[data-theme="blue"]{
+    --text: #0E1833;
+    --text-secondary: #DBE5FF;
+    --background: #EBF0FD;
+    --primary: #82A0F2;
+    --secondary: #103498;
+    --accent: #265AE8;
+}
+
+body[data-theme="red"]{
+    --text: #FFE2DC;
+    --text-secondary: #33100C;
+    --background: #FDEDEB;
+    --primary: #F69288;
+    --secondary: #EF3827;
+    --accent: #A6190C;
+}
+
+body[data-theme="spring"]{
+    --text: #EBF7E3;
+    --text-secondary: #1D370A;
+    --background: #FBFDF9;
+    --primary: #A3DA7C;
+    --secondary: #6CBA34;
+    --accent: #3E6B1E;
+}
+
+body[data-theme="summer"]{
+    --text: #1B1B09;
+    --background: #FDFDE2;
+    --primary: #F9F9A4;
+    --secondary: #F2F243;
+    --accent: #C4C40E;
+}
+
+body[data-theme="autumn"]{
+    --text: #FEEEDC;
+    --text-secondary: #2F230B;
+    --background: #FBECCC;
+    --primary: #F4C76C;
+    --secondary: #E7A012;
+    --accent: #8A5F0A;
+}
+
+
+
+body{
+    background: var(--background);
+    color:var(--text);
+}
+
+.color-bg-text{
+    background-color: var(--text);
+}
+
+.color-bg-background{
+    background-color: var(--background);
+}
+
+.color-bg-primary{
+    background-color: var(--primary);
+}
+.color-bg-secondary{
+    background-color: var(--secondary);
+}
+.color-bg-accent{
+    background-color: var(--accent);
+}
+
+.color-text{
+    color: var(--text);
+}
+
+.color-text-secondary{
+    color:var(--text-secondary);
+}
+
+.color-background{
+    color: var(--background);
+}
+
+.color-primary{
+    color: var(--primary);
+}
+.color-secondary{
+    color: var(--secondary);
+}
+.color-accent{
+    color: var(--accent);
+}
+
+.btn{
+    border-color: #000;
+}
+
+
+
 header {
     background-color: #301934;
 }
@@ -38,9 +171,10 @@ nav, .nav-item, .nav-link, .navbar-brand{
 
 .belepteto {
     width: 50%;
-    height: 300px;
+    height: 420px;
     border-width: 2px;
-    border-color: black;
+    /*border-color: black;*/
+    border-color: var(--text);
 }
 
 .kartya:hover{
@@ -49,10 +183,11 @@ nav, .nav-item, .nav-link, .navbar-brand{
 
 
 .card-header{
-    background-color: #301934;
-    color:white;
-    border-width: 2px;
-    border-color:black;
+    /*background-color: #301934;
+    color:white;*/
+    border-width: 1px;
+    /*border-color:black;*/
+    border-color: var(--text);
 }
 
 footer{
