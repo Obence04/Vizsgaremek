@@ -18,13 +18,22 @@ body[data-theme="light"]{
 }
 
 body[data-theme="dark"]{
+    --text: #D8B5C4;
+    --text-secondary: #D8B5C4;
+    --background: #1E091C;
+    --primary: #292130;
+    --secondary: #251C28;
+    --accent: #21171F;
+}
+
+/*body[data-theme="dark"]{
     --text: #F7DBFF;
     --text-secondary: #F9E5FF;
     --background: #2A0934;
     --primary: #C91BFE;
     --secondary: #8601AF;
     --accent: #3A004C;
-}
+}*/
 
 /*body[data-theme="blue2"]{
     --text: #051542;
