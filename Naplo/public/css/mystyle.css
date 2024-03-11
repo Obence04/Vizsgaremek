@@ -134,6 +134,18 @@ body{
     color: var(--accent);
 }
 
+.logo{
+    height: 50px;
+    background-color: #777;
+    border-radius: 50%;
+    transition: 500ms;
+}
+
+.logo:hover{
+    transform: rotate(45deg);
+    transition: 500ms;
+}
+
 .ikon{
     text-decoration: none;
     color:var(--text);
@@ -231,3 +243,10 @@ table a, table a:visited, table a:hover{
     text-decoration: none;
     color: black;
 }
+
+@media only screen and (max-width:768px){
+    .belepteto {
+        height: 65vh;
+    }
+}
+

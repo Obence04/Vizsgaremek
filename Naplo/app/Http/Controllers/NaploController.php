@@ -26,15 +26,22 @@ class NaploController extends Controller
 
     public function Fooldal(){
         if (Auth::check()){
-
-                
-            if (Auth::user()->jog_id == 1){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog == 1){
                 return view('fooldal',[
-                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()[0]
+                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'jog' => $jog
+                ]);
+            } else if ($jog == 2){
+                return view('fooldal',[
+                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'jog' => $jog
                 ]);
             } else {
                 return view('fooldal',[
-                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()[0]
+                    'user' => User::find(Auth::user()->id),
+                    'jog' => $jog
                 ]);
             }
         } else {

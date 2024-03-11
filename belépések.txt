@@ -1,0 +1,11 @@
+Admin:
+username: Rendszergazda
+password: RKT-Administrator-123
+
+tanári belépés:
+username: (felhasználónév)
+password: RKT-(felhasználónév)-123
+
+diák belépés:
+username: RKT-(felhasználónév)-123
+password: RKT-(születési dátum - YYYY-MM-DD)-123

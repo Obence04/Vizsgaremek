@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>

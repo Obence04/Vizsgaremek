@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
-    <link rel="shortcut icon" href="{{asset('assets/img/gyik.png')}}" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="icon" href="{{asset('assets/img/favicon.ico')}}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"/>
     <title>Napló</title>
 </head>
 <body>
     <header>
         <nav class="container-fluid navbar navbar-expand">
-            <a class="navbar-brand ms-5" href="index.html">{{$user->nev}}</a>
+            <a class="navbar-brand ms-5" href="index.html">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
             <ul class="navbar-nav ms-auto">
                 <span id="datum" class="navbar-text text-light"></span>
                 <li class="nav-item">
@@ -33,7 +34,7 @@
         </nav>
         <nav class="container-fluid navbar navbar-expand-md">
             <a class="navbar-brand" href="#">
-                <img class="mx-5" src="img/logo.png" alt="logo.png">
+                <img class="text-center logo ms-5" src={{asset('img/ikon1.png')}} alt="logo1.png">
             </a>
             <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

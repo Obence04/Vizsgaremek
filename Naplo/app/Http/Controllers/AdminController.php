@@ -17,9 +17,10 @@ class AdminController extends Controller
 {
     function Felvetel(){
         if (Auth::check()){
-            if (Auth::user()->id > 1){
+            if (Auth::user()->id > 2){
                 return view('felvetel',[
-                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()[0],
+                    'user' => User::find(Auth::user()->id),
+                    'jog' => User::find(Auth::user()->id)->jog_id,
                     'tanardb' => tanarok::count(),
                     'tanarok' => tanarok::all(),
 
