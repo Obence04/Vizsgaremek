@@ -11,6 +11,17 @@ Tanulmány(i)
 Privát
 és
 Alaprendszer
+Nevelés(i)
+Helyi
+Felület
+Értékelő
+Szoftver
+Alkalmazás
+Nyilvántartás
+Okmány
+Adat(ai/ainak/ok/oknak)
+Adminisztráció(s)
+
 
 DNEEOIIRKTÉA
 
@@ -21,5 +32,6 @@ magyarul: VAS
 
 rakéta
 Renszer A Közoktatási És Tanulmányi (Alaprendszerhez)
+
 
 tanulmányi oktatási rendszer privát ellenörző digitális órákra
