@@ -6,12 +6,15 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
+    <link rel="shortcut icon" href="{{asset('assets/img/gyik.png')}}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Napló</title>
 </head>
 <body>
     <header>
         <nav class="container-fluid navbar navbar-expand">
-            <a class="navbar-brand ms-5" href="index.html">Név</a>
+            <a class="navbar-brand ms-5" href="index.html">{{$user->nev}}</a>
             <ul class="navbar-nav ms-auto">
                 <span id="datum" class="navbar-text text-light"></span>
                 <li class="nav-item">
@@ -22,6 +25,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Beállítások</a>
+                </li>
+                <li class="pt-2">
+                    <a href="/kilepes" class="ikon"><span class="material-symbols-rounded">logout</span></a>
                 </li>
             </ul>
         </nav>

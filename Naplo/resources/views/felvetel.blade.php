@@ -1,4 +1,4 @@
-@extends('fooldallayout')
+@extends('layout_fooldal')
 @section('content')
 <body>
     <main>
@@ -79,6 +79,8 @@
                             <input type="text" name="anyjaneve" id="anyjaneve" class="form-control"><br>
                             <label for="lakcim" class="form-label">Lakcím:</label>
                             <input type="text" name="lakcim" id="lakcim" class="form-control"><br>
+                            <label for="email" class="form-label">E-mail cím:</label>
+                            <input type="text" name="email" id="email" class="form-control"><br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -94,6 +96,10 @@
                             <input type="hidden" name="tipus" value="tanár">
                             <label for="tanarnev" class="form-label">Tanár neve:</label>
                             <input type="text" name="tanarnev" id="tanarnev" class="form-control"><br>
+                            <label for="email" class="form-label">E-mail cím:</label>
+                            <input type="text" name="email" id="email" class="form-control"><br>
+                            <label for="usern" class="form-label">Felhasználónév:</label>
+                            <input type="text" name="usern" id="usern" class="form-control"><br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>

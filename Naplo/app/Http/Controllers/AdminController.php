@@ -9,23 +9,33 @@ use App\Models\osztalyok;
 use App\Models\tanarok;
 use App\Models\tanitott;
 use App\Models\tantargyak;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     function Felvetel(){
-        return view('felvetel',[
-            'tanardb' => tanarok::count(),
-            'tanarok' => tanarok::all(),
+        if (Auth::check()){
+            if (Auth::user()->id > 1){
+                return view('felvetel',[
+                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()[0],
+                    'tanardb' => tanarok::count(),
+                    'tanarok' => tanarok::all(),
 
-            'osztalydb' => osztalyok::count(),
-            'osztalyok' => osztalyok::all(),
+                    'osztalydb' => osztalyok::count(),
+                    'osztalyok' => osztalyok::all(),
 
-            'tantargydb' => tantargyak::count(),
-            'tantargyak' => tantargyak::all()
-        ]);
+                    'tantargydb' => tantargyak::count(),
+                    'tantargyak' => tantargyak::all()
+                ]);
+            }
+        }
+        return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
+
     }
 
-    function Hozzaadas(Request $request){
+    function FelvetelPost(Request $request){
         if ($request->input('tipus') == "osztály") {
             $request->validate([
                 'osztalynev' => 'required',
@@ -48,6 +58,7 @@ class AdminController extends Controller
                 'szulhely' => 'required',
                 'anyjaneve' => 'required',
                 'lakcim' => 'required',
+                'email' => 'required'
             ],[
                 'tanulonev.required' => 'Nem adott meg nevet!',
                 'oktazon.unique' => 'Ez az oktatási azonosító már benne van az adatbázisban!',
@@ -55,27 +66,58 @@ class AdminController extends Controller
                 'szuldatum.required' => 'Nem adta meg a tanuló születési idejét!',
                 'szulhely.required' => 'Nem adta meg a tanuló születési helyét!',
                 'anyjaneve.required' => 'Nem adta meg a tanuló anyja nevét!',
-                'lakcim.required' => 'Nem adta meg a tanuló lakcímét!'
+                'lakcim.required' => 'Nem adta meg a tanuló lakcímét!',
+                'email.required' => 'E-mail cím megadása kötelező!'
             ]);
+            $datum = date_format(date_create($request->szuldatum), 'Y-m-d');
+            $user = new User;
+            $user->name = $request->oktazon;
+            $user->password = Hash::make($datum);
+            $user->email = $request->email;
+            $user->jog_id = 1;
+
+            $user->save();
+            $felhid = User::select('id')->where('name', '=', $request->oktazon)->get();
+
             $data = new diakok;
             $data->nev = $request->tanulonev;
             $data->oktazon = $request->oktazon;
             $data->osztaly_id = $request->osztaly;
-            $data->szuldatum = $request->szuldatum;
+            $data->szuldatum = date_format(date_create($request->szuldatum), 'Y-m-d');
             $data->szulhely = $request->szulhely;
             $data->anyja_neve = $request->anyjaneve;
             $data->lakcim = $request->lakcim;
+            $data->felhasznalo_id = $felhid[0]->id;
+
             $data->save();
         }
         else if ($request->input('tipus') == "tanár"){
             $request->validate([
-                'tanarnev' => 'required'
+                'tanarnev' => 'required',
+                'usern' => 'required',
+                'email' => 'required'
             ],[
-                'osztalynev.required' => 'Nem adott meg nevet!'
+                'osztalynev.required' => 'Nem adott meg nevet!',
+                'usern.required' => 'Nem adott meg felhasználónevet!',
+                'email.required' => 'E-mail cím megadása kötelező!'
             ]);
+
+            $user = new User;
+            $user->name = $request->usern;
+            $user->password = Hash::make('RKT-'.$request->usern.'-123');
+            $user->email = $request->email;
+            $user->jog_id = 2;
+
+            $user->save();
+            $felhid = User::select('id')->where('name', '=', $request->usern)->get();
+
             $data = new tanarok;
             $data->nev = $request->tanarnev;
+            $data->felhasznalo_id = $felhid[0]->id;
             $data->save();
+
+
+
         }
         else if ($request->input('tipus') == "tanított"){
             $request->validate([

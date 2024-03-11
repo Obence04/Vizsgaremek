@@ -125,11 +125,26 @@ body{
     color: var(--accent);
 }
 
-.btn{
-    border-color: #000;
+.ikon{
+    text-decoration: none;
+    color:var(--text);
 }
 
+.form-control{
+    --bs-border-color:var(--text);
 
+}
+
+.gomb{
+
+    transition: 250ms;
+}
+
+.gomb:hover{
+    background-color: var(--text-secondary);
+    color: var(--background);
+    transition: 500ms;
+}
 
 header {
     background-color: #301934;
@@ -171,10 +186,15 @@ nav, .nav-item, .nav-link, .navbar-brand{
 
 .belepteto {
     width: 50%;
-    height: 420px;
+    height: 50vh;
     border-width: 2px;
     /*border-color: black;*/
     border-color: var(--text);
+}
+
+.beleptxt{
+    height: 130px;
+    padding-bottom: 10px;
 }
 
 .kartya:hover{

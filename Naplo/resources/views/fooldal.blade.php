@@ -1,4 +1,4 @@
-@extends('fooldallayout')
+@extends('layout_fooldal')
 @section('content')
     <main class="container text-center">
         <button type="button" class="btn btn-secondary mt-5" onclick="Napinezet()">Napi nézet</button>
