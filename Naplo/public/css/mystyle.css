@@ -134,16 +134,41 @@ body{
     color: var(--accent);
 }
 
+.btn{
+    --bs-btn-active-bg:var(--primary);
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    --bs-btn-color:var(--background);
+    --bs-btn-border-color:var(--background);
+    --bs-btn-hover-border-color:var(--background);
+    --bs-btn-active-border-color:var(--background);
+}
+
+.btn-secondary{
+    background-color: var(--secondary);
+    --bs-btn-color: var(--text);
+    --bs-btn-border-color:var(--text);
+    --bs-btn-hover-border-color:var(--text);
+    --bs-btn-active-border-color:var(--text);
+}
+
+.btn:hover{
+    background-color: var(--accent);
+}
+
 .logo{
     height: 50px;
     background-color: #777;
     border-radius: 50%;
-    transition: 500ms;
+    transition: 1000ms;
 }
 
 .logo:hover{
-    transform: rotate(45deg);
-    transition: 500ms;
+    transform: rotate(360deg);
+    transition: 2500ms;
+    filter: drop-shadow(0px 0px 5px rgba(255,255,0,1));
 }
 
 .ikon{
@@ -157,7 +182,6 @@ body{
 }
 
 .gomb{
-
     transition: 250ms;
 }
 
