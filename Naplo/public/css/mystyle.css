@@ -19,7 +19,7 @@ body[data-theme="light"]{
 
 body[data-theme="dark"]{
     --text: #D8B5C4;
-    --text-secondary: #D8B5C4;
+    --text-secondary: #af8f9d;
     --background: #1E091C;
     --primary: #292130;
     --secondary: #251C28;
@@ -49,6 +49,7 @@ body[data-theme="blue"]{
     --background: #EBF0FD;
     --primary: #82A0F2;
     --secondary: #103498;
+    /*--secondary: #1c48c2;*/
     --accent: #265AE8;
 }
 
@@ -97,11 +98,9 @@ body{
 .color-bg-text{
     background-color: var(--text);
 }
-
 .color-bg-background{
     background-color: var(--background);
 }
-
 .color-bg-primary{
     background-color: var(--primary);
 }
@@ -111,19 +110,15 @@ body{
 .color-bg-accent{
     background-color: var(--accent);
 }
-
 .color-text{
     color: var(--text);
 }
-
 .color-text-secondary{
     color:var(--text-secondary);
 }
-
 .color-background{
     color: var(--background);
 }
-
 .color-primary{
     color: var(--primary);
 }
@@ -140,18 +135,21 @@ body{
 
 .btn-primary{
     background-color: var(--primary);
-    --bs-btn-color:var(--background);
-    --bs-btn-border-color:var(--background);
-    --bs-btn-hover-border-color:var(--background);
+    --bs-btn-color:var(--text-secondary);
+    --bs-btn-border-color:var(--text-secondary);
+    --bs-btn-hover-border-color:var(--text);
     --bs-btn-active-border-color:var(--background);
+    --bs-btn-hover-color:var(--text-secondary);
 }
 
 .btn-secondary{
     background-color: var(--secondary);
     --bs-btn-color: var(--text);
-    --bs-btn-border-color:var(--text);
-    --bs-btn-hover-border-color:var(--text);
+    --bs-btn-border-color:var(--background);
+    --bs-btn-hover-border-color:var(--text-secondary);
     --bs-btn-active-border-color:var(--text);
+
+    --bs-btn-hover-color:var(--text-secondary);
 }
 
 .btn:hover{
@@ -171,9 +169,19 @@ body{
     filter: drop-shadow(0px 0px 5px rgba(255,255,0,1));
 }
 
+.material-symbols-rounded{
+    font-size: 28pt;
+}
+
 .ikon{
     text-decoration: none;
     color:var(--text);
+}
+.ikon:hover,
+.nav-link:hover{
+    filter:drop-shadow(0px 0px 10px var(--background));
+    color:var(--secondary);
+    transition: 250ms;
 }
 
 .form-control{
@@ -190,11 +198,12 @@ body{
     color: var(--background);
     transition: 500ms;
 }
-
+/*
 header {
     background-color: #301934;
+    background-color: var(--primary);
 }
-
+*/
 main{
     min-height: 100vh;
 }
@@ -204,8 +213,10 @@ body{
     width: 100%;
 }
 
-nav, .nav-item, .nav-link, .navbar-brand{
-    color:white;
+.navbar-brand,
+.nav-link,
+.navbar-text{
+    color:var(--text);
 }
 
 .nav-link:hover,
@@ -219,7 +230,6 @@ nav, .nav-item, .nav-link, .navbar-brand{
 .nav-link,
 .navbar-brand{
     text-decoration: none;
-    color: white;
 }
 
 .kartya {

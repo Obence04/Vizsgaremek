@@ -127,7 +127,8 @@ class AdminController extends Controller
                 'tanarnev.required' => 'Nem adott meg nevet!'
             ]);
             $data = new tanitott;
-            $data->nev = $request->tanarnev;
+            $data->tanar_id = $request->tanar_id;
+            $data->tantargy_id = $request->tantargy_id;
             $data->save();
         }
         else if ($request->input('tipus') == "órarend"){
@@ -147,7 +148,7 @@ class AdminController extends Controller
                 'tantargy.required' => 'Nem adott meg tantárgyat!'
             ]);
             $data = new tantargyak;
-            $data->nev = $request->tantargy;
+            $data->megnevezes = $request->tantargy;
             $data->save();
         }
         else return redirect('asd');

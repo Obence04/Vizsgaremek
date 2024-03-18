@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
-    <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
     <link rel="icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
+    <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
     <title>Napló</title>
 </head>
-<body>
-    <header>
+<body data-theme="light" class="color-bg-background">
+    <header class="color-bg-primary fw-bold">
         <nav class="container-fluid navbar navbar-expand">
             <a class="navbar-brand ms-5" href="index.html">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
             <ul class="navbar-nav ms-auto">
-                <span id="datum" class="navbar-text text-light"></span>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Üzenet</a>
+                <span id="datum" class="navbar-text pe-3 pt-2 fs-5"></span>
+                <li class="nav-item pt-2" title="Üzenet">
+                    <a href="/" class="ikon pe-2"><span class="material-symbols-rounded">mail</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profil</a>
+                <li class="nav-item pt-2" title="Profil">
+                    <a href="/" class="ikon pe-2"><span class="material-symbols-rounded">account_box</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Beállítások</a>
+                <li class="nav-item pt-2" title="Beállítások">
+                    <a href="/" class="ikon pe-2"><span class="material-symbols-rounded">settings</span></a>
                 </li>
-                <li class="pt-2">
-                    <a href="/kilepes" class="ikon"><span class="material-symbols-rounded">logout</span></a>
+                <li class="nav-item pt-2" title="Kilépés">
+                    <a href="/kilepes" class="ikon pe-2"><span class="material-symbols-rounded">logout</span></a>
                 </li>
             </ul>
         </nav>

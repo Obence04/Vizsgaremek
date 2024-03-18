@@ -62,7 +62,7 @@ class NaploController extends Controller
             'password.required' => 'Üresen hagyta a jelszó mezőt!'
         ]);
         if (Auth::attempt(['name' => $request->username, 'password' => $request->password])){
-            return redirect('/fooldal');
+            return redirect('/');
         } else {
             $msg = "Helytelen felhasználónév vagy jelszó!";
             return redirect('/belepes')->withErrors(['msg' => $msg]);

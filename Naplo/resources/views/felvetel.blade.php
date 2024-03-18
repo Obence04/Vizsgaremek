@@ -151,6 +151,7 @@
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
                         <form action="" method="post">
+                            @csrf
                             <input type="hidden" name="tipus" value="órarend">
                             <label for="datum" class="form-label">Dátum:</label>
                             <input type="date" name="datum" id="datum" class="form-control"><br>
@@ -191,6 +192,7 @@
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
                         <form action="" method="post">
+                            @csrf
                             <input type="hidden" name="tipus" value="tantárgy">
                             <label for="tantargy" class="form-label">Tantárgy megnevezése:</label>
                             <input type="text" name="tantargy" id="tantargy" class="form-control"><br>
