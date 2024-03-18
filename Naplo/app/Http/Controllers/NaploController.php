@@ -68,4 +68,29 @@ class NaploController extends Controller
             return redirect('/belepes')->withErrors(['msg' => $msg]);
         }
     }
+
+    public function Orarend(){
+        if (Auth::check()){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog == 1){
+                return view('orarend',[
+                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'jog' => $jog
+                ]);
+            } else if ($jog == 2){
+                return view('orarend',[
+                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'jog' => $jog
+                ]);
+            } else {
+                return view('orarend',[
+                    'user' => User::find(Auth::user()->id),
+                    'jog' => $jog
+                ]);
+            }
+        } else {
+            return view('/belepes');
+        }
+    }
 }

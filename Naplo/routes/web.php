@@ -13,3 +13,6 @@ Route::get('/',[NaploController::class, 'Fooldal']);
 
 Route::get('/felvetel',[AdminController::class, 'Felvetel']);
 Route::post('/felvetel',[AdminController::class, 'FelvetelPost']);
+
+//órarend
+Route::get('/orarend',[NaploController::class, 'Orarend']);
