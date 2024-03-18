@@ -19,16 +19,18 @@ class AdminController extends Controller
         if (Auth::check()){
             if (Auth::user()->id > 2){
                 return view('felvetel',[
-                    'user' => User::find(Auth::user()->id),
-                    'jog' => User::find(Auth::user()->id)->jog_id,
-                    'tanardb' => tanarok::count(),
-                    'tanarok' => tanarok::all(),
+                    'user'          => User::find(Auth::user()->id),
+                    'jog'           => User::find(Auth::user()->id)->jog_id,
+                    'tanardb'       => tanarok::count(),
+                    'tanarok'       => tanarok::all(),
 
-                    'osztalydb' => osztalyok::count(),
-                    'osztalyok' => osztalyok::all(),
+                    'osztalydb'     => osztalyok::count(),
+                    'osztalyok'     => osztalyok::all(),
 
-                    'tantargydb' => tantargyak::count(),
-                    'tantargyak' => tantargyak::all()
+                    'tantargydb'    => tantargyak::count(),
+                    'tantargyak'    => tantargyak::all(),
+
+                    't-tanar'       => tanitott::select('tanarok.nev', 'tantargyak.megnevezes')->join('tanarok', 'tanarok.id', 'tanitott_tantargyak.tanarok_tanar_id')->join('tantargyak', 'tantargyak.id', 'tanitott-tantargyak.tantargyak_tantargy_id')->get()
                 ]);
             }
         }
@@ -122,13 +124,15 @@ class AdminController extends Controller
         }
         else if ($request->input('tipus') == "tanított"){
             $request->validate([
-                'tanarnev' => 'required'
+                'tanar_id' => 'required',
+                'tantargy_id' => 'required'
             ],[
-                'tanarnev.required' => 'Nem adott meg nevet!'
+                'tanar_id.required' => 'Nem választott ki tanárt!',
+                'tantargy_id.required' => 'Nem választott ki tantárgyat!'
             ]);
             $data = new tanitott;
-            $data->tanar_id = $request->tanar_id;
-            $data->tantargy_id = $request->tantargy_id;
+            $data->tanarok_tanar_id = $request->tanar_id;
+            $data->tantargyak_tantargy_id = $request->tantargy_id;
             $data->save();
         }
         else if ($request->input('tipus') == "órarend"){

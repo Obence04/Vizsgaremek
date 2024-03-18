@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class tanitott extends Model
 {
-    protected $table = "tanitott_tantargyak";
+    protected $table = "tanitott-tantargyak";
     public $timestamps = false;
     use HasFactory;
 }
