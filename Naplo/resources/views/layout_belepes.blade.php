@@ -17,10 +17,7 @@
 <footer class="bg-dark p-1 fixed-bottom">
     <div class="row">
         <div class="col">
-            <p>Elérhetőségek</p>
-            <p>GYIK</p>
-            <p>ÁSZF</p>
-            <p>EULA</p>
+            <p>Elérhetőségek | GYIK | ÁSZF | EULA</p>
         </div>
         <div class="col">
             <p class="text-end p-2">

@@ -13,9 +13,60 @@ use App\Models\osztalyok;
 use App\Models\tanarok;
 use App\Models\tanitott;
 use App\Models\tantargyak;
+use App\Models\temak;
+use App\Models\beallitasok;
 
 class NaploController extends Controller
 {
+    public function Jogok(){
+
+    }
+
+    public function VendegAtiranyit(){
+        if (Auth::guest()) return view('/belepes');
+    }
+
+    public function Beallitasok(){
+        if (!self::Belepett()) return redirect('/belepes');
+        $user = Auth::user();
+        $jog = $user->jog_id;
+        if ($jog == 1){
+        return view('beallitasok',[
+            'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+            'jog' => $jog,
+            'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
+            'temaoptions' => temak::all()
+        ]);
+        } else if ($jog == 2){
+        return view('beallitasok',[
+            'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+            'jog' => $jog,
+            'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
+            'temaoptions' => temak::all()
+        ]);
+        } else {
+        return view('beallitasok',[
+            'user' => User::find(Auth::user()->id),
+            'jog' => $jog,
+            'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
+            'temaoptions' => temak::all()
+        ]);
+        }
+    }
+
+    public function Belepett(){
+        return Auth::check();
+    }
+
+    public function BeallitasokPost(Request $request){
+        if ($request->input('tipus') == 'tema'){
+            $data = beallitasok::find(Auth::user()->id);
+            $data->tema_id = $request->tema;
+            $data->save();
+        }
+        return redirect('/beallitasok');
+    }
+
     public function Kilepes(){
         if (Auth::check()){
             Auth::logout();

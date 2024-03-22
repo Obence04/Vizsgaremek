@@ -16,3 +16,7 @@ Route::post('/felvetel',[AdminController::class, 'FelvetelPost']);
 
 //órarend
 Route::get('/orarend',[NaploController::class, 'Orarend']);
+
+//beállítások
+Route::get('/beallitasok',[NaploController::class, 'Beallitasok']);
+Route::post('/beallitasok',[NaploController::class, 'BeallitasokPost']);

@@ -12,20 +12,20 @@
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
     <title>Napló</title>
 </head>
-<body data-theme="light" class="color-bg-background">
+<body data-theme="{{$tema}}" class="color-bg-background">
     <header class="color-bg-primary fw-bold">
         <nav class="container-fluid navbar navbar-expand">
             <a class="navbar-brand ms-5" href="index.html">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
             <ul class="navbar-nav ms-auto">
                 <span id="datum" class="navbar-text pe-3 pt-2 fs-5"></span>
                 <li class="nav-item pt-2" title="Üzenet">
-                    <a href="/" class="ikon pe-2"><span class="material-symbols-rounded">mail</span></a>
+                    <a href="/uzenetek" class="ikon pe-2"><span class="material-symbols-rounded">mail</span></a>
                 </li>
                 <li class="nav-item pt-2" title="Profil">
-                    <a href="/" class="ikon pe-2"><span class="material-symbols-rounded">account_box</span></a>
+                    <a href="/profil" class="ikon pe-2"><span class="material-symbols-rounded">account_box</span></a>
                 </li>
                 <li class="nav-item pt-2" title="Beállítások">
-                    <a href="/" class="ikon pe-2"><span class="material-symbols-rounded">settings</span></a>
+                    <a href="/beallitasok" class="ikon pe-2"><span class="material-symbols-rounded">settings</span></a>
                 </li>
                 <li class="nav-item pt-2" title="Kilépés">
                     <a href="/kilepes" class="ikon pe-2"><span class="material-symbols-rounded">logout</span></a>
@@ -42,16 +42,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="#">Órarend</a>
+                        <a class="nav-link" href="/orarend">Órarend</a>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="#">Értékelések</a>
+                        <a class="nav-link" href="/ertekelesek">Értékelések</a>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="#">Feljegyzések</a>
+                        <a class="nav-link" href="/feljegyzesek">Feljegyzések</a>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="#">Igazolás/Mulasztás</a>
+                        <a class="nav-link" href="/igazolasok">Igazolás/Mulasztás</a>
                     </li>
                 </ul>
             </div>
@@ -63,10 +63,7 @@
 <footer class="bg-dark p-1">
     <div class="row mx-auto">
         <div class="col-6">
-            <p>Elérhetőségek</p>
-            <p>GYIK</p>
-            <p>ÁSZF</p>
-            <p>EULA</p>
+            <p>Elérhetőségek | GYIK | ÁSZF | EULA</p>
         </div>
         <div class="col-6">
             <p class="text-end p-2">
