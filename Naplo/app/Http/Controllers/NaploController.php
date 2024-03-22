@@ -82,17 +82,20 @@ class NaploController extends Controller
             if ($jog == 1){
                 return view('fooldal',[
                     'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
-                    'jog' => $jog
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             } else if ($jog == 2){
                 return view('fooldal',[
                     'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
-                    'jog' => $jog
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             } else {
                 return view('fooldal',[
                     'user' => User::find(Auth::user()->id),
-                    'jog' => $jog
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             }
         } else {
@@ -127,17 +130,20 @@ class NaploController extends Controller
             if ($jog == 1){
                 return view('orarend',[
                     'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
-                    'jog' => $jog
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             } else if ($jog == 2){
                 return view('orarend',[
                     'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
-                    'jog' => $jog
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             } else {
                 return view('orarend',[
                     'user' => User::find(Auth::user()->id),
-                    'jog' => $jog
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             }
         } else {
