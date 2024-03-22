@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
-
 use App\Models\User;
 use App\Models\diakok;
 use App\Models\orarend;
@@ -63,7 +62,14 @@ class NaploController extends Controller
             $data = beallitasok::find(Auth::user()->id);
             $data->tema_id = $request->tema;
             $data->save();
-        }
+        } /*else if ($request->input('tipus') == 'jelszo'){     TODO
+            $request->validate([
+                'regi' => 'required',
+                'password' => ['required', Password]
+            ],[
+
+            ]);
+        }*/
         return redirect('/beallitasok');
     }
 
