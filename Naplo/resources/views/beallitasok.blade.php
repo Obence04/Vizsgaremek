@@ -9,7 +9,7 @@
                 <label for="tema" class="form-label">Téma:</label>
                 <select name="tema" class="form-control">
                     @foreach ($temaoptions as $row)
-                        <option value="{{$row->id}}">{{$row->megnevezes}}</option>
+                        <option value="{{$row->id}}" {{$row->megnevezes == $tema ? "selected" : ""}}>{{$row->megnevezes}}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary">Téma megváltoztatása</button>

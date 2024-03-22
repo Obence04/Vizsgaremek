@@ -15,7 +15,7 @@
 <body data-theme="{{$tema}}" class="color-bg-background">
     <header class="color-bg-primary fw-bold">
         <nav class="container-fluid navbar navbar-expand">
-            <a class="navbar-brand ms-5" href="index.html">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
+            <a class="navbar-brand ms-5" href="/">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
             <ul class="navbar-nav ms-auto">
                 <span id="datum" class="navbar-text pe-3 pt-2 fs-5"></span>
                 <li class="nav-item pt-2" title="Üzenet">

@@ -35,7 +35,7 @@ class NaploController extends Controller
             'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
             'jog' => $jog,
             'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
-            'temaoptions' => temak::all()
+            'temaoptions' => temak::all(),
         ]);
         } else if ($jog == 2){
         return view('beallitasok',[
