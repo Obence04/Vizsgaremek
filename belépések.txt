@@ -6,6 +6,15 @@ tanári belépés:
 username: (felhasználónév)
 password: RKT-(felhasználónév)-123
 
+pl.:
+pista.bacsi
+RKT-pista.bacsi-123
+
 diák belépés:
 username: RKT-(felhasználónév)-123
-password: RKT-(születési dátum - YYYY-MM-DD)-123
+password: (születési dátum - YYYY-MM-DD)
+
+
+pl.:
+72012345678
+1972-01-23
