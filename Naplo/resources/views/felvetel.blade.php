@@ -15,7 +15,7 @@
                 <h1 class="text-center mt-3">Osztály felvitele</h1>
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
-                        <form action="" method="post">
+                        <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="osztály">
                             <label for="osztalynev" class="form-label">Osztály neve:</label>
@@ -49,7 +49,7 @@
                 <h1 class="text-center mt-3">Tanuló felvitele</h1>
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
-                        <form action="" method="post">
+                        <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="tanuló">
                             <label for="tanulonev" class="form-label">Tanuló neve:</label>
@@ -91,7 +91,7 @@
                 <h1 class="text-center mt-3">Tanár felvitele</h1>
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
-                        <form action="" method="post">
+                        <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="tanár">
                             <label for="tanarnev" class="form-label">Tanár neve:</label>
@@ -110,7 +110,7 @@
                 <h1 class="text-center mt-3">Tanár hozzárendelése tantárgyhoz</h1>
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
-                        <form action="" method="post">
+                        <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="tanított">
                             @if ($tanardb == 0)
@@ -150,7 +150,7 @@
                 <h1 class="text-center mt-3">Órarend felvitele</h1>
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
-                        <form action="" method="post">
+                        <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="órarend">
                             <label for="datum" class="form-label">Dátum:</label>
@@ -191,7 +191,7 @@
                 <h1 class="text-center mt-3">Tantárgy felvitele</h1>
                 <div class="w-60 bg-dark mx-auto text-light p-3 rounded m-3">
                     <div class="container">
-                        <form action="" method="post">
+                        <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="tantárgy">
                             <label for="tantargy" class="form-label">Tantárgy megnevezése:</label>

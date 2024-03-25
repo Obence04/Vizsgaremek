@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Hash;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\diakok;
 use App\Models\orarend;
@@ -62,14 +63,29 @@ class NaploController extends Controller
             $data = beallitasok::find(Auth::user()->id);
             $data->tema_id = $request->tema;
             $data->save();
-        } /*else if ($request->input('tipus') == 'jelszo'){     TODO
+            return redirect('/beallitasok');
+        } else if ($request->input('tipus') == 'jelszo'){
+            if (!Auth::attempt(['id' => Auth::user()->id, 'password' => $request->regi])){
+                return redirect('/beallitasok')->withErrors(['msg' => 'Helytelen jelszó!']);
+            }
             $request->validate([
                 'regi' => 'required',
-                'password' => ['required', Password]
+                'password' => ['required', 'confirmed', Password::min(8)->mixedcase()->numbers()],
+                'password_confirmation' => 'required'
             ],[
-
+                'regi.required' => 'Nem adta meg a jelszavát!',
+                'password.required' => 'Nem adta meg az új jelszavát!',
+                'password.min' => 'Új jelszava legalább 8 karakter hosszú legyen!',
+                'password.mixedcase' => 'Az új jelszavának tartalmaznia kell kis- és nagybetűt!',
+                'password.numbers' => 'Az új jelszavának tartalmaznia kell számot!',
+                'password.confirmed' => 'A két jelszó nem egyezik',
+                'password_confirmation.required' => 'Nem erősítette meg az jelszót!'
             ]);
-        }*/
+            $data = User::find(Auth::user()->id);
+            $data->password = Hash::make($request->password);
+            $data->save();
+            return redirect('/beallitasok')->withErrors([ 'msg' => 'Sikeres módosítás!' ]);
+        }
         return redirect('/beallitasok');
     }
 

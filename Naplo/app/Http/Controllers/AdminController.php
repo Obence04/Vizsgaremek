@@ -10,6 +10,9 @@ use App\Models\tanarok;
 use App\Models\tanitott;
 use App\Models\tantargyak;
 use App\Models\User;
+use App\Models\beallitasok;
+use App\Models\orarend_tanitott;
+use App\Models\temak;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +33,9 @@ class AdminController extends Controller
                     'tantargydb'    => tantargyak::count(),
                     'tantargyak'    => tantargyak::all(),
 
-                    't-tanar'       => tanitott::select('tanarok.nev', 'tantargyak.megnevezes')->join('tanarok', 'tanarok.id', 'tanitott_tantargyak.tanarok_tanar_id')->join('tantargyak', 'tantargyak.id', 'tanitott-tantargyak.tantargyak_tantargy_id')->get()
+                    't-tanar'       => tanitott::select('tanarok.nev', 'tantargyak.megnevezes')->join('tanarok', 'tanarok.tanar_id', 'tanitott-tantargyak.tanarok_tanar_id')->join('tantargyak', 'tantargyak.tantargy_id', 'tanitott-tantargyak.tantargyak_tantargy_id')->get(),
+
+                    'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
                 ]);
             }
         }
@@ -137,13 +142,22 @@ class AdminController extends Controller
         }
         else if ($request->input('tipus') == "órarend"){
             $request->validate([
-                'tanarnev' => 'required'
+                'datum' => 'required|date',
+                'ora_szama' => 'required'
             ],[
-                'osztalynev.required' => 'Nem adott meg nevet!'
+                'datum' => 'Nem adott meg dátumot',
+                'ora_szama.required' => 'Nem adta meg az óraszámot!'
             ]);
             $data = new orarend;
+            $data->osztaly_id = $request->osztaly;
+            $data->datum = $request->datum;
             $data->nev = $request->tanarnev;
             $data->save();
+
+            $ort = new orarend_tanitott;
+            $ort->id = $data->id;
+            //$ort->tantargyak-tanitott_kapcs_id =
+            //TODO
         }
         else if ($request->input('tipus') == "tantárgy"){
             $request->validate([
