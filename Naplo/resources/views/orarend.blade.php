@@ -1,78 +1,104 @@
 @extends('layout_fooldal')
 @section('content')
-<main class="container text-center">
+<main class="container-fluid text-center">
     <div class="table-responsive-xxl pt-5">
-    <table class="table mb-0" id="table">
+    <table class="table mb-0 mx-auto text-center" id="table">
         <thead>
            <tr>
-              <td id="sub1"></td>
-              <td id="sub">8:00-8:45</td>
-              <td id="sub">9:00-9:45</td>
-              <td id="sub">10:00-10:45</td>
-              <td id="sub">11:00-11:45</td>
-              <td id="sub">12:00-12:30</td>
-              <td id="sub">12:30-13:15</td>
-              <td id="sub">13:30-14:15</td>
-              <td id="sub">14:30-15:15</td>
+              <td>{{"osztály"}}</td>
+              <td id="weekday">Hétfő</td>
+              <td id="weekday">Kedd</td>
+              <td id="weekday">Szerda</td>
+              <td id="weekday">Csütörtök</td>
+              <td id="weekday">Péntek</td>
+              <td id="weekday">Szombat</td>
+              <td id="weekday">Vasárnap</td>
            </tr>
         </thead>
         <tbody>
            <tr>
-              <td id="sub">MONDAY</td>
-              <td id="blank">---</td>
-              <td id="box1">SUB1</td>
-              <td id="box2">SUB2</td>
-              <td id="box3">SUB3</td>
-              <td rowspan="6" id="lunch" class="text-center">Ebéd szünet</td>
-              <td id="box4">SUB4</td>
-              <td id="box5">SUB5</td>
-              <td id="s">counselling class</td>
+                <td id="weekday">8:00 - 8:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
            </tr>
            <tr>
-              <td id="sub">TUESDAY</td>
-              <td id="box1">SUB1</td>
-              <td id="box2">SUB2</td>
-              <td id="box3">SUB3</td>
-              <td id="blank">---</td>
-              <td id="box2">SUB2</td>
-              <td id="box2">SUB2</td>
-              <td id="sub2">library</td>
+                <td id="weekday">9:00 - 9:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
            </tr>
            <tr>
-              <td id="sub">WEDNESDAY</td>
-              <td id="box1">SUB1</td>
-              <td id="box2">SUB2</td>
-              <td id="box5">SWA</td>
-              <td id="blank">---</td>
-              <td colspan="3"id="sub3" >LAB</td>
+                <td id="weekday">10:00 - 10:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
            </tr>
            <tr>
-              <td id="sub">THURSDAY</td>
-              <td id="box1">SUB1</td>
-              <td id="box2">SUB2</td>
-              <td id="box3">SUB3</td>
-              <td id="blank">---</td>
-              <td id="box2">SUB2</td>
-              <td id="box2">SUB2</td>
-              <td id="sub2">library</td>
+                <td id="weekday">11:00 - 11:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
            </tr>
            <tr>
-              <td id="sub">FRIDAY</td>
-              <td id="box1">SUB1</td>
-              <td id="box2">SUB2</td>
-              <td id="box3">SUB3</td>
-              <td id="blank">---</td>
-              <td id="box4">SUB4</td>
-              <td id="box5">SUB5</td>
-              <td id="sub2">library</td>
+                <td id="weekday">12:00 - 12:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
            </tr>
            <tr>
-              <td id="sub">SATURDAY</td>
-              <td id="box1">SUB1</td>
-              <td colspan="3" id="seminar">seminar</td>
-              <td id="box4">SUB4</td>
-              <td id="box5">SUB5</td>
-              <td id="sub2">library</td>
+                <td id="weekday">12:45 - 13:15</td>
+                <td colspan="7">Ebédszünet</td>
+           </tr>
+           <tr>
+                <td id="weekday">13:15 - 14:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+           </tr>
+           <tr>
+                <td id="weekday">14:15 - 15:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+           </tr>
+           <tr>
+                <td id="weekday">15:15 - 16:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
            </tr>
         </tbody>
      </table>

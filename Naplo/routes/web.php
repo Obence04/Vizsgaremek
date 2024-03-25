@@ -20,3 +20,6 @@ Route::get('/orarend',[NaploController::class, 'Orarend']);
 //beállítások
 Route::get('/beallitasok',[NaploController::class, 'Beallitasok']);
 Route::post('/beallitasok',[NaploController::class, 'BeallitasokPost']);
+
+//értékelések
+Route::get('/ertekelesek',[NaploController::class, 'Ertekelesek']);

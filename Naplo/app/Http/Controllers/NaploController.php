@@ -172,4 +172,32 @@ class NaploController extends Controller
             return view('/belepes');
         }
     }
+
+    public function Ertekelesek(){
+        if (Auth::check()){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog == 1){
+                return view('ertekelesek',[
+                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                ]);
+            } else if ($jog == 2){
+                return view('ertekelesek',[
+                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                ]);
+            } else {
+                return view('ertekelesek',[
+                    'user' => User::find(Auth::user()->id),
+                    'jog' => $jog,
+					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                ]);
+            }
+        } else {
+            return view('/belepes');
+        }
+    }
 }
