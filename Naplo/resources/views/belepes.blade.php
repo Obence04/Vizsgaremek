@@ -3,15 +3,15 @@
     <main class="container color-text">
         <div class="my-5 d-flex justify-content-center">
             <div class="card belepteto rounded-3 color-bg-secondary">
-                <div class="card-header rounded-top-1 text-center fs-4 color-text color-bg-accent">
+                <div class="card-header rounded-top-1 text-center fs-4 color-text color-bg-accent h-auto">
                 Belépés
                 </div>
                 <div class="p-2 mx-auto w-75 color-text-secondary">
-                    @error('msg')
-                        <span class="text-danger fw-bold">{{ $message }}</span>
-                    @enderror
                     <form action="/belepes" method="POST">
                         @csrf
+                        @error('msg')
+                            <span class="text-danger fw-bold">{{ $message }}</span>
+                        @enderror
                         <div class="beleptxt">
                             <label for="username" class="form-label">Felhasználónév: </label>
                             <input type="text" name="username" class="form-control mb-2">
@@ -31,7 +31,7 @@
                     </form>
                 </div>
                 <hr>
-                <a href="/elfelejtett" class="text-center fs-4 aign-bottom" style="font-variant: small-caps">elfelejtett jelszó</a>
+                <a href="/elfelejtett" class="text-center fs-4 align-bottom mb-3" style="font-variant: small-caps">elfelejtett jelszó</a>
             </div>
         </div>
     </main>

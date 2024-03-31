@@ -14,10 +14,13 @@
 @yield('content')
 <!--Vágás-->
 </body>
-<footer class="bg-dark p-1 fixed-bottom">
-    <div class="row">
+<footer class="bg-dark p-1 ">
+    <div class="row mx-auto">
         <div class="col">
-            <p>Elérhetőségek | GYIK | ÁSZF | EULA</p>
+            <p>Elérhetőségek</p>
+            <p>GYIK</p>
+            <p>ÁSZF</p>
+            <p>EULA</p>
         </div>
         <div class="col">
             <p class="text-end p-2">

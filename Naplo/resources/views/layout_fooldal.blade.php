@@ -15,7 +15,7 @@
 <body data-theme="{{$tema}}" class="color-bg-background">
     <header class="color-bg-primary fw-bold">
         <nav class="container-fluid navbar navbar-expand">
-            <a class="navbar-brand ms-5" href="/">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
+            <a class="navbar-brand ms-5" id="nev" href="/">@if ($jog > 2) {{$user->name}} @else {{$user->nev}} @endif</a>
             <ul class="navbar-nav ms-auto">
                 <span id="datum" class="navbar-text pe-3 pt-2 fs-5"></span>
                 <li class="nav-item pt-2" title="Üzenet">
@@ -63,7 +63,10 @@
 <footer class="bg-dark p-1">
     <div class="row mx-auto">
         <div class="col-6">
-            <p>Elérhetőségek | GYIK | ÁSZF | EULA</p>
+            <p>Elérhetőségek</p>
+            <p>GYIK</p>
+            <p>ÁSZF</p>
+            <p>EULA</p>
         </div>
         <div class="col-6">
             <p class="text-end p-2">
