@@ -30,15 +30,15 @@
         {
             menuStrip1 = new MenuStrip();
             TSMIFelvetel = new ToolStripMenuItem();
-            TSMIImportalas = new ToolStripMenuItem();
-            TSMIKilepes = new ToolStripMenuItem();
             TSMIFelDiak = new ToolStripMenuItem();
-            TSMIFelTanar = new ToolStripMenuItem();
             TSMIFelOszt = new ToolStripMenuItem();
             TSMIFelOra = new ToolStripMenuItem();
+            TSMIFelTanar = new ToolStripMenuItem();
             TSMIFelTantargy = new ToolStripMenuItem();
+            TSMIImportalas = new ToolStripMenuItem();
             diákokToolStripMenuItem = new ToolStripMenuItem();
             órarendToolStripMenuItem1 = new ToolStripMenuItem();
+            TSMIKilepes = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -58,6 +58,36 @@
             TSMIFelvetel.Size = new Size(59, 20);
             TSMIFelvetel.Text = "Felvétel";
             // 
+            // TSMIFelDiak
+            // 
+            TSMIFelDiak.Name = "TSMIFelDiak";
+            TSMIFelDiak.Size = new Size(118, 22);
+            TSMIFelDiak.Text = "diák";
+            // 
+            // TSMIFelOszt
+            // 
+            TSMIFelOszt.Name = "TSMIFelOszt";
+            TSMIFelOszt.Size = new Size(118, 22);
+            TSMIFelOszt.Text = "osztály";
+            // 
+            // TSMIFelOra
+            // 
+            TSMIFelOra.Name = "TSMIFelOra";
+            TSMIFelOra.Size = new Size(118, 22);
+            TSMIFelOra.Text = "órarend";
+            // 
+            // TSMIFelTanar
+            // 
+            TSMIFelTanar.Name = "TSMIFelTanar";
+            TSMIFelTanar.Size = new Size(118, 22);
+            TSMIFelTanar.Text = "tanár";
+            // 
+            // TSMIFelTantargy
+            // 
+            TSMIFelTantargy.Name = "TSMIFelTantargy";
+            TSMIFelTantargy.Size = new Size(118, 22);
+            TSMIFelTantargy.Text = "tantárgy";
+            // 
             // TSMIImportalas
             // 
             TSMIImportalas.DropDownItems.AddRange(new ToolStripItem[] { diákokToolStripMenuItem, órarendToolStripMenuItem1 });
@@ -65,53 +95,23 @@
             TSMIImportalas.Size = new Size(75, 20);
             TSMIImportalas.Text = "Importálás";
             // 
-            // TSMIKilepes
-            // 
-            TSMIKilepes.Name = "TSMIKilepes";
-            TSMIKilepes.Size = new Size(56, 20);
-            TSMIKilepes.Text = "Kilépés";
-            // 
-            // TSMIFelDiak
-            // 
-            TSMIFelDiak.Name = "TSMIFelDiak";
-            TSMIFelDiak.Size = new Size(180, 22);
-            TSMIFelDiak.Text = "diák";
-            // 
-            // TSMIFelTanar
-            // 
-            TSMIFelTanar.Name = "TSMIFelTanar";
-            TSMIFelTanar.Size = new Size(180, 22);
-            TSMIFelTanar.Text = "tanár";
-            // 
-            // TSMIFelOszt
-            // 
-            TSMIFelOszt.Name = "TSMIFelOszt";
-            TSMIFelOszt.Size = new Size(180, 22);
-            TSMIFelOszt.Text = "osztály";
-            // 
-            // TSMIFelOra
-            // 
-            TSMIFelOra.Name = "TSMIFelOra";
-            TSMIFelOra.Size = new Size(180, 22);
-            TSMIFelOra.Text = "órarend";
-            // 
-            // TSMIFelTantargy
-            // 
-            TSMIFelTantargy.Name = "TSMIFelTantargy";
-            TSMIFelTantargy.Size = new Size(180, 22);
-            TSMIFelTantargy.Text = "tantárgy";
-            // 
             // diákokToolStripMenuItem
             // 
             diákokToolStripMenuItem.Name = "diákokToolStripMenuItem";
-            diákokToolStripMenuItem.Size = new Size(180, 22);
+            diákokToolStripMenuItem.Size = new Size(115, 22);
             diákokToolStripMenuItem.Text = "diákok";
             // 
             // órarendToolStripMenuItem1
             // 
             órarendToolStripMenuItem1.Name = "órarendToolStripMenuItem1";
-            órarendToolStripMenuItem1.Size = new Size(180, 22);
+            órarendToolStripMenuItem1.Size = new Size(115, 22);
             órarendToolStripMenuItem1.Text = "órarend";
+            // 
+            // TSMIKilepes
+            // 
+            TSMIKilepes.Name = "TSMIKilepes";
+            TSMIKilepes.Size = new Size(56, 20);
+            TSMIKilepes.Text = "Kilépés";
             // 
             // FrmMain
             // 
@@ -120,7 +120,9 @@
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "FrmMain";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

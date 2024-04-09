@@ -44,6 +44,8 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
+            BtnMentes = new Button();
+            BtnElvet = new Button();
             SuspendLayout();
             // 
             // TxtOktazon
@@ -51,7 +53,7 @@
             TxtOktazon.Location = new Point(130, 12);
             TxtOktazon.MaxLength = 11;
             TxtOktazon.Name = "TxtOktazon";
-            TxtOktazon.Size = new Size(148, 23);
+            TxtOktazon.Size = new Size(188, 23);
             TxtOktazon.TabIndex = 0;
             // 
             // TxtNev
@@ -59,7 +61,7 @@
             TxtNev.Location = new Point(130, 41);
             TxtNev.MaxLength = 45;
             TxtNev.Name = "TxtNev";
-            TxtNev.Size = new Size(148, 23);
+            TxtNev.Size = new Size(188, 23);
             TxtNev.TabIndex = 1;
             // 
             // TxtLakcim
@@ -67,7 +69,7 @@
             TxtLakcim.Location = new Point(130, 128);
             TxtLakcim.MaxLength = 45;
             TxtLakcim.Name = "TxtLakcim";
-            TxtLakcim.Size = new Size(148, 23);
+            TxtLakcim.Size = new Size(188, 23);
             TxtLakcim.TabIndex = 4;
             // 
             // TxtSzulhely
@@ -75,7 +77,7 @@
             TxtSzulhely.Location = new Point(130, 99);
             TxtSzulhely.MaxLength = 45;
             TxtSzulhely.Name = "TxtSzulhely";
-            TxtSzulhely.Size = new Size(148, 23);
+            TxtSzulhely.Size = new Size(188, 23);
             TxtSzulhely.TabIndex = 3;
             // 
             // DateTPSzuldatum
@@ -84,14 +86,14 @@
             DateTPSzuldatum.Format = DateTimePickerFormat.Custom;
             DateTPSzuldatum.Location = new Point(130, 70);
             DateTPSzuldatum.Name = "DateTPSzuldatum";
-            DateTPSzuldatum.Size = new Size(148, 23);
+            DateTPSzuldatum.Size = new Size(188, 23);
             DateTPSzuldatum.TabIndex = 2;
             // 
             // TxtEmail
             // 
-            TxtEmail.Location = new Point(130, 269);
+            TxtEmail.Location = new Point(130, 213);
             TxtEmail.Name = "TxtEmail";
-            TxtEmail.Size = new Size(148, 23);
+            TxtEmail.Size = new Size(188, 23);
             TxtEmail.TabIndex = 8;
             // 
             // CBBOsztaly
@@ -100,7 +102,7 @@
             CBBOsztaly.FormattingEnabled = true;
             CBBOsztaly.Location = new Point(130, 157);
             CBBOsztaly.Name = "CBBOsztaly";
-            CBBOsztaly.Size = new Size(148, 23);
+            CBBOsztaly.Size = new Size(188, 23);
             CBBOsztaly.TabIndex = 5;
             // 
             // CBUj
@@ -108,6 +110,7 @@
             CBUj.AutoSize = true;
             CBUj.Location = new Point(13, 186);
             CBUj.Name = "CBUj";
+            CBUj.RightToLeft = RightToLeft.No;
             CBUj.Size = new Size(81, 19);
             CBUj.TabIndex = 6;
             CBUj.Text = "Új osztály?";
@@ -119,7 +122,7 @@
             TxtUjOsztaly.Location = new Point(130, 184);
             TxtUjOsztaly.MaxLength = 45;
             TxtUjOsztaly.Name = "TxtUjOsztaly";
-            TxtUjOsztaly.Size = new Size(148, 23);
+            TxtUjOsztaly.Size = new Size(188, 23);
             TxtUjOsztaly.TabIndex = 7;
             // 
             // label1
@@ -170,7 +173,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(13, 272);
+            label6.Location = new Point(12, 216);
             label6.Name = "label6";
             label6.Size = new Size(67, 15);
             label6.TabIndex = 14;
@@ -179,17 +182,39 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(13, 160);
+            label7.Location = new Point(12, 160);
             label7.Name = "label7";
             label7.Size = new Size(48, 15);
             label7.TabIndex = 15;
             label7.Text = "Osztály:";
             // 
+            // BtnMentes
+            // 
+            BtnMentes.BackColor = Color.FromArgb(192, 255, 192);
+            BtnMentes.Location = new Point(12, 242);
+            BtnMentes.Name = "BtnMentes";
+            BtnMentes.Size = new Size(150, 54);
+            BtnMentes.TabIndex = 16;
+            BtnMentes.Text = "Mentés";
+            BtnMentes.UseVisualStyleBackColor = false;
+            // 
+            // BtnElvet
+            // 
+            BtnElvet.BackColor = Color.FromArgb(255, 192, 192);
+            BtnElvet.Location = new Point(168, 242);
+            BtnElvet.Name = "BtnElvet";
+            BtnElvet.Size = new Size(150, 54);
+            BtnElvet.TabIndex = 17;
+            BtnElvet.Text = "Elvetés";
+            BtnElvet.UseVisualStyleBackColor = false;
+            // 
             // FrmFelDiak
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(330, 308);
+            Controls.Add(BtnElvet);
+            Controls.Add(BtnMentes);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -206,7 +231,11 @@
             Controls.Add(TxtLakcim);
             Controls.Add(TxtNev);
             Controls.Add(TxtOktazon);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            MinimumSize = new Size(346, 347);
             Name = "FrmFelDiak";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FrmFelDiak";
             ResumeLayout(false);
             PerformLayout();
@@ -230,5 +259,7 @@
         private Label label5;
         private Label label6;
         private Label label7;
+        private Button BtnMentes;
+        private Button BtnElvet;
     }
 }

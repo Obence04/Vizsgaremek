@@ -90,6 +90,7 @@
             // 
             // FrmBelepes
             // 
+            AcceptButton = BtnBelepes;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(260, 175);
@@ -99,7 +100,10 @@
             Controls.Add(TxtJelszo);
             Controls.Add(TxtNev);
             Controls.Add(BtnBelepes);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmBelepes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Belépés";
             ResumeLayout(false);
             PerformLayout();

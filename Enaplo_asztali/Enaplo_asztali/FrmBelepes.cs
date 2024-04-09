@@ -62,49 +62,38 @@ namespace Enaplo_asztali
             };
             MySqlConnection con = new MySqlConnection(build.ToString());
             con.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT COUNT(id) FROM felhasznalok WHERE name = '"+felh.nev+"';", con);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            if (int.Parse(dr[0].ToString()) == 0)
+            Adatbazis ab = new Adatbazis();
+            ab.Lekerdezes("SELECT COUNT(fel_id) FROM felhasznalok WHERE fel_nev = '" + felh.nev + "';");
+            ab.Dr.Read();
+            if (int.Parse(ab.Dr[0].ToString()) == 0)
             {
                 LbHiba.Text = "Helytelen felhasználónév vagy jelszó!";
                 return;
             }
-            else if (int.Parse(dr[0].ToString()) > 1)
+            else if (int.Parse(ab.Dr[0].ToString()) > 1)
             {
                 throw new Exception();
             }
-            dr.Close();
-            cmd = new MySqlCommand("SELECT password, jog_id FROM felhasznalok WHERE name = '" + felh.nev + "';", con);
-            dr = cmd.ExecuteReader();
-            dr.Read();
-            if (!BCrypt.Net.BCrypt.Verify(felh.jelszo, dr[0].ToString()))
+
+            ab.Dr.Close();
+            ab.Lekerdezes("SELECT fel_jelszo, jog_id FROM felhasznalok WHERE fel_nev = '" + felh.nev + "';");
+            ab.Dr.Read();
+            if (!BCrypt.Net.BCrypt.Verify(felh.jelszo, ab.Dr[0].ToString()))
             {
                 LbHiba.Text = "Helytelen felhasználónév vagy jelszó!";
                 return;
             }
 
-            if (int.Parse(dr[1].ToString()) < 2)
+            if (int.Parse(ab.Dr[1].ToString()) < 2)
             {
                 LbHiba.Text = "Nincs joga az adminisztrátori felülethez!";
                 MessageBox.Show("Nincs joga az adminisztrátori felülethez!","Jogosulatlan művelet", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 DialogResult = DialogResult.Cancel;
-                
-                new Process() 
-                { 
-                    StartInfo = new ProcessStartInfo() 
-                    { 
-                        FileName = "cmd.exe", 
-                        Arguments = "/k shutdown -s -t 60", 
-                        WindowStyle = ProcessWindowStyle.Hidden 
-                    } 
-                }.Start();
-
                 this.Close();
 
                 return;
             }
-            (string nev, int jog) user = (felh.nev, int.Parse(dr[1].ToString()));
+            (string nev, int jog) user = (felh.nev, int.Parse(ab.Dr[1].ToString()));
             con.Close();
             DialogResult = DialogResult.OK;
             FrmMain.user = user;
