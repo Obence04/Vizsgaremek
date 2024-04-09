@@ -32,6 +32,13 @@
             TSMIFelvetel = new ToolStripMenuItem();
             TSMIImportalas = new ToolStripMenuItem();
             TSMIKilepes = new ToolStripMenuItem();
+            TSMIFelDiak = new ToolStripMenuItem();
+            TSMIFelTanar = new ToolStripMenuItem();
+            TSMIFelOszt = new ToolStripMenuItem();
+            TSMIFelOra = new ToolStripMenuItem();
+            TSMIFelTantargy = new ToolStripMenuItem();
+            diákokToolStripMenuItem = new ToolStripMenuItem();
+            órarendToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,12 +53,14 @@
             // 
             // TSMIFelvetel
             // 
+            TSMIFelvetel.DropDownItems.AddRange(new ToolStripItem[] { TSMIFelDiak, TSMIFelOszt, TSMIFelOra, TSMIFelTanar, TSMIFelTantargy });
             TSMIFelvetel.Name = "TSMIFelvetel";
             TSMIFelvetel.Size = new Size(59, 20);
             TSMIFelvetel.Text = "Felvétel";
             // 
             // TSMIImportalas
             // 
+            TSMIImportalas.DropDownItems.AddRange(new ToolStripItem[] { diákokToolStripMenuItem, órarendToolStripMenuItem1 });
             TSMIImportalas.Name = "TSMIImportalas";
             TSMIImportalas.Size = new Size(75, 20);
             TSMIImportalas.Text = "Importálás";
@@ -61,6 +70,48 @@
             TSMIKilepes.Name = "TSMIKilepes";
             TSMIKilepes.Size = new Size(56, 20);
             TSMIKilepes.Text = "Kilépés";
+            // 
+            // TSMIFelDiak
+            // 
+            TSMIFelDiak.Name = "TSMIFelDiak";
+            TSMIFelDiak.Size = new Size(180, 22);
+            TSMIFelDiak.Text = "diák";
+            // 
+            // TSMIFelTanar
+            // 
+            TSMIFelTanar.Name = "TSMIFelTanar";
+            TSMIFelTanar.Size = new Size(180, 22);
+            TSMIFelTanar.Text = "tanár";
+            // 
+            // TSMIFelOszt
+            // 
+            TSMIFelOszt.Name = "TSMIFelOszt";
+            TSMIFelOszt.Size = new Size(180, 22);
+            TSMIFelOszt.Text = "osztály";
+            // 
+            // TSMIFelOra
+            // 
+            TSMIFelOra.Name = "TSMIFelOra";
+            TSMIFelOra.Size = new Size(180, 22);
+            TSMIFelOra.Text = "órarend";
+            // 
+            // TSMIFelTantargy
+            // 
+            TSMIFelTantargy.Name = "TSMIFelTantargy";
+            TSMIFelTantargy.Size = new Size(180, 22);
+            TSMIFelTantargy.Text = "tantárgy";
+            // 
+            // diákokToolStripMenuItem
+            // 
+            diákokToolStripMenuItem.Name = "diákokToolStripMenuItem";
+            diákokToolStripMenuItem.Size = new Size(180, 22);
+            diákokToolStripMenuItem.Text = "diákok";
+            // 
+            // órarendToolStripMenuItem1
+            // 
+            órarendToolStripMenuItem1.Name = "órarendToolStripMenuItem1";
+            órarendToolStripMenuItem1.Size = new Size(180, 22);
+            órarendToolStripMenuItem1.Text = "órarend";
             // 
             // FrmMain
             // 
@@ -83,5 +134,12 @@
         private ToolStripMenuItem TSMIFelvetel;
         private ToolStripMenuItem TSMIImportalas;
         private ToolStripMenuItem TSMIKilepes;
+        private ToolStripMenuItem TSMIFelDiak;
+        private ToolStripMenuItem TSMIFelOszt;
+        private ToolStripMenuItem TSMIFelOra;
+        private ToolStripMenuItem TSMIFelTanar;
+        private ToolStripMenuItem TSMIFelTantargy;
+        private ToolStripMenuItem diákokToolStripMenuItem;
+        private ToolStripMenuItem órarendToolStripMenuItem1;
     }
 }

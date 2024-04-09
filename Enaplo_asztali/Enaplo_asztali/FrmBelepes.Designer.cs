@@ -80,10 +80,13 @@
             // LbHiba
             // 
             LbHiba.AutoSize = true;
+            LbHiba.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            LbHiba.ForeColor = Color.Red;
             LbHiba.Location = new Point(12, 96);
             LbHiba.Name = "LbHiba";
-            LbHiba.Size = new Size(0, 15);
+            LbHiba.Size = new Size(30, 15);
             LbHiba.TabIndex = 5;
+            LbHiba.Text = "hiba";
             // 
             // FrmBelepes
             // 
