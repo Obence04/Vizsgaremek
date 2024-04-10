@@ -1,0 +1,5 @@
+INSERT INTO `felhasznalok` (`fel_id`, `fel_nev`, `fel_jelszo`, `fel_email`, `fel_telszam`, `jog_id`, `tema_id`) VALUES (NULL, 'Admin', '$2a$12$MW67HOShMd9yRS8Qgsp9Mu95AqR3SxYvgn8oPXzqitb4ttM/KvUWy', 'admin@admin.hu', NULL, '4', '1');
+
+INSERT INTO `temak` (`tema_id`, `tema_nev`) VALUES ('1', 'light'), ('2', 'dark'), ('3', 'blue'), ('4', 'red'), ('5', 'spring'), ('6', 'summer'), ('7', 'autumn');
+
+INSERT INTO `jogok` (`jog_id`, `jog_nev`) VALUES ('1', 'diák'), ('2', 'tanár'), ('3', 'intézményvezető'), ('4', 'admin');

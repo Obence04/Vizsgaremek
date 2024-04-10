@@ -61,6 +61,7 @@ namespace Enaplo_asztali
 
         private void OnLoad(object sender, EventArgs e)
         {
+
             MessageBox.Show("c");
             OsztalyFeltolt();
         }

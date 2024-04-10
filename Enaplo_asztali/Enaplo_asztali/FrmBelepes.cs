@@ -35,8 +35,8 @@ namespace Enaplo_asztali
         {
             if (e.KeyCode == Keys.F1 )
             {
-                TxtNev.Text = "Rendszergazda";
-                TxtJelszo.Text = "RKT-Administrator-123";
+                TxtNev.Text = "Admin";
+                TxtJelszo.Text = "Admin";
                 Belepes(null, null);
             }
         }

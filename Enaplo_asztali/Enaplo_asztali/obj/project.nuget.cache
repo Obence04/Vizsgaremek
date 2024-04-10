@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RkHfP2zcSLV5Hi241NWhIVBfK25ZGQKMas4wmAoXeSjyY5EXfRCsGEU918R2CjDB0b5taDMqnCxp+RAFcIY9Cw==",
+  "dgSpecHash": "rV601MMNAKPpqYCJAM/NderQCM+PjyZkJ6PPQjsydirZQl1Hyf/jlM2DHQz4xB6p5TkhrdKD/DiHnZ7hYHJdyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\olah.bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
+  "projectFilePath": "C:\\Users\\olah.bence\\Desktop\\Vizsgaremek\\GitHub\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\olah.bence\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\olah.bence\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
