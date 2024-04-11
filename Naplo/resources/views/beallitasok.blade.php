@@ -14,7 +14,7 @@
                         <span class="input-group-text">Téma:</span>
                         <select name="tema" class="form-select">
                             @foreach ($temaoptions as $row)
-                                <option value="{{$row->id}}" {{$row->megnevezes == $tema ? "selected" : ""}}>{{$row->megnevezes}}</option>
+                                <option value="{{$row->tema_id}}" {{$row->tema_nev == $tema ? "selected" : ""}}>{{$row->tema_nev}}</option>
                             @endforeach
                         </select>
                     </div>

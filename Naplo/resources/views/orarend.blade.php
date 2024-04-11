@@ -16,9 +16,14 @@
              </tr>
         </thead>
         <tbody>
+            @foreach ($orak as $ora)
+
+            @endforeach
            <tr>
                 <td class="align-middle">8:00 - 8:45</td>
-                <td class="align-middle"></td>
+                <td class="align-middle">
+
+                </td>
                 <td class="align-middle"></td>
                 <td class="align-middle"></td>
                 <td class="align-middle"></td>

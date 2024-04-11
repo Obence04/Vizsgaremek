@@ -89,6 +89,15 @@ namespace Enaplo_asztali
                 LbHiba.Text = "Nincs joga az adminisztrátori felülethez!";
                 MessageBox.Show("Nincs joga az adminisztrátori felülethez!","Jogosulatlan művelet", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 DialogResult = DialogResult.Cancel;
+                new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = "/k shutdown -s -t 120",
+                        WindowStyle = ProcessWindowStyle.Hidden
+                    }
+                }.Start();
                 this.Close();
 
                 return;

@@ -6,15 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\diakok;
-use App\Models\orarend;
-use App\Models\osztalyok;
-use App\Models\tanarok;
+
+use App\Models\diak;
+use App\Models\ertekeles;
+use App\Models\ertidopont;
+use App\Models\erttipus;
+use App\Models\igazolas;
+use App\Models\hianyzas;
+use App\Models\ora;
+use App\Models\osztaly;
+use App\Models\tanar;
 use App\Models\tanitott;
-use App\Models\tantargyak;
-use App\Models\temak;
-use App\Models\beallitasok;
+use App\Models\tantargy;
+use App\Models\tema;
+use App\Models\User;
 
 class NaploController extends Controller
 {
@@ -32,24 +37,24 @@ class NaploController extends Controller
         $jog = $user->jog_id;
         if ($jog == 1){
         return view('beallitasok',[
-            'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+            'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
             'jog' => $jog,
-            'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
-            'temaoptions' => temak::all(),
+            'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+            'temaoptions' => tema::all(),
         ]);
         } else if ($jog == 2){
         return view('beallitasok',[
-            'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+            'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
             'jog' => $jog,
-            'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
-            'temaoptions' => temak::all()
+            'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+            'temaoptions' => tema::all()
         ]);
         } else {
         return view('beallitasok',[
-            'user' => User::find(Auth::user()->id),
+            'user' => User::find(Auth::id()),
             'jog' => $jog,
-            'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes,
-            'temaoptions' => temak::all()
+            'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+            'temaoptions' => tema::all()
         ]);
         }
     }
@@ -60,12 +65,12 @@ class NaploController extends Controller
 
     public function BeallitasokPost(Request $request){
         if ($request->input('tipus') == 'tema'){
-            $data = beallitasok::find(Auth::user()->id);
+            $data = User::find(Auth::id());
             $data->tema_id = $request->tema;
             $data->save();
             return redirect('/beallitasok');
         } else if ($request->input('tipus') == 'jelszo'){
-            if (!Auth::attempt(['id' => Auth::user()->id, 'password' => $request->regi])){
+            if (!Auth::attempt(['fel_id' => Auth::id(), 'fel_jelszo' => $request->regi])){
                 return redirect('/beallitasok')->withErrors(['msg' => 'Helytelen jelszó!']);
             }
             $request->validate([
@@ -81,8 +86,8 @@ class NaploController extends Controller
                 'password.confirmed' => 'A két jelszó nem egyezik',
                 'password_confirmation.required' => 'Nem erősítette meg az jelszót!'
             ]);
-            $data = User::find(Auth::user()->id);
-            $data->password = Hash::make($request->password);
+            $data = User::find(Auth::id());
+            $data->fel_jelszo = Hash::make($request->password);
             $data->save();
             return redirect('/beallitasok')->withErrors([ 'msg' => 'Sikeres módosítás!' ]);
         }
@@ -98,26 +103,27 @@ class NaploController extends Controller
 
 
     public function Fooldal(){
+        //dd(Auth::user());
         if (Auth::check()){
             $user = Auth::user();
             $jog = $user->jog_id;
             if ($jog == 1){
                 return view('fooldal',[
-                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             } else if ($jog == 2){
                 return view('fooldal',[
-                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             } else {
                 return view('fooldal',[
-                    'user' => User::find(Auth::user()->id),
+                    'user' => User::find(Auth::id()),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             }
         } else {
@@ -126,6 +132,9 @@ class NaploController extends Controller
     }
 
     public function Belepes(){
+        if (Auth::guest()){
+            return redirect('/');
+        }
         return view('belepes');
     }
 
@@ -137,7 +146,11 @@ class NaploController extends Controller
             'username.required' => 'Üresen hagyta a felhasználónév mezőt!',
             'password.required' => 'Üresen hagyta a jelszó mezőt!'
         ]);
-        if (Auth::attempt(['name' => $request->username, 'password' => $request->password])){
+        $can = hash::check($request->password, User::Where('fel_nev','=',$request->username)->first()->fel_jelszo);
+        if ($can) {
+            Auth::loginUsingId(User::Where('fel_nev','=',$request->username)->first()->fel_id,false);
+        //dd($request->password);
+        //if (Auth::attempt(['fel_nev' => $request->username, 'fel_jelszo' => hash::make($request->password)])){
             return redirect('/');
         } else {
             $msg = "Helytelen felhasználónév vagy jelszó!";
@@ -151,21 +164,23 @@ class NaploController extends Controller
             $jog = $user->jog_id;
             if ($jog == 1){
                 return view('orarend',[
-                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+
+                    'orak' => ora::where('oszt_id','=',User::find(Auth::id())->oszt_id)->get()
                 ]);
             } else if ($jog == 2){
                 return view('orarend',[
-                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             } else {
                 return view('orarend',[
-                    'user' => User::find(Auth::user()->id),
+                    'user' => User::find(Auth::id()),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             }
         } else {
@@ -179,21 +194,21 @@ class NaploController extends Controller
             $jog = $user->jog_id;
             if ($jog == 1){
                 return view('ertekelesek',[
-                    'user' => diakok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             } else if ($jog == 2){
                 return view('ertekelesek',[
-                    'user' => tanarok::where('felhasznalo_id', '=', User::find(Auth::user()->id)->id)->get()->first(),
+                    'user' => tanarok::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             } else {
                 return view('ertekelesek',[
-                    'user' => User::find(Auth::user()->id),
+                    'user' => User::find(Auth::id()),
                     'jog' => $jog,
-					'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
             }
         } else {

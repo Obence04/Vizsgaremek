@@ -31,7 +31,7 @@
                                 <label for="osztalyfonok_id" class="from-label mb-1">Osztályfőnök:</label>
                                 <select name="osztalyfonok_id" id="osztalyfonok_id" class="form-select">
                                     @foreach ($tanarok as $row)
-                                        <option value="{{$row->tanar_id}}">{{$row->nev}}</option>
+                                        <option value="{{$row->tanar_id}}">{{$row->tanar_nev}}</option>
                                     @endforeach
                                 </select>
                             @endif
@@ -66,7 +66,7 @@
                                 <label for="osztaly" class="from-label mb-1">Osztály:</label>
                                 <select name="osztaly" id="osztaly" class="form-control">
                                     @foreach ($osztalyok as $row)
-                                    <option value="{{$row->osztaly_id}}">{{$row->megnevezes}}</option>
+                                    <option value="{{$row->oszt_id}}">{{$row->oszt_nev}}</option>
                                     @endforeach
                                 </select><br>
                             @endif

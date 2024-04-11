@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\diakok;
-use App\Models\orarend;
-use App\Models\osztalyok;
-use App\Models\tanarok;
+use App\Models\diak;
+use App\Models\ora;
+use App\Models\osztaly;
+use App\Models\tanar;
 use App\Models\tanitott;
-use App\Models\tantargyak;
+use App\Models\tantargy;
 use App\Models\User;
-use App\Models\beallitasok;
-use App\Models\orarend_tanitott;
-use App\Models\temak;
+use App\Models\beallitas;
+use App\Models\tema;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,22 +19,23 @@ class AdminController extends Controller
 {
     function Felvetel(){
         if (Auth::check()){
-            if (Auth::user()->id > 2){
+            if (Auth::user()->jog_id > 2){
                 return view('felvetel',[
-                    'user'          => User::find(Auth::user()->id),
-                    'jog'           => User::find(Auth::user()->id)->jog_id,
-                    'tanardb'       => tanarok::count(),
-                    'tanarok'       => tanarok::all(),
+                    'user'          => User::find(Auth::user()->fel_id),
+                    'jog'           => User::find(Auth::user()->fel_id)->jog_id,
+                    'tanardb'       => tanar::count(),
+                    'tanarok'       => tanar::all(),
 
-                    'osztalydb'     => osztalyok::count(),
-                    'osztalyok'     => osztalyok::all(),
+                    'osztalydb'     => osztaly::count(),
+                    'osztalyok'     => osztaly::all(),
 
-                    'tantargydb'    => tantargyak::count(),
-                    'tantargyak'    => tantargyak::all(),
+                    'tantargydb'    => tantargy::count(),
+                    'tantargyak'    => tantargy::all(),
 
-                    't-tanar'       => tanitott::select('tanarok.nev', 'tantargyak.megnevezes')->join('tanarok', 'tanarok.tanar_id', 'tanitott-tantargyak.tanarok_tanar_id')->join('tantargyak', 'tantargyak.tantargy_id', 'tanitott-tantargyak.tantargyak_tantargy_id')->get(),
+                    't-tanar'       => tanitott::select('tanarok.tanar_nev', 'tantargyak.tant_nev')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->get(),
+                    //'t-tanar'       => tanitott::select('tanar.nev', 'tantargy.megnevezes')->join('tanar', 'tanar.tanar_id', 'tanitott-tantargy.tanarok_tanar_id')->join('tantargy', 'tantargy.tantargy_id', 'tanitott-tantargy.tantargyak_tantargy_id')->get(),
 
-                    'tema' => temak::find(beallitasok::find(Auth::user()->id)->tema_id)->megnevezes
+                    'tema' => tema::find(User::find(Auth::user()->fel_id)->tema_id)->tema_nev,
                 ]);
             }
         }
@@ -47,20 +47,20 @@ class AdminController extends Controller
         if ($request->input('tipus') == "osztály") {
             $request->validate([
                 'osztalynev' => 'required',
-                'osztalyfonok_id' => 'unique:osztalyok,osztalyfonok_id'
+                'osztalyfonok_id' => 'unique:osztalyok,tanar_id'
             ],[
                 'osztalynev.required' => 'Nem adott meg nevet!',
                 'osztalyfonok_id.unique' => 'Ez a tanár már más osztálynak az osztályfőnöke!'
             ]);
-            $data = new osztalyok;
-            $data->megnevezes = $request->osztalynev;
-            $data->osztalyfonok_id = $request->osztalyfonok_id;
+            $data = new osztaly;
+            $data->oszt_nev = $request->osztalynev;
+            $data->tanar_id = $request->osztalyfonok_id;
             $data->save();
         }
         else if ($request->input('tipus') == "tanuló"){
             $request->validate([
                 'tanulonev' => 'required',
-                'oktazon' => 'unique:diakok,oktazon',
+                'oktazon' => 'unique:diakok,diak_id',
                 'osztaly' => 'required',
                 'szuldatum' => 'required',
                 'szulhely' => 'required',
@@ -79,23 +79,24 @@ class AdminController extends Controller
             ]);
             $datum = date_format(date_create($request->szuldatum), 'Y-m-d');
             $user = new User;
-            $user->name = $request->oktazon;
-            $user->password = Hash::make($datum);
-            $user->email = $request->email;
+            $user->fel_nev = $request->oktazon;
+            $user->fel_jelszo = Hash::make('RKT-'.$datum);
+            $user->fel_email = $request->email;
+            $user->tema_id = 1;
             $user->jog_id = 1;
 
             $user->save();
-            $felhid = User::select('id')->where('name', '=', $request->oktazon)->get();
+            $felhid = User::select('fel_id')->where('fel_nev', '=', $request->oktazon)->get();
 
-            $data = new diakok;
-            $data->nev = $request->tanulonev;
-            $data->oktazon = $request->oktazon;
-            $data->osztaly_id = $request->osztaly;
-            $data->szuldatum = date_format(date_create($request->szuldatum), 'Y-m-d');
-            $data->szulhely = $request->szulhely;
-            $data->anyja_neve = $request->anyjaneve;
-            $data->lakcim = $request->lakcim;
-            $data->felhasznalo_id = $felhid[0]->id;
+            $data = new diak;
+            $data->diak_nev = $request->tanulonev;
+            $data->diak_id = $request->oktazon;
+            $data->oszt_id = $request->osztaly;
+            $data->diak_szuldatum = date_format(date_create($request->szuldatum), 'Y-m-d');
+            $data->diak_szulhely = $request->szulhely;
+            $data->diak_anyja = $request->anyjaneve;
+            $data->diak_lakcim = $request->lakcim;
+            $data->fel_id = $felhid[0]->fel_id;
 
             $data->save();
         }
@@ -111,17 +112,18 @@ class AdminController extends Controller
             ]);
 
             $user = new User;
-            $user->name = $request->usern;
-            $user->password = Hash::make('RKT-'.$request->usern.'-123');
-            $user->email = $request->email;
+            $user->fel_nev = $request->usern;
+            $user->fel_jelszo = Hash::make('RKT-'.$request->usern.'-123');
+            $user->fel_email = $request->email;
+            $user->tema_id = 1;
             $user->jog_id = 2;
 
             $user->save();
-            $felhid = User::select('id')->where('name', '=', $request->usern)->get();
+            $felhid = User::select('fel_id')->where('fel_nev', '=', $request->usern)->get();
 
-            $data = new tanarok;
-            $data->nev = $request->tanarnev;
-            $data->felhasznalo_id = $felhid[0]->id;
+            $data = new tanar;
+            $data->tanar_nev = $request->tanarnev;
+            $data->fel_id = $felhid[0]->fel_id;
             $data->save();
 
 
@@ -155,8 +157,8 @@ class AdminController extends Controller
             $data->save();
 
             $ort = new orarend_tanitott;
-            $ort->id = $data->id;
-            //$ort->tantargyak-tanitott_kapcs_id =
+            $ort->fel_id = $data->id;
+            //$ort->tantargy-tanitott_kapcs_id =
             //TODO
         }
         else if ($request->input('tipus') == "tantárgy"){
@@ -165,7 +167,7 @@ class AdminController extends Controller
             ],[
                 'tantargy.required' => 'Nem adott meg tantárgyat!'
             ]);
-            $data = new tantargyak;
+            $data = new tantargy;
             $data->megnevezes = $request->tantargy;
             $data->save();
         }
