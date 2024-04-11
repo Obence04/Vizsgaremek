@@ -11,4 +11,10 @@ class tanitott extends Model
     protected $primaryKey = 'tanit_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'tanit_id',
+        'tanar_id',
+        'tant_id'
+    ];
 }

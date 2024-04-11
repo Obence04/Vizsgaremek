@@ -11,4 +11,9 @@ class tantargy extends Model
     protected $primaryKey = 'tant_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'tant_id',
+        'tant_nev'
+    ];
 }

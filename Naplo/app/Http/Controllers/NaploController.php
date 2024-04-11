@@ -133,9 +133,9 @@ class NaploController extends Controller
 
     public function Belepes(){
         if (Auth::guest()){
-            return redirect('/');
+            return view('belepes');
         }
-        return view('belepes');
+        return redirect('/');
     }
 
     public function BelepesPost(Request $request){
@@ -168,7 +168,7 @@ class NaploController extends Controller
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
 
-                    'orak' => ora::where('oszt_id','=',User::find(Auth::id())->oszt_id)->get()
+                    'orak' => ora::where('oszt_id','=',diak::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->oszt_id)->orderby('ora_datum')->orderby('ora_szam')->get()
                 ]);
             } else if ($jog == 2){
                 return view('orarend',[
@@ -200,7 +200,7 @@ class NaploController extends Controller
                 ]);
             } else if ($jog == 2){
                 return view('ertekelesek',[
-                    'user' => tanarok::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
+                    'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);

@@ -32,7 +32,7 @@ class AdminController extends Controller
                     'tantargydb'    => tantargy::count(),
                     'tantargyak'    => tantargy::all(),
 
-                    't-tanar'       => tanitott::select('tanarok.tanar_nev', 'tantargyak.tant_nev')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->get(),
+                    'ttanar'       => tanitott::select('tanitott.tanit_id', 'tanarok.tanar_nev', 'tantargyak.tant_nev')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->get(),
                     //'t-tanar'       => tanitott::select('tanar.nev', 'tantargy.megnevezes')->join('tanar', 'tanar.tanar_id', 'tanitott-tantargy.tanarok_tanar_id')->join('tantargy', 'tantargy.tantargy_id', 'tanitott-tantargy.tantargyak_tantargy_id')->get(),
 
                     'tema' => tema::find(User::find(Auth::user()->fel_id)->tema_id)->tema_nev,
@@ -44,6 +44,7 @@ class AdminController extends Controller
     }
 
     function FelvetelPost(Request $request){
+        //dd($request);
         if ($request->input('tipus') == "osztály") {
             $request->validate([
                 'osztalynev' => 'required',
@@ -138,18 +139,19 @@ class AdminController extends Controller
                 'tantargy_id.required' => 'Nem választott ki tantárgyat!'
             ]);
             $data = new tanitott;
-            $data->tanarok_tanar_id = $request->tanar_id;
-            $data->tantargyak_tantargy_id = $request->tantargy_id;
+            $data->tanar_id = $request->tanar_id;
+            $data->tant_id = $request->tantargy_id;
             $data->save();
         }
         else if ($request->input('tipus') == "órarend"){
             $request->validate([
-                'datum' => 'required|date',
-                'ora_szama' => 'required'
+                'datum' => 'required',
+                'oraszam' => 'required'
             ],[
                 'datum' => 'Nem adott meg dátumot',
-                'ora_szama.required' => 'Nem adta meg az óraszámot!'
+                'oraszam.required' => 'Nem adta meg az óraszámot!'
             ]);
+            /*
             $data = new orarend;
             $data->osztaly_id = $request->osztaly;
             $data->datum = $request->datum;
@@ -160,6 +162,14 @@ class AdminController extends Controller
             $ort->fel_id = $data->id;
             //$ort->tantargy-tanitott_kapcs_id =
             //TODO
+            */
+            $data = new ora;
+            $data->oszt_id = $request->osztaly;
+            $data->ora_datum = $request->datum;
+            $data->ora_szam = $request->oraszam;
+            $data->tanit_id = $request->tanit;
+            $data->ora_terem = $request->terem;
+            $data->save();
         }
         else if ($request->input('tipus') == "tantárgy"){
             $request->validate([
@@ -168,7 +178,7 @@ class AdminController extends Controller
                 'tantargy.required' => 'Nem adott meg tantárgyat!'
             ]);
             $data = new tantargy;
-            $data->megnevezes = $request->tantargy;
+            $data->tant_nev = $request->tantargy;
             $data->save();
         }
         else return redirect('asd');

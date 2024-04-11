@@ -11,4 +11,13 @@ class ora extends Model
     protected $primaryKey = 'ora_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'ora_id',
+        'oszt_id',
+        'ora_datum',
+        'ora_szam',
+        'tanit_id',
+        'ora_terem'
+    ];
 }
