@@ -79,6 +79,6 @@
         </div>
     </div>
 </footer>
-<script src="js/myjs.js"></script>
+<script src="{{ asset('js/myjs.js') }}"></script>
 </body>
 </html>
