@@ -21,38 +21,46 @@
              </tr>
         </thead>
         <tbody>
-            <!-- szopi szopi 5 dollá'
+
+
+            @for ($i = 0; $i < 10; $i++)
             @php
-                $curdate = strtotime('-1 day',strtotime($datum));
-                $enddate = strtotime('+5 days',$curdate);
+            $curdate = strtotime('-1 day',strtotime($datum));
+            $enddate = strtotime('+6 days',$curdate);
             @endphp
+            <tr>
+            @while ($curdate < $enddate)
+                @php
+                    $val = ora::where('oszt_id','=',$user->oszt_id)->where('ora_datum','=',$curdate)->where('ora_szam','=',$i+1)->get();
+                @endphp
+                @isset($val[$i]) {{ dd($val[$i]); }}
+
+                @endisset
+                @php $curdate = strtotime('+1 day',$curdate); @endphp
+            @endwhile
+            </tr>
+            @endfor
+            <!--
             @while ($curdate < $enddate)
             <tr>
-                @php $nap = ora::where('ora_datum','=',date('Y-m-d', $curdate))->orderby('ora_szam')->get() @endphp
-                @for ($i = 0; $i < count($nap); $i++)
-                @php $arr = ora::where('ora_datum','=',date('Y-m-d', $curdate))->where('ora_szam','=',$i); @endphp
-                    @if (ora::where('ora_datum','=',date('Y-m-d', $curdate))->where('ora_szam','=',$i)->count() > 0)
+                @for ($i = 0; $i < 10; $i++)
+                @php $val = ora::where('oszt_id','=',$user->oszt_id)->where('ora_datum','=',$curdate)->where('ora_szam','=',$i+1)->get(); @endphp
+                    @isset($val[$i])
+                        @if($val[$i]->ora_szam == $i+1)
                         <td class="align-middle">
-                        {{ora::where('ora_datum','=',date('Y-m-d', $curdate))->where('ora_szam','=',$i)->first()->get()}}
+                            <?php dd($val[$i]);?>
+                            {{$val[$i]}}
                         </td>
-
-
-                    @endif
+                        @endif
+                    @endisset
+                    <td></td>
                 @endfor
-                @php $curdate = strtotime('+1 day',$curdate); @endphp
-                </tr>
+            </tr>
+            @php $curdate = strtotime('+1 day',$curdate); @endphp
             @endwhile
+            -->
             <!--
-            @for ($i = 0; $i < 11; $i++)
-                <tr>
-                @for ($j = 0; $j < 8; $j++)
-                    <td class="align-middle">
-                        {{ $orak[2]->ora_terem }}
-                    </td>
 
-                @endfor
-                </tr>
-            @endfor
 
 
             -->
