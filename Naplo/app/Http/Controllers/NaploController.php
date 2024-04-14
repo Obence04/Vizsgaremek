@@ -105,7 +105,7 @@ class NaploController extends Controller
     public function Fooldal(){
         //dd(Auth::user());
         if (Auth::check()){
-            $user = Auth::user();
+            $user = User::find(Auth::id());
             $jog = $user->jog_id;
             if ($jog == 1){
                 return view('fooldal',[
@@ -132,6 +132,7 @@ class NaploController extends Controller
     }
 
     public function Belepes(){
+
         if (Auth::guest()){
             return view('belepes');
         }
@@ -139,6 +140,14 @@ class NaploController extends Controller
     }
 
     public function BelepesPost(Request $request){
+        /*
+        $data = new User;
+        $data->fel_nev = 'Admin';
+        $data->fel_email = 'admin@admin.hu';
+        $data->fel_jelszo = hash::make('Admin');
+        $data->jog_id = 4;
+        $data->save();
+        */
         $request->validate([
             'username' => 'required',
             'password' => 'required'
@@ -150,7 +159,7 @@ class NaploController extends Controller
         if ($can) {
             Auth::loginUsingId(User::Where('fel_nev','=',$request->username)->first()->fel_id,false);
         //dd($request->password);
-        //if (Auth::attempt(['fel_nev' => $request->username, 'fel_jelszo' => hash::make($request->password)])){
+        //if (Auth::attempt(['fel_nev' => $request->username, 'fel_jelszo' => $request->password])){
             return redirect('/');
         } else {
             $msg = "Helytelen felhasználónév vagy jelszó!";
@@ -167,20 +176,15 @@ class NaploController extends Controller
                     'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
-
+                    'osztaly' => osztaly::find(diak::where('fel_id','=',Auth::id())->first()->oszt_id)->oszt_nev,
                     'orak' => ora::where('oszt_id','=',diak::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->oszt_id)->orderby('ora_datum')->orderby('ora_szam')->get()
                 ]);
-            } else if ($jog == 2){
+            } else {
                 return view('orarend',[
                     'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
-                ]);
-            } else {
-                return view('orarend',[
-                    'user' => User::find(Auth::id()),
-                    'jog' => $jog,
-                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('ora_datum')->orderby('ora_szam')->get()
                 ]);
             }
         } else {
@@ -203,12 +207,7 @@ class NaploController extends Controller
                     'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
-                ]);
-            } else {
-                return view('ertekelesek',[
-                    'user' => User::find(Auth::id()),
-                    'jog' => $jog,
-                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('orak.oszt_id')->orderby('ora_datum')->orderby('ora_szam')->get()
                 ]);
             }
         } else {

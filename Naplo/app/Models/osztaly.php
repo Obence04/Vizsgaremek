@@ -11,4 +11,10 @@ class osztaly extends Model
     protected $primaryKey = 'oszt_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'oszt_id',
+        'oszt_nev',
+        'tanar_id'
+    ];
 }

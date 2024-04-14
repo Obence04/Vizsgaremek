@@ -11,4 +11,9 @@ class igazolas extends Model
     protected $primaryKey = 'iga_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'iga_id',
+        'iga_nev'
+    ];
 }

@@ -11,4 +11,9 @@ class tema extends Model
     protected $primaryKey = 'tema_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'tema_id',
+        'tema_nev'
+    ];
 }

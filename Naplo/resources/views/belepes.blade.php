@@ -1,4 +1,12 @@
-@extends('layout_belepes')
+@extends('layout')
+
+@section('title') Belépés @endsection
+
+@section('head')
+<link rel="stylesheet" href="{{asset('css/belepes.css')}}">
+
+@endsection
+
 @section('content')
     <main class="container color-text">
         <div class="my-5 d-flex justify-content-center">

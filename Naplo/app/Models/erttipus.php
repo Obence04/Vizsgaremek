@@ -11,4 +11,9 @@ class erttipus extends Model
     protected $primaryKey = 'tip_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'tip_id',
+        'tip_nev'
+    ];
 }

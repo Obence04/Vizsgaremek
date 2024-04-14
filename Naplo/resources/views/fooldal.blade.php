@@ -1,5 +1,15 @@
-@extends('layout_fooldal')
+@extends('layout')
+
+@section('title') Órarend @endsection
+
+@section('head')
+<link rel="stylesheet" href="{{asset('css/stilus.css')}}">
+@endsection
+
 @section('content')
+
+@include('header')
+
     <main class="container text-center">
         <button type="button" class="btn btn-secondary mt-5" onclick="Napinezet()">Napi nézet</button>
         <button type="button" class="btn btn-secondary mt-5" onclick="Hetinezet()">Heti nézet</button>

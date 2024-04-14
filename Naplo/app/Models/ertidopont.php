@@ -11,4 +11,9 @@ class ertidopont extends Model
     protected $primaryKey = 'ido_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'ido_id',
+        'ido_nev'
+    ];
 }

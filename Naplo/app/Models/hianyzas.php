@@ -11,4 +11,13 @@ class hianyzas extends Model
     protected $primaryKey = 'hia_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'hia_id',
+        'ora_id',
+        'diak_id',
+        'hia_keses',
+        'hia_perc',
+        'iga_id'
+    ];
 }

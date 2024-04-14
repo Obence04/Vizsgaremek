@@ -28,7 +28,7 @@
                                 <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
                             </p>
                             @else
-                                <label for="osztalyfonok_id" class="from-label mb-1">Osztályfőnök:</label>
+                                <label for="osztalyfonok_id" class="form-label mb-1">Osztályfőnök:</label>
                                 <select name="osztalyfonok_id" id="osztalyfonok_id" class="form-select">
                                     @foreach ($tanarok as $row)
                                         <option value="{{$row->tanar_id}}">{{$row->tanar_nev}}</option>
@@ -63,7 +63,7 @@
                                     <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
-                                <label for="osztaly" class="from-label mb-1">Osztály:</label>
+                                <label for="osztaly" class="form-label mb-1">Osztály:</label>
                                 <select name="osztaly" id="osztaly" class="form-control">
                                     @foreach ($osztalyok as $row)
                                     <option value="{{$row->oszt_id}}">{{$row->oszt_nev}}</option>
@@ -118,7 +118,7 @@
                                 <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
                             </p>
                             @else
-                                <label for="tanar_id" class="from-label mb-1">Tanár:</label>
+                                <label for="tanar_id" class="form-label mb-1">Tanár:</label>
                                 <select name="tanar_id" id="tanar_id" class="form-select">
                                     @foreach ($tanarok as $row)
                                         <option value="{{$row->tanar_id}}">{{$row->tanar_nev}}</option>
@@ -130,7 +130,7 @@
                                 <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 tantárgyat!</a>
                             </p>
                             @else
-                                <label for="tantargy_id" class="from-label mb-1">Tantárgy:</label>
+                                <label for="tantargy_id" class="form-label mb-1">Tantárgy:</label>
                                 <select name="tantargy_id" id="tanartargy_id" class="form-select" multiple>
                                     @foreach ($tantargyak as $row)
                                         <option value="{{$row->tant_id}}">{{$row->tant_nev}}</option>
@@ -158,7 +158,7 @@
                                     <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
-                                <label for="osztaly" class="from-label mb-1">Osztály:</label>
+                                <label for="osztaly" class="form-label mb-1">Osztály:</label>
                                 <select name="osztaly" id="osztaly" class="form-control">
                                     @foreach ($osztalyok as $row)
                                     <option value="{{$row->oszt_id}}">{{$row->oszt_nev}}</option>

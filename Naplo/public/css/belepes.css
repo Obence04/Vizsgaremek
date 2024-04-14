@@ -1,0 +1,21 @@
+@import url('temak.css');
+
+.belepteto {
+    width: 60%;
+    height: auto;
+    border-width: 2px;
+    /*border-color: black;*/
+    border-color: var(--text);
+    overflow: auto;
+}
+
+.beleptxt{
+    height: 130px;
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width:768px){
+    .belepteto {
+        height: 65vh;
+    }
+}

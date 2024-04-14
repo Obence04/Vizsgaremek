@@ -1,0 +1,150 @@
+@import url('temak.css');
+
+.btn{
+    --bs-btn-active-bg:var(--primary);
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    --bs-btn-color:var(--text-secondary);
+    --bs-btn-border-color:var(--text-secondary);
+    --bs-btn-hover-border-color:var(--text);
+    --bs-btn-active-border-color:var(--background);
+    --bs-btn-hover-color:var(--text-secondary);
+}
+
+.btn-secondary{
+    background-color: var(--secondary);
+    --bs-btn-color: var(--text);
+    --bs-btn-border-color:var(--background);
+    --bs-btn-hover-border-color:var(--text-secondary);
+    --bs-btn-active-border-color:var(--text);
+
+    --bs-btn-hover-color:var(--text-secondary);
+}
+
+.btn:hover{
+    background-color: var(--accent);
+}
+
+.logo{
+    height: 50px;
+    background-color: #777;
+    border-radius: 50%;
+    transition: 1000ms;
+}
+
+.logo:hover{
+    transform: rotate(360deg);
+    transition: 2500ms;
+    filter: drop-shadow(0px 0px 5px rgba(255,255,0,1));
+}
+
+.material-symbols-rounded{
+    font-size: 28pt;
+}
+
+.ikon{
+    text-decoration: none;
+    color:var(--text);
+}
+.ikon:hover,
+.nav-link:hover{
+    filter:drop-shadow(0px 0px 10px var(--background));
+    color:var(--secondary);
+    transition: 250ms;
+}
+
+.form-control{
+    --bs-border-color:var(--text);
+
+}
+
+.gomb{
+    transition: 250ms;
+}
+
+.gomb:hover{
+    background-color: var(--text-secondary);
+    color: var(--background);
+    transition: 500ms;
+}
+/*
+header {
+    background-color: #301934;
+    background-color: var(--primary);
+}
+*/
+main{
+    min-height: 90vh;
+}
+
+body{
+    background-color:gray;
+    width: 100%;
+}
+
+.navbar-brand,
+.nav-link,
+.navbar-text{
+    color:var(--text);
+}
+
+.nav-link:hover,
+.nav-link:visited,
+.nav-link:focus,
+.navbar-brand:hover,
+.navbar-brand:visited{
+    text-decoration: none;
+    color: #ccc;
+}
+.nav-link,
+.navbar-brand{
+    text-decoration: none;
+}
+
+.kartya {
+    width: 100%;
+    border-width: 2px;
+    border-color: black;
+}
+
+
+.kartya:hover{
+    background-color: #ccc;
+}
+
+
+.card-header{
+    /*background-color: #301934;
+    color:white;*/
+    border-width: 1px;
+    /*border-color:black;*/
+    border-color: var(--text);
+}
+
+footer{
+    color:lightgray;
+}
+
+.col a, .col a:visited, .col a:hover{
+    text-decoration: none;
+}
+
+table a, table a:visited, table a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+
+/* navbar brand*/
+#nev{
+    overflow: auto;
+    margin-bottom: 0%;
+}
+
+@media only screen and (max-width:768px){
+    header button{
+        margin-right: 48px;
+    }
+}

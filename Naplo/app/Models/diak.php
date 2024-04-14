@@ -11,4 +11,15 @@ class diak extends Model
     protected $primaryKey = 'diak_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'diak_id',
+        'diak_nev',
+        'diak_szuldatum',
+        'diak_szulhely',
+        'diak_anyja',
+        'diak_lakcim',
+        'oszt_id',
+        'fel_id'
+    ];
 }

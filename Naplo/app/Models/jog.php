@@ -11,4 +11,9 @@ class jog extends Model
     protected $primaryKey = 'jog_id';
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'jog_id',
+        'jog_nev'
+    ];
 }
