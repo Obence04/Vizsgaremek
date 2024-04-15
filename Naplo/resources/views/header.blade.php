@@ -23,7 +23,7 @@
             <img class="text-center logo ms-5" src={{asset('img/ikon1.png')}} alt="logo1.png">
         </a>
         <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="material-symbols-sharp" style="font-size: 28pt">lists</span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">

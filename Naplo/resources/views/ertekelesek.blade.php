@@ -32,7 +32,10 @@
     <div class="pt-5">
         <h2 class="text-center">Értékelés felvétele</h2>
         <div class="w-75 bg-dark mx-auto text-light p-3 rounded m-3">
-            <form action="/ertekelesek" method="post">
+            <form action="/ertekelesek/{{$osztaly->oszt_id}}" method="post">
+                @csrf
+                <input type="hidden" name="osztaly" value="{{ $osztaly->oszt_id }}">
+                <input type="hidden" name="diakcnt" value="{{ count($diakok); }}">
                 <label for="ora" class="form-label">Óra:</label>
                 <select name="ora" id="ora" class="form-select">
                     @foreach ($orak as $row)
@@ -58,23 +61,31 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td>{{$osztaly}}</td>
+                            <td>{{$osztaly->oszt_nev}}</td>
                             <td>Név</td>
                             <td>Átlag</td>
                             <td>Jegy</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($diakok as $row)
+                        @for($i = 0; $i < count($diakok); $i++)
                         <tr>
                             <td></td>
-                            <td>{{$row->diak_nev}}</td>
-                            <td>{{$row->atlag}}</td>
-                            <td>Geci</td>
+                            <td>{{$diakok[$i]->diak_nev}}</td>
+                            <td>@if(isset($atlagok[$i])) @if($atlagok[$i]->diak_id == $diakok[$i]->diak_id) {{$atlagok[$i]->atlag}} @endif @else 0 @endif</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    @for ($j = 1; $j < 6; $j++)
+                                        <input type="radio" name="diak{{$i}}" id="jegy{{$j}}" class="btn-check">
+                                        <label for="jegy{{$j}}" class="btn btn-primary">{{$j}}</label>
+                                    @endfor
+                                </div>
+                            </td>
                         </tr>
-                        @endforeach
+                        @endfor
                     </tbody>
                 </table>
+                <button type="submit" class="btn btn-primary">Értékelések mentése</button>
             </form>
         </div>
 

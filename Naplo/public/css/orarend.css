@@ -18,3 +18,7 @@ td {
 #weekday{
     font-variant: small-caps;
 }
+
+#today{
+    background-color: var(--primary);
+}
