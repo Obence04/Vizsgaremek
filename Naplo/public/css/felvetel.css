@@ -1,29 +1,16 @@
 @import url('stilus.css');
 
-.card{
-    width: 60%;
-}
-/*
-@media only screen and (max-width:768px){
-    .belepteto {
-        height: 65vh;
-    }
-}
-*/
 .btn{
     --bs-btn-active-bg:var(--primary);
 }
 
 .btn-primary{
-    background-color: var(--secondary);
+    background-color: var(--primary);
     --bs-btn-color:var(--text-secondary);
     --bs-btn-border-color:var(--text-secondary);
     --bs-btn-hover-border-color:var(--text);
-    --bs-btn-active-border-color:var(--text);
+    --bs-btn-active-border-color:var(--background);
     --bs-btn-hover-color:var(--text-secondary);
-    --bs-btn-active-bg:var(--primary);
-    --bs-btn-active-color:var(--text-secondary);
-    --bs-btn-bg:var(--accent);
 }
 
 .btn-secondary{

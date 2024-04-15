@@ -226,12 +226,74 @@ class NaploController extends Controller
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                     'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('orak.oszt_id')->orderby('ora_datum')->orderby('ora_szam')->get(),
-                    'osztaly' => $osztaly,
+                    'osztaly' => osztaly::find($osztaly),
                     'erttipus' => erttipus::all(),
                     'ertido' => ertidopont::all(),
                     //RAWba kell a lekérdezést
-                    //'diakok' => diak::select('diakok.diak_id', 'diakok.diak_nev')->join('ertekelesek','ertekelesek.diak_id','diakok.diak_id')
+                    //'diakok' => diak::raw('SELECT diakok.diak_id, diakok.diak_nev')
+                    //'diakok' => diak::select('diakok.diak_id', 'diakok.diak_nev')->join('ertekelesek','ertekelesek.diak_id','diakok.diak_id')/*->join('osztalyok','osztalyok.oszt_id','diakok.oszt_id')*/->where('diakok.oszt_id','=',$osztaly)->get()->get()
+                    'diakok' => diak::select('diakok.diak_id','diakok.diak_nev')->where('diakok.oszt_id','=',$osztaly)->orderby('diak_nev')->get(),
+                    'atlagok' => ertekeles::selectraw('ertekelesek.diak_id, avg(ert_jegy * (ert_szazalek / 100)) as `jegy` ')->join('diakok','diakok.diak_id','ertekelesek.diak_id')->where('diakok.oszt_id','=',$osztaly)->groupby('ertekelesek.diak_id')->orderby('diak_nev')->get(),
                 ]);
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function ErtekelesekPost(Request $request){
+        if (Auth::check()){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog > 1){
+
+                if (!isset($request->osztaly)) {
+                    return redirect('/felvetel');
+                }
+                if (!isset($request->diakcnt)) {
+                    return redirect('/felvetel');
+                } else if ($request->diakcnt < 1) {
+                    return redirect('/felvetel');
+                }
+
+                $request->validate([
+                    'ora' => 'required',
+                    'erttip' => 'required',
+                    'ertido' => 'required',
+                    'leiras' => 'required',
+                    'szazalek' => 'required|numeric'
+                ],[
+
+                ]);
+                echo($request->diak0[0]);
+                dd($request);
+                for ($i = 0; $i < $request->diakcnt; $i++) {
+                    $jegy = -1;
+                    switch($request->diak.$i) {
+                        case 'jegy0':
+                            $jegy = 1;
+                            break;
+                        case 'jegy1':
+                            $jegy = 2;
+                            dd($request);
+                            break;
+                        case 'jegy2':
+                            $jegy = 3;
+                            break;
+                        case 'jegy3':
+                            $jegy = 4;
+                            break;
+                        case 'jegy4':
+                            $jegy = 5;
+                            break;
+                        default:
+                            echo('cigány');
+                            dd($request);
+                            break;
+                    }
+                }
             } else {
                 return redirect('/');
             }

@@ -60,8 +60,8 @@
                         td.appendChild(text1);
                         td.appendChild(br);
                         td.appendChild(text2);
-                        if (i == NapSorsz+1) {
-                            td.style.backgroundColor =szin;
+                        if (i == 1) {
+                            td.id = "today";
                         }
                         document.getElementById('days').appendChild(td);
                     }
@@ -98,12 +98,8 @@
                     } else {
                         $ora = ora::join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->whereRaw('orak.oszt_id = '.$user->oszt_id.' AND orak.ora_datum = "'.date('Y-m-d',$curdate).'" AND orak.ora_szam = '.($i+1))->get();
                     }
-                    $stilus = '';
-                    if ($curdate == strtotime($datum)){
-                        $stilus = '; background-color: '.$aktualszin;
-                    }
                 @endphp
-                <td class="align-middle" style="width:100px; height:100px{{$stilus}}">
+                <td class="align-middle" style="width:100px; height:100px" @if($curdate == strtotime($datum)) id="today" @endif>
                 @isset($ora[0])
                     <p style="font-size: 10pt">
                         {{$ora[0]->tanar_nev}}
