@@ -22,7 +22,7 @@
                         @enderror
                         <div class="beleptxt">
                             <label for="username" class="form-label">Felhasználónév: </label>
-                            <input type="text" name="username" class="form-control mb-2">
+                            <input type="text" name="username" id="username" class="form-control mb-2">
                             @error('username')
                                 <span class="text-danger fw-bold">{{ $message }}</span>
                             @enderror
@@ -30,7 +30,7 @@
                         </div class="beleptxt">
                             <div class="beleptxt">
                             <label for="password" class="form-label">Jelszó: </label>
-                            <input type="password" name="password" class="form-control mb-2">
+                            <input type="password" name="password" id="password" class="form-control mb-2">
                             @error('password')
                                 <span class="text-danger fw-bold">{{ $message }}</span>
                             @enderror<br>

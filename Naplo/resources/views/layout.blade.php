@@ -19,7 +19,7 @@
     @yield('header')
 
     @yield('content')
-
+</body>
 <footer class="bg-dark p-1">
     <div class="row mx-auto">
         <div class="col-6">
@@ -39,6 +39,6 @@
         </div>
     </div>
 </footer>
-<script src="{{ asset('js/myjs.js') }}"></script>
+@yield('js')
 </body>
 </html>

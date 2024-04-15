@@ -180,3 +180,7 @@
         </div>
     </main>
 @endsection
+
+@section('js')
+<script src="{{ asset('js/myjs.js') }}"></script>
+@endsection

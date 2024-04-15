@@ -1,6 +1,15 @@
-@extends('layout_fooldal')
+@extends('layout')
+
+@section('title') Órarend @endsection
+
+@section('head')
+<link rel="stylesheet" href="{{asset('css/stilus.css')}}">
+@endsection
+
 @section('content')
-<body>
+
+@include('header')
+
     <main>
         <div class="row row-cols-8 row-cols-sm-8 row-cols-md-12 d-flex justify-content-center mx-5">
             <a class="col btn btn-secondary my-1 mx-1" name="feltolt" id="osztfelv" onclick="Kivalasztas('osztaly')">Osztály felvétele</a>
@@ -207,4 +216,8 @@
         </div>
     </main>
     <script src="{{asset('js/felvetel.js')}}"></script>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/myjs.js') }}"></script>
 @endsection

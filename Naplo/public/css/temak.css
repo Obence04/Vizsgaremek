@@ -48,9 +48,8 @@ body[data-theme="blue"]{
     --text-secondary: #DBE5FF;
     --background: #EBF0FD;
     --primary: #82A0F2;
-    --secondary: #103498;
-    /*--secondary: #1c48c2;*/
-    --accent: #265AE8;
+    --secondary: #265AE8;
+    --accent: #103498;
 }
 
 /*body[data-theme="red"]{
