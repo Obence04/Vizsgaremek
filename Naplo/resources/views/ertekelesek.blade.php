@@ -34,12 +34,47 @@
         <div class="w-75 bg-dark mx-auto text-light p-3 rounded m-3">
             <form action="/ertekelesek" method="post">
                 <label for="ora" class="form-label">Óra:</label>
-                <select name="ora" class="form-select">
+                <select name="ora" id="ora" class="form-select">
                     @foreach ($orak as $row)
                         <option value="{{$row->ora_id}}">@php echo($row->oszt_nev.': '.$row->ora_datum.' '.$row->ora_szam.'. óra - '.$row->tant_nev); @endphp</option>
                     @endforeach
                 </select>
-                <!-- AZ OSZTÁLY KIVÁLASZTÁSÁHOZ EGY MODAL KELL -> a modal a kiválasztás után újratölti az oldalt és isset() segítségével kiválaszt egy osztályt -->
+                <label for="ertido" class="form-label">Értékelés típusa:</label>
+                <select name="ertido" id="ertido" class="form-select">
+                    @foreach ($ertido as $row)
+                        <option value="{{$row->ido_id}}">@php echo($row->ido_nev); @endphp</option>
+                    @endforeach
+                </select>
+                <label for="erttip" class="form-label">Értékelés témája:</label>
+                <select name="erttip" id="erttip" class="form-select">
+                    @foreach ($erttipus as $row)
+                        <option value="{{$row->tip_id}}">@php echo($row->tip_nev); @endphp</option>
+                    @endforeach
+                </select>
+                <label for="leiras" class="form-label">Értékelés leírása:</label>
+                <input type="text" name="leiras" id="leiras" class="form-control">
+                <label for="szazalek" class="form-label">Jegy erőssége (százalék):</label>
+                <input type="number" name="szazalek" id="szazalek" min="25" max="500" value="100" class="form-control">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>{{$osztaly}}</td>
+                            <td>Név</td>
+                            <td>Átlag</td>
+                            <td>Jegy</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($diakok as $row)
+                        <tr>
+                            <td></td>
+                            <td>{{$row->diak_nev}}</td>
+                            <td>{{$row->atlag}}</td>
+                            <td>Geci</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </form>
         </div>
 
