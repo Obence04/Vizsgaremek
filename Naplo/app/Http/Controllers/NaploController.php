@@ -155,11 +155,13 @@ class NaploController extends Controller
             'username.required' => 'Üresen hagyta a felhasználónév mezőt!',
             'password.required' => 'Üresen hagyta a jelszó mezőt!'
         ]);
+        if (User::where('fel_nev','=',$request->username)->count() == 0) {
+            $msg = "Helytelen felhasználónév vagy jelszó!";
+            return redirect('/belepes')->withErrors(['msg' => $msg]);
+        }
         $can = hash::check($request->password, User::Where('fel_nev','=',$request->username)->first()->fel_jelszo);
         if ($can) {
             Auth::loginUsingId(User::Where('fel_nev','=',$request->username)->first()->fel_id,false);
-        //dd($request->password);
-        //if (Auth::attempt(['fel_nev' => $request->username, 'fel_jelszo' => $request->password])){
             return redirect('/');
         } else {
             $msg = "Helytelen felhasználónév vagy jelszó!";
@@ -229,9 +231,6 @@ class NaploController extends Controller
                     'osztaly' => osztaly::find($osztaly),
                     'erttipus' => erttipus::all(),
                     'ertido' => ertidopont::all(),
-                    //RAWba kell a lekérdezést
-                    //'diakok' => diak::raw('SELECT diakok.diak_id, diakok.diak_nev')
-                    //'diakok' => diak::select('diakok.diak_id', 'diakok.diak_nev')->join('ertekelesek','ertekelesek.diak_id','diakok.diak_id')/*->join('osztalyok','osztalyok.oszt_id','diakok.oszt_id')*/->where('diakok.oszt_id','=',$osztaly)->get()->get()
                     'diakok' => diak::select('diakok.diak_id','diakok.diak_nev')->where('diakok.oszt_id','=',$osztaly)->orderby('diak_nev')->get(),
                     'atlagok' => ertekeles::selectraw('ertekelesek.diak_id, avg(ert_jegy * (ert_szazalek / 100)) as `jegy` ')->join('diakok','diakok.diak_id','ertekelesek.diak_id')->where('diakok.oszt_id','=',$osztaly)->groupby('ertekelesek.diak_id')->orderby('diak_nev')->get(),
                 ]);
@@ -267,32 +266,36 @@ class NaploController extends Controller
                 ],[
 
                 ]);
-                echo($request->diak0[0]);
-                dd($request);
                 for ($i = 0; $i < $request->diakcnt; $i++) {
                     $jegy = -1;
-                    switch($request->diak.$i) {
-                        case 'jegy0':
+                    switch($request->{'diak'.$i}) {
+                        case $i.'-1':
                             $jegy = 1;
                             break;
-                        case 'jegy1':
+                        case $i.'-2':
                             $jegy = 2;
-                            dd($request);
                             break;
-                        case 'jegy2':
+                        case $i.'-3':
                             $jegy = 3;
                             break;
-                        case 'jegy3':
+                        case $i.'-4':
                             $jegy = 4;
                             break;
-                        case 'jegy4':
+                        case $i.'-5':
                             $jegy = 5;
                             break;
                         default:
-                            echo('cigány');
-                            dd($request);
-                            break;
+                            continue 2;
                     }
+                    $data = new ertekeles;
+                    $data->ora_id = $request->ora;
+                    $data->diak_id = $request->{'id'.$i};
+                    $data->ert_leiras = $request->leiras;
+                    $data->ert_jegy = $jegy;
+                    $data->ert_szazalek = $request->szazalek;
+                    $data->ido_id = $request->ertido;
+                    $data->tip_id = $request->erttip;
+                    $data->save();
                 }
             } else {
                 return redirect('/');

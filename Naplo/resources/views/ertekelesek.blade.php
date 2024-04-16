@@ -69,6 +69,7 @@
                     </thead>
                     <tbody>
                         @for($i = 0; $i < count($diakok); $i++)
+                        <input type="hidden" name="id{{$i}}" value="{{$diakok[$i]->diak_id}}">
                         <tr>
                             <td></td>
                             <td>{{$diakok[$i]->diak_nev}}</td>
@@ -76,8 +77,8 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     @for ($j = 1; $j < 6; $j++)
-                                        <input type="radio" name="diak{{$i}}" id="jegy{{$j}}" class="btn-check">
-                                        <label for="jegy{{$j}}" class="btn btn-primary">{{$j}}</label>
+                                        <input type="radio" name="diak{{$i}}" id="jegy{{$i}}-{{$j}}" value="{{$i}}-{{$j}}" class="btn-check">
+                                        <label for="jegy{{$i}}-{{$j}}" class="btn btn-primary">{{$j}}</label>
                                     @endfor
                                 </div>
                             </td>
@@ -98,7 +99,7 @@
                 <!-- TODO értékelések tábla 10(hónap) + 2(évvégi) oszlop -->
                 <thead>
                     <tr>
-                        <td class="align-middle">{{"osztály"}}</td>
+                        <td class="align-middle">{{/*$osztaly*/ "asd"}}</td>
                         <td class="align-middle">09.</td>
                         <td class="align-middle">10.</td>
                         <td class="align-middle">11.</td>
@@ -114,96 +115,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @for ($i = 0; $i < count($tantargyak); $i++)
                     <tr>
                         <td class="align-middle">{{"tantárgy"}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
+                        @for ($j = 0; $j < 12; $j++)
+                        <td class="align-middle">
+                            @if ($j == 5)
+                            {{${'felev'.$i}}}
+                            @elseif ($j == 11)
+                            {{${'evvege'.$i}}}
+                            @else
+                            @for ($k = 0; $k < count(${'jegyek'.$i.'-'.$j.'-'.$k}); $k++)
+                            {{${'jegyek'.$i.'-'.$j.'-'.$k}}}
+                            @endfor
+                        </td>
+                        @endfor
                     </tr>
-                    <tr>
-                        <td class="align-middle">{{"tantárgy"}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">{{"tantárgy"}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">{{"tantárgy"}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">{{"tantárgy"}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">{{"tantárgy"}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                    </tr>
+                    @endfor
+
                 </tbody>
             </table>
         </div>

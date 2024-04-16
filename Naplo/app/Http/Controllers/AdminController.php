@@ -81,7 +81,7 @@ class AdminController extends Controller
             $datum = date_format(date_create($request->szuldatum), 'Y-m-d');
             $user = new User;
             $user->fel_nev = $request->oktazon;
-            $user->fel_jelszo = Hash::make('RKT-'.$datum);
+            $user->fel_jelszo = Hash::make('RKT-'.$datum.'-123');
             $user->fel_email = $request->email;
             $user->tema_id = 1;
             $user->jog_id = 1;
