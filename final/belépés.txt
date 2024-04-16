@@ -1,0 +1,15 @@
+Diák:
+pl.:
+72012345678
+RKT-2004-05-14
+
+
+Tanár:
+pl.:
+karoly.gabor
+RKT-karoly.gabor-123
+
+
+Admin:
+Admin
+Admin
