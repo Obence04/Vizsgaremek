@@ -38,7 +38,7 @@
                     <a class="nav-link" href="/ertekelesek">Értékelések</a>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="/igazolasok">Igazolás/Mulasztás</a>
+                    <a class="nav-link" href="/hianyzasok">Igazolás/Mulasztás</a>
                 </li>
                 <li class="nav-item px-4" title="Nincs implementálva!">
                     <a class="nav-link disabled" href="/feljegyzesek">Feljegyzések</a>

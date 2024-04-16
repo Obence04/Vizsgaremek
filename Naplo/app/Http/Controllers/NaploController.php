@@ -31,6 +31,30 @@ class NaploController extends Controller
         if (Auth::guest()) return view('/belepes');
     }
 
+    public function Profil(){
+        if (Auth::check()) {
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog == 1) {
+                return view('profil',[
+                    'user' => User::find($user->fel_id),
+                    'diak' => diak::where('fel_id','=',$user->fel_id)->first()->get(),
+                    'jog' => $jog,
+                    'tema' => tema::find($user->tema_id)->tema_nev
+                ]);
+            } else {
+                return view('profil',[
+                    'user' => User::find($user->fel_id),
+                    'tanar' => tanar::where('fel_id','=',$user->fel_id)->first()->get(),
+                    'jog' => $jog,
+                    'tema' => tema::find($user->tema_id)->tema_nev
+                ]);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
     public function Beallitasok(){
         if (!self::Belepett()) return redirect('/belepes');
         $user = Auth::user();
@@ -300,6 +324,89 @@ class NaploController extends Controller
                     $data->save();
                 }
                 return redirect('/felvetel');
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function Hianyzasok(){
+        if (Auth::check()){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog == 1){
+                return view('hianyzasok',[
+                    'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
+                    'jog' => $jog,
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'osztaly' => osztaly::find(diak::where('fel_id','=',Auth::id())->first()->get()),
+                    'hianyzasok' => hianyzas::select('orak.ora_datum','orak.ora_szam','tanarok.tanar_nev','tantargyak.tant_nev','hianyzasok.hia_keses','igazolasok.*')->join('igazolasok','igazolasok.iga_id','hianyzasok.iga_id')->join('orak','orak.ora_id','hianyzasok.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('diakok','diakok.diak_id','hianyzasok.diak_id')->where('diakok.fel_id','=',Auth::id())->get()
+                ]);
+            } else if ($jog > 1){
+                return view('hianyzasok',[
+                    'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
+                    'jog' => $jog,
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('orak.oszt_id')->orderby('ora_datum')->orderby('ora_szam')->get(),
+                    'osztalyok' => osztaly::select('osztalyok.oszt_id','osztalyok.oszt_nev')->join('orak','orak.oszt_id','osztalyok.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->distinct()->get()
+                ]);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function Hianyzasok_osztkiv($osztaly){
+        if (Auth::check()){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog > 1){
+                return view('hianyzasok',[
+                    'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
+                    'jog' => $jog,
+                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('orak.oszt_id')->orderby('ora_datum')->orderby('ora_szam')->get(),
+                    'osztaly' => osztaly::find($osztaly),
+                    'erttipus' => erttipus::all(),
+                    'ertido' => ertidopont::all(),
+                    'diakok' => diak::select('diakok.diak_id','diakok.diak_nev')->where('diakok.oszt_id','=',$osztaly)->orderby('diak_nev')->get(),
+                ]);
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function HianyzasokPost(Request $request){
+        if (Auth::check()){
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog > 1){
+
+                $request->validate([
+                    'ora' => 'required'
+                ],[
+
+                ]);
+                for ($i = 0; $i < $request->diakcnt; $i++) {
+                    $data = new hianyzas;
+                    $data->ora_id = $request->ora;
+                    $data->diak_id = $request->{'id'.$i};
+                    if ($request->{'diak'.$i}) {
+                        $data->hia_keses = 0;
+                        if ($request->{'keses'.$i} > 0) {
+                            $data->hia_keses = 1;
+                            $data->hia_perc = $request->{'keses'.$i};
+                        }
+                    }
+                    $data->iga_id = null;
+                    $data->save();
+                }
+                return redirect('/hianyzasok');
             } else {
                 return redirect('/');
             }

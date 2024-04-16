@@ -20,7 +20,6 @@
     @yield('header')
 
     @yield('content')
-</body>
 <footer class="bg-dark p-1">
     <div class="row mx-auto">
         <div class="col-6">

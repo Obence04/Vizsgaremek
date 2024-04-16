@@ -17,6 +17,24 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+
+    public function Profil($id){
+        if (Auth::check()) {
+            $user = Auth::user();
+            $jog = $user->jog_id;
+            if ($jog > 2) {
+                return view('profil',[
+                    'user' => User::find($id),
+                    'tanar' => tanar::where('fel_id','=',$id)->first()->get()
+                ]);
+            } else {
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
     function Felvetel(){
         if (Auth::check()){
             if (Auth::user()->jog_id > 2){
