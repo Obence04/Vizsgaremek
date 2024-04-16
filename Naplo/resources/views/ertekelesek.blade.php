@@ -100,6 +100,22 @@
     @endif
     @else
     <div class="text-center">
+        <div class="card mt-5 w-25">
+            <div class="card-header">
+                <h1 id="erttantargy">tantárgy</h1>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h3 id="ertjegy">2</h3>
+                </div>
+                <div class="col-9">
+                    <p id="ert1">ad</p>
+                    <p id="ert2">a</p>
+                    <p id="ert3">a</p>
+                    <p id="ert4">a</p>
+                </div>
+            </div>
+        </div>
         <div class="table-responsive-xxl pt-5">
             <table class="table table-striped table-bordered mb-0 mx-auto text-center" id="table">
                 <!-- TODO értékelések tábla 10(hónap) + 2(évvégi) oszlop -->
@@ -120,8 +136,10 @@
                         <td class="align-middle">II.</td>
                     </tr>
                 </thead>
+                <script src="{{ asset('js/ertekeles.js') }}"></script>
                 <tbody>
-                    @php
+                    <?php
+                        $arr = array();
                         for($i = 0; $i < count($tantargyak); $i++)
                         {
                             echo('<tr><td class="align-middle">'.$tantargyak[$i]->tant_nev.'</td>');
@@ -136,13 +154,22 @@
                                 } elseif ($honap > 12) {
                                     $honap = $j-4;
                                 }
-                                $asd = ora::selectraw('month(orak.ora_datum)')->first()->get();
+                                $asd = ora::selectraw('orak.ora_datum')->first()->get();
                                 $asd1 =$asd[0]->ora_datum;
-                                dd($asd1);
-                                $ert = ertekeles::selectraw('orak.ora_datum, ertekelesek.*')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->whereraw('month(orak.ora_datum) = '.$datum)->groupby('ertekelesek.ert_id')->get();
-                                echo('<td> '.$honap);
+                                //dd(date('n',strtotime($asd1)));
+                                $ert = ertekeles::selectraw('orak.ora_datum, ertekelesek.*')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->groupby('ertekelesek.ert_id')->get();
+
+                                echo('<td>');
                                 foreach ($ert as $row) {
-                                    echo($row);
+                                    if (date('n',strtotime($row->ora_datum)) == $honap) {
+                                        echo('<a href="#top" onClick="ertekelesReszlet({{$row}})">'.$row->ert_jegy.'</a>');
+                                        ?>
+                                        <script>
+                                            console.log("{{$row}}");
+                                            listaHozzaad("{{$row}}".replace(/&quot;/g,'"'));
+                                        </script>
+                                        <?php
+                                    }
                                 }
                                 /*if ($j == 5) {
                                     echo(${'felev'.$i});
@@ -158,8 +185,7 @@
 
                             echo('</td></tr>');
                         }
-                    @endphp
-
+                    ?>
 
                 </tbody>
             </table>
@@ -170,5 +196,4 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/myjs.js') }}"></script>
 @endsection
