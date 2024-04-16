@@ -26,7 +26,8 @@
         return HetNapjai[Day];
     }
 
-    document.getElementById("datum").innerHTML =  Ev + ". " + Honev(Ho) + " " + Nap + ".";
+    document.getElementById("datumnagy").innerHTML =  Ev + ". " + Honev(Ho) + " " + Nap + ".";
+    document.getElementById("datumkicsi").innerHTML =  Ev + ". " + ("0"+(Ho+1)).slice(-2) + ". " + Nap + ".";
 }
 
 { /* Napi-Heti nézet */

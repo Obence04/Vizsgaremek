@@ -1,5 +1,13 @@
 @import url('temak.css');
 
+#datumnagy, #nevnagy{
+    display: inherit;
+}
+#datumkicsi, #nevkicsi{
+    display: none;
+}
+
+
 .btn{
     --bs-btn-active-bg:var(--primary);
 }
@@ -149,5 +157,11 @@ table a, table a:visited, table a:hover{
 @media only screen and (max-width:768px){
     header button{
         margin-right: 48px;
+    }
+    #datumnagy, #nevnagy{
+        display: none;
+    }
+    #datumkicsi, #nevkicsi{
+        display: inherit;
     }
 }

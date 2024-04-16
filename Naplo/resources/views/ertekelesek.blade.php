@@ -14,6 +14,7 @@
     @php
         use App\Models\ertekeles;
         use App\Models\ora;
+        use App\Models\osztaly;
         $datum = date('n');
         $aktualszin = "#AAAADD";
     @endphp
@@ -100,28 +101,28 @@
     @endif
     @else
     <div class="text-center">
-        <div class="card mt-5 w-25">
+        <div class="card mt-5 w-25" id="ertreszlet">
             <div class="card-header">
                 <h1 id="erttantargy">tantárgy</h1>
             </div>
             <div class="row">
                 <div class="col-3">
                     <h3 id="ertjegy">2</h3>
+                    <p id="ertszazalek" style="font-size: 10pt">0</p>
                 </div>
                 <div class="col-9">
-                    <p id="ert1">ad</p>
-                    <p id="ert2">a</p>
-                    <p id="ert3">a</p>
-                    <p id="ert4">a</p>
+                    <p id="ertdatum">ad</p>
+                    <p id="ertido">a</p>
+                    <p id="erttip">a</p>
+                    <p id="ertleiras">a</p>
                 </div>
             </div>
         </div>
         <div class="table-responsive-xxl pt-5">
             <table class="table table-striped table-bordered mb-0 mx-auto text-center" id="table">
-                <!-- TODO értékelések tábla 10(hónap) + 2(évvégi) oszlop -->
                 <thead>
                     <tr>
-                        <td class="align-middle">{{/*$osztaly*/ "asd"}}</td>
+                        <td class="align-middle">{{osztaly::find($user->oszt_id)->oszt_nev}}</td>
                         <td class="align-middle">09.</td>
                         <td class="align-middle">10.</td>
                         <td class="align-middle">11.</td>
@@ -136,10 +137,8 @@
                         <td class="align-middle">II.</td>
                     </tr>
                 </thead>
-                <script src="{{ asset('js/ertekeles.js') }}"></script>
                 <tbody>
                     <?php
-                        $arr = array();
                         for($i = 0; $i < count($tantargyak); $i++)
                         {
                             echo('<tr><td class="align-middle">'.$tantargyak[$i]->tant_nev.'</td>');
@@ -154,38 +153,28 @@
                                 } elseif ($honap > 12) {
                                     $honap = $j-4;
                                 }
-                                $asd = ora::selectraw('orak.ora_datum')->first()->get();
-                                $asd1 =$asd[0]->ora_datum;
-                                //dd(date('n',strtotime($asd1)));
-                                $ert = ertekeles::selectraw('orak.ora_datum, ertekelesek.*')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->groupby('ertekelesek.ert_id')->get();
-
+                                $ert = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->groupby('ertekelesek.ert_id')->get();
+                                $felev = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->where('ertekelesek.ido_id','=',2)->groupby('ertekelesek.ert_id')->get();
+                                $evvege = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->where('ertekelesek.ido_id','=',3)->groupby('ertekelesek.ert_id')->get();
                                 echo('<td>');
-                                foreach ($ert as $row) {
-                                    if (date('n',strtotime($row->ora_datum)) == $honap) {
-                                        echo('<a href="#top" onClick="ertekelesReszlet({{$row}})">'.$row->ert_jegy.'</a>');
-                                        ?>
-                                        <script>
-                                            console.log("{{$row}}");
-                                            listaHozzaad("{{$row}}".replace(/&quot;/g,'"'));
-                                        </script>
-                                        <?php
+                                if ($j == 5 && count($felev) != 0) {
+                                    ?> <a href="#top" onClick='ertekelesReszlet({{$felev[0]}})'>{{$felev[0]->ert_jegy}}</a> <?php
+                                } elseif ($j == 11 && count($evvege) != 0) {
+                                    ?> <a href="#top" onClick='ertekelesReszlet({{$evvege[0]}})'>{{$evvege[0]->ert_jegy}}</a> <?php
+                                } else {
+                                    foreach ($ert as $row) {
+                                        if (date('n',strtotime($row->ora_datum)) == $honap && $row->ido_id == 1) {
+                                            ?> <a href="#top" onClick='ertekelesReszlet({{$row}})'>{{$row->ert_jegy}}</a> <?php
+                                        }
                                     }
                                 }
-                                /*if ($j == 5) {
-                                    echo(${'felev'.$i});
-                                } elseif ($j == 11) {
-                                    echo(${'evvege'.$i});
-                                } else {
-                                    for ($k = 0; $k < count(${'jegyek'.$i.'-'.$j.'-'.$k}); $k++) {
-                                        echo(${'jegyek'.$i.'-'.$j.'-'.$k});
-                                    }
-                                }*/
                                 echo('</td>');
                             }
 
                             echo('</td></tr>');
                         }
                     ?>
+                <script src="{{ asset('js/ertekeles.js') }}"></script>
 
                 </tbody>
             </table>
@@ -196,4 +185,7 @@
 @endsection
 
 @section('js')
+<script>
+    document.getElementById('ertreszlet').style.display = "none";
+</script>
 @endsection
