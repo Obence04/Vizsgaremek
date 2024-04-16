@@ -203,6 +203,7 @@ class NaploController extends Controller
                     'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'tantargyak' => tantargy::join('tanitott','tanitott.tant_id','tantargyak.tant_id')->join('orak','orak.tanit_id','tanitott.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('diakok','diakok.oszt_id','osztalyok.oszt_id')->where('diakok.fel_id','=',Auth::id())->groupby('tanitott.tant_id')->orderby('tantargyak.tant_nev')->get()
                 ]);
             } else if ($jog > 1){
                 return view('ertekelesek',[

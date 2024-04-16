@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title') Órarend @endsection
+@section('title') Értékelések @endsection
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/ertekeles.css')}}">
@@ -11,6 +11,12 @@
 
 @include('header')
 <main class="container-fluid">
+    @php
+        use App\Models\ertekeles;
+        use App\Models\ora;
+        $datum = date('n');
+        $aktualszin = "#AAAADD";
+    @endphp
     @if($jog > 1)
     @if(!isset($osztaly))
     <div class="pt-5">
@@ -95,7 +101,7 @@
     @else
     <div class="text-center">
         <div class="table-responsive-xxl pt-5">
-            <table class="table mb-0 mx-auto text-center" id="table">
+            <table class="table table-striped table-bordered mb-0 mx-auto text-center" id="table">
                 <!-- TODO értékelések tábla 10(hónap) + 2(évvégi) oszlop -->
                 <thead>
                     <tr>
@@ -115,23 +121,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < count($tantargyak); $i++)
-                    <tr>
-                        <td class="align-middle">{{"tantárgy"}}</td>
-                        @for ($j = 0; $j < 12; $j++)
-                        <td class="align-middle">
-                            @if ($j == 5)
-                            {{${'felev'.$i}}}
-                            @elseif ($j == 11)
-                            {{${'evvege'.$i}}}
-                            @else
-                            @for ($k = 0; $k < count(${'jegyek'.$i.'-'.$j.'-'.$k}); $k++)
-                            {{${'jegyek'.$i.'-'.$j.'-'.$k}}}
-                            @endfor
-                        </td>
-                        @endfor
-                    </tr>
-                    @endfor
+                    @php
+                        for($i = 0; $i < count($tantargyak); $i++)
+                        {
+                            echo('<tr><td class="align-middle">'.$tantargyak[$i]->tant_nev.'</td>');
+                            for ($j=0; $j < 12; $j++) {
+                                $honap = 9+$j;
+                                if ($honap == 13) {
+                                    $honap = 1;
+                                } elseif ($honap == 14) {
+                                    $honap = -1;
+                                } elseif ($honap == 20) {
+                                    $honap = -1;
+                                } elseif ($honap > 12) {
+                                    $honap = $j-4;
+                                }
+                                $asd = ora::selectraw('month(orak.ora_datum)')->first()->get();
+                                $asd1 =$asd[0]->ora_datum;
+                                dd($asd1);
+                                $ert = ertekeles::selectraw('orak.ora_datum, ertekelesek.*')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->whereraw('month(orak.ora_datum) = '.$datum)->groupby('ertekelesek.ert_id')->get();
+                                echo('<td> '.$honap);
+                                foreach ($ert as $row) {
+                                    echo($row);
+                                }
+                                /*if ($j == 5) {
+                                    echo(${'felev'.$i});
+                                } elseif ($j == 11) {
+                                    echo(${'evvege'.$i});
+                                } else {
+                                    for ($k = 0; $k < count(${'jegyek'.$i.'-'.$j.'-'.$k}); $k++) {
+                                        echo(${'jegyek'.$i.'-'.$j.'-'.$k});
+                                    }
+                                }*/
+                                echo('</td>');
+                            }
+
+                            echo('</td></tr>');
+                        }
+                    @endphp
+
 
                 </tbody>
             </table>
