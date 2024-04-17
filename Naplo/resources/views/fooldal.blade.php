@@ -9,14 +9,13 @@
 @section('content')
 
 @include('header')
-
     <main class="container text-center">
         @if($jog == 1)
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-            @isset($ora)
+            @if(count($ora) != 0)
             <div class="col p-4">
                 <a href="/orarend">
-                        <div class="card kartya">
+                        <div class="card kartya ertesites">
                             <div class="card-header mt-0 pb-0 color-bg-accent color-background">
                                 <p class="text-center mb-0"><b>Következő óra</b></p>
                                 <hr class="my-1">
@@ -24,129 +23,167 @@
                             </div>
                             <div class="row px-2 mt-1" style="font-size: 10pt">
                                 <div class="col text-start">
-                                    <p>{{$ora[0]->tanar_nev}}</p>
+                                    <span>{{$ora[0]->tanar_nev}}</span>
                                 </div>
                                 <div class="col text-end">
-                                    <p>{{$ora[0]->ora_terem}}</p>
+                                    <span>{{$ora[0]->ora_terem}}</span>
                                 </div>
-                                <p>{{$ora[0]->ora_datum}}</p>
+                                <p>{{date('Y.m.d. ',strtotime($ora[0]->ora_datum)).$ora[0]->ora_szam}}. óra</p>
+
                             </div>
                         </div>
                     </a>
             </div>
-            @endisset
-            @isset($jegyek[0])
+            @endif
+            @if(count($jegyek) > 0)
             <div class="col p-4">
-                <a href="/orarend">
-                        <div class="card kartya">
-                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
-                                <p class="text-center mb-0"><b>Értékelés</b></p>
-                                <hr class="my-1">
-                                <h6 class="pb-0">{{$jegyek[0]->tant_nev}}</h6>
-                            </div>
-                            <div class="row px-2 mt-1" style="font-size: 10pt">
-                                <div class="col text-start">
-                                    <p>{{$jegyek[0]->ido_nev}}</p>
-                                    <p>{{$jegyek[0]->tip_nev}}</p>
-                                </div>
-                                <div class="col text-end">
-                                    <p>{{$jegyek[0]->ert_leiras}}</p>
-                                </div>
-                                <p>{{$jegyek[0]->ora_datum}}</p>
-                            </div>
+                <a href="/ertekelesek">
+                    <div class="card kartya ertesites">
+                        <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                            <p class="text-center mb-0"><b>Értékelés</b></p>
+                            <hr class="my-1">
+                            <h6 class="pb-0">{{$jegyek[0]->tant_nev}}</h6>
                         </div>
-                    </a>
+                        <div class="row px-2 mt-1" style="font-size: 10pt">
+                            <div class="col text-start">
+                                <span>{{$jegyek[0]->ido_nev}}</span>
+                                <span>{{$jegyek[0]->tip_nev}}</span>
+                            </div>
+                            <div class="col text-end">
+                                <span>{{$jegyek[0]->ert_leiras}}</span>
+                            </div>
+                            <span class="fs-5"><b>{{$jegyek[0]->ert_jegy}}</b></span>
+                            <span>({{$jegyek[0]->ert_szazalek}}% súlyozású)</span>
+                            <p>{{date('Y.m.d. ',strtotime($jegyek[0]->ora_datum)).$jegyek[0]->ora_szam}}. óra</p>
+                        </div>
+                    </div>
+                </a>
             </div>
 
-            @endisset
-            @isset($jegyek[1])
-            <div class="col mx-auto p-4">
-                <a href="/orarend">
-                        <div class="card kartya">
-                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
-                                <p class="text-center mb-0"><b>Értékelés</b></p>
-                                <hr class="my-1">
-                                <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
-                            </div>
-                            <div class="row px-2 mt-1" style="font-size: 10pt">
-                                <div class="col text-start">
-                                    <p>{{$jegyek[1]->ido_nev}}</p>
-                                    <p>{{$jegyek[1]->tip_nev}}</p>
-                                </div>
-                                <div class="col text-end">
-                                    <p>{{$jegyek[1]->ert_leiras}}</p>
-                                </div>
-                                <p>{{$jegyek[1]->ora_datum}}</p>
-                            </div>
+            @endif
+            @if(count($jegyek) > 1)
+            <div class="col p-4">
+                <a href="/ertekelesek">
+                    <div class="card kartya ertesites">
+                        <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                            <p class="text-center mb-0"><b>Értékelés</b></p>
+                            <hr class="my-1">
+                            <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
                         </div>
+                        <div class="row px-2 mt-1" style="font-size: 10pt">
+                            <div class="col text-start">
+                                <span>{{$jegyek[1]->ido_nev}}</span>
+                                <span>{{$jegyek[1]->tip_nev}}</span>
+                            </div>
+                            <div class="col text-end">
+                                <span>{{$jegyek[1]->ert_leiras}}</span>
+                            </div>
+                            <span class="fs-5"><b>{{$jegyek[1]->ert_jegy}}</b></span>
+                            <span>({{$jegyek[1]->ert_szazalek}}% súlyozású)</span>
+                            <p>{{date('Y.m.d. ',strtotime($jegyek[1]->ora_datum)).$jegyek[1]->ora_szam}}. óra</p>
+                        </div>
+                    </div>
                 </a>
             </div>
-            @endisset
-            @isset($hianyok[0])
-            <div class="col mx-auto p-4">
+            @endif
+            @if(count($hianyzasok) > 0)
+            <div class="col p-4">
                 <a href="/hianyzasok">
-                    <p class="text-center"><b>Értékelés</b></p>
-                        <div class="card kartya">
-                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
-                                <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
-                            </div>
-                            <div class="row px-2 mt-1" style="font-size: 10pt">
-                                <div class="col text-start">
-                                    <p>{{$jegyek[1]->tanar_nev}}</p>
-                                </div>
-                                <div class="col text-end">
-                                <p>{{$jegyek[1]->ora_terem}}</p>
-                            </div>
+                    <div class="card kartya ertesites">
+                        <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                            <p class="text-center mb-0"><b>Mulasztás</b></p>
+                            <hr class="my-1">
+                            <h6 class="pb-0">{{$hianyzasok[0]->tant_nev}}</h6>
                         </div>
+                        <div class="px-2 mt-1" style="font-size: 10pt">
+                            <span>@if($hianyzasok[0]->hia_keses == 1) {{$hianyzasok[0]->hia_perc}} perc késés @else hiányzás @endif</span>
+                            <span>{{$hianyzasok[0]->tip_nev}}</span>
+                            <p>{{date('Y.m.d. ',strtotime($hianyzasok[0]->ora_datum)).$hianyzasok[0]->ora_szam}}. óra</p>
+                        </div>
+
                     </div>
                 </a>
             </div>
-            @endisset
-            @isset($hianyok[1])
-            <div class="col mx-auto p-4">
-                <a href="/hianyok">
-                    <p class="text-center"><b>Értékelés</b></p>
-                        <div class="card kartya">
+            @endif
+            @if(count($hianyzasok) > 1)
+                <div class="col p-4">
+                    <a href="/hianyzasok">
+                        <div class="card kartya ertesites">
                             <div class="card-header mt-0 pb-0 color-bg-accent color-background">
-                                <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
+                                <p class="text-center mb-0"><b>Mulasztás</b></p>
+                                <hr class="my-1">
+                                <h6 class="pb-0">{{$hianyzasok[1]->tant_nev}}</h6>
                             </div>
-                            <div class="row px-2 mt-1" style="font-size: 10pt">
-                                <div class="col text-start">
-                                    <p>{{$jegyek[1]->tanar_nev}}</p>
-                                </div>
-                                <div class="col text-end">
-                                <p>{{$jegyek[1]->ora_terem}}</p>
+                            <div class="px-2 mt-1" style="font-size: 10pt">
+                                <span>@if($hianyzasok[1]->hia_keses == 1) {{$hianyzasok[1]->hia_perc}} perc késés @else hiányzás @endif</span>
+                                <span>{{$hianyzasok[1]->tip_nev}}</span>
+                                <p>{{date('Y.m.d. ',strtotime($hianyzasok[1]->ora_datum)).$hianyzasok[1]->ora_szam}}. óra</p>
                             </div>
+
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+                @endif
             </div>
-            @endisset
         </div>
         @else
-        <h1>Üdv, {{$user->tanar_nev}}</h1>
-        @isset($ora)
+        <h1 class="mt-3">Üdv, {{$user->tanar_nev}}</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            @if(count($ora) != 0)
+                <div class="col p-4">
+                    <a href="/orarend">
+                        <div class="card kartya ertesites">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <p class="text-center mb-0"><b>Következő óra</b></p>
+                                <hr class="my-1">
+                                <h6 class="pb-0">{{$ora[0]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <span>osztály: {{$ora[0]->oszt_nev}}</span>
+                                </div>
+                                <div class="col text-end">
+                                    <span>{{$ora[0]->ora_terem}}</span>
+                                </div>
+                                <p>{{date('Y.m.d. ',strtotime($ora[0]->ora_datum)).$ora[0]->ora_szam}}. óra</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endif
+            @if(count($ora) > 1)
+                <div class="col p-4">
+                    <a href="/orarend">
+                        <div class="card kartya ertesites">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <p class="text-center mb-0"><b>Következő óra</b></p>
+                                <hr class="my-1">
+                                <h6 class="pb-0">{{$ora[1]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <span>osztály: {{$ora[1]->oszt_nev}}</span>
+                                </div>
+                                <div class="col text-end">
+                                    <span>{{$ora[1]->ora_terem}}</span>
+                                </div>
+                                <p>{{date('Y.m.d. ',strtotime($ora[1]->ora_datum)).$ora[1]->ora_szam}}. óra</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endif
+            @if (count($ora) == 0)
             <div class="col mx-auto p-4">
                 <a href="">
                     <div class="card kartya rounded-3">
                         <div class="card-header rounded-top-1">
-                        Feljegyzés
+                        Következő óra
                         </div>
-                        <p class="text-center"><b>Beírás</b></p>
-                        <p>A gyereke az órán ......</p>
+                        <p class="text-center"><b>úgy néz ki, hogy nem lesz órája...</b></p>
                     </div>
                 </a>
             </div>
-        @else
-        <div class="col mx-auto p-4">
-            <a href="">
-                <div class="card kartya rounded-3">
-                    <div class="card-header rounded-top-1">
-                    Következő óra
-                    </div>
-                    <p class="text-center"><b>úgy néz ki, hogy nem lesz órája...</b></p>
-                </div>
-            </a>
         </div>
         @endisset
         @endif

@@ -21,8 +21,9 @@
     @if($jog > 1)
     @if(!isset($osztaly))
     <div class="pt-5">
+        <h2 class="text-center">Értékelések</h2>
         <div class="card mx-auto px-5 py-3">
-            <h2 class="text-center pb-2">Osztály kiválasztása</h2>
+            <h3 class="text-center pb-2">Osztály kiválasztása</h3>
             <div class="row align-items-center text-center">
                 @foreach ($osztalyok as $row)
                 <div class="col">
@@ -44,27 +45,27 @@
                 <input type="hidden" name="osztaly" value="{{ $osztaly->oszt_id }}">
                 <input type="hidden" name="diakcnt" value="{{ count($diakok); }}">
                 <label for="ora" class="form-label">Óra:</label>
-                <select name="ora" id="ora" class="form-select">
+                <select name="ora" id="ora" class="form-select mb-3">
                     @foreach ($orak as $row)
-                        <option value="{{$row->ora_id}}">@php echo($row->oszt_nev.': '.$row->ora_datum.' '.$row->ora_szam.'. óra - '.$row->tant_nev); @endphp</option>
+                        <option value="{{$row->ora_id}}">@php echo($row->oszt_nev.': '.date('Y.m.d. ',strtotime($row->ora_datum)).' '.$row->ora_szam.'. óra - '.$row->tant_nev); @endphp</option>
                     @endforeach
                 </select>
                 <label for="ertido" class="form-label">Értékelés típusa:</label>
-                <select name="ertido" id="ertido" class="form-select">
+                <select name="ertido" id="ertido" class="form-select mb-3">
                     @foreach ($ertido as $row)
                         <option value="{{$row->ido_id}}">@php echo($row->ido_nev); @endphp</option>
                     @endforeach
                 </select>
                 <label for="erttip" class="form-label">Értékelés témája:</label>
-                <select name="erttip" id="erttip" class="form-select">
+                <select name="erttip" id="erttip" class="form-select mb-3">
                     @foreach ($erttipus as $row)
                         <option value="{{$row->tip_id}}">@php echo($row->tip_nev); @endphp</option>
                     @endforeach
                 </select>
                 <label for="leiras" class="form-label">Értékelés leírása:</label>
-                <input type="text" name="leiras" id="leiras" class="form-control">
+                <input type="text" name="leiras" id="leiras" class="form-control mb-3">
                 <label for="szazalek" class="form-label">Jegy erőssége (százalék):</label>
-                <input type="number" name="szazalek" id="szazalek" min="25" max="500" value="100" class="form-control">
+                <input type="number" name="szazalek" id="szazalek" min="25" max="500" value="100" class="form-control mb-3">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>

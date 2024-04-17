@@ -107,7 +107,7 @@
                     </div>
                     <div class="row px-2 mt-1" style="font-size: 10pt">
                         <div class="col text-start">
-                            <p>{{$ora[0]->tanar_nev}}</p>
+                            <p>@if($jog > 1) osztály: {{$ora[0]->oszt_nev}} @else {{$ora[0]->tanar_nev}} @endif</p>
                         </div>
                         <div class="col text-end">
                             <p>{{$ora[0]->ora_terem}}</p>

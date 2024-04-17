@@ -16,11 +16,14 @@
 
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
 </head>
-<body data-theme="@php if(isset($tema)) { echo($tema); } else { echo('light'); } @endphp" class="color-bg-background">
+<?php
+    use App\Models\tema;
+?>
+<body data-theme="@php if(Auth::check()) { echo(tema::where('tema_id','=',Auth::user()->tema_id)->get()[0]->tema_nev); } else { echo('light'); } @endphp" class="color-bg-background">
     @yield('header')
 
     @yield('content')
-<footer class="bg-dark p-1">
+<footer class="bg-dark p-1" id="footer">
     <div class="row mx-auto">
         <div class="col-6">
             <p>Elérhetőségek</p>

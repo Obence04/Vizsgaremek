@@ -25,7 +25,117 @@ class AdminController extends Controller
             if ($jog > 2) {
                 return view('profil',[
                     'user' => User::find($id),
-                    'tanar' => tanar::where('fel_id','=',$id)->first()->get()
+                    'diak' => diak::where('fel_id','=',$id)->get()->first(),
+                    'tanar' => tanar::where('fel_id','=',$id)->get()->first(),
+                    'id' => $id,
+                    'jog' => $jog,
+                    'tema' => tema::find($user->tema_id)->tema_nev
+                ]);
+            } else {
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function ProfilPost(Request $request, $id){
+        if (Auth::check()){
+            if (Auth::user()->jog_id > 2) {
+                if (User::find($id)->jog_id == 1) {
+                    $request->validate([
+                        'dnev' => 'required',
+                        'dszulido' => 'required',
+                        'dszulhely' => 'required',
+                        'danyja' => 'required'
+                    ],[
+                        'dnev.required' => 'Név megadása kötelező!',
+                        'dszulido.required' => 'Születési dátum megadása kötelező!',
+                        'dszulhely.required' => 'Születési hely megadása kötelező!',
+                        'danyja.required' => 'Név megadása kötelező!',
+                    ]);
+                    $data = diak::where('fel_id','=',$id)->get()->first();
+                    $data->diak_nev = $request->dnev;
+                    $data->diak_szuldatum = $request->dszulido;
+                    $data->diak_szulhely = $request->dszulhely;
+                    $data->diak_anyja = $request->danyja;
+                    if (!is_null($request->dlakcim)) {
+                        $data->diak_lakcim = $request->dlakcim;
+                    } else {
+                        $data->diak_lakcim = null;
+                    }
+                    $data->save();
+                }
+                $request->validate([
+                    'fnev' => 'required',
+                    'femail' => 'required'
+                ],[
+                    'fnev.required' => 'Felhasználónév megadása kötelező!',
+                    'femail.required' => 'Felhasználónév megadása kötelező!'
+                ]);
+                $data = User::find($id);
+                $data->fel_nev = $request->fnev;
+                $data->fel_email = $request->femail;
+                $data->save();
+            } else {
+                if(isset($request->dnev)){
+                    $data = diak::where('fel_id','=',User::id())->get()->first();
+                    if (!is_null($request->dlakcim)) {
+                        $data->diak_lakcim = $request->dlakcim;
+                    } else {
+                        $data->diak_lakcim = null;
+                    }
+                    $data->save();
+                }
+                if(isset($request->femail)){
+                    $request->validate([
+                    ],[
+
+                    ]);
+                }
+                $request->validate([
+                    'femail' => 'required'
+                ],[
+                    'femail.required' => 'E-mail cím megadása kötelező!'
+                ]);
+            }
+            $request->validate([
+
+            ],[
+
+            ]);
+            $data->
+
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function Visszaallit($id){
+        if (Auth::check()){
+            if (Auth::user()->jog_id > 3){
+                return view('profil',[
+                    'user' => Auth::user(),
+                    'mod' => User::find($id),
+                    'jog' => Auth::user()->jog_id,
+                    'tema' => tema::find(Auth::user()->tema_id)->tema_nev
+                ]);
+            } else {
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function VisszaallitPost(Request $request, $id){
+        if (Auth::check()){
+            if (Auth::user()->jog_id > 3){
+                return view('profil',[
+                    'user' => Auth::user(),
+                    'mod' => User::find($id),
+                    'jog' => Auth::user()->jog_id,
+                    'tema' => tema::find(Auth::user()->tema_id)->tema_nev
                 ]);
             } else {
                 return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
@@ -182,7 +292,7 @@ class AdminController extends Controller
             $data->tant_nev = $request->tantargy;
             $data->save();
         }
-        else return redirect('asd');
+        else return redirect('/404');
         return redirect('felvetel');
     }
 }

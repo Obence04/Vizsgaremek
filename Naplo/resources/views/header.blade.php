@@ -1,7 +1,13 @@
 @section('header')
+
+@php
+    use App\Models\diak;
+    use App\Models\tanar;
+@endphp
+
 <header class="color-bg-primary fw-bold">
     <nav class="container-fluid navbar navbar-expand">
-        <a class="navbar-brand ms-3" id="nevnagy" href="/">@if ($jog == 1) {{$user->diak_nev}} @else {{$user->tanar_nev}} @endif</a>
+        <a class="navbar-brand ms-3" id="nevnagy" href="/">@if (Auth::user()->jog_id == 1) {{diak::where('fel_id','=',Auth::id())->get()->first()->diak_nev}} @else {{tanar::where('fel_id','=',Auth::id())->get()->first()->tanar_nev}} @endif</a>
         <span id="datumkicsi" class="navbar-text ms-3 pe-3 pt-2 fs-5"></span>
         <ul class="navbar-nav ms-auto">
             <span id="datumnagy" class="navbar-text pe-3 pt-2 fs-5"></span>
@@ -20,7 +26,7 @@
         </ul>
     </nav>
     <nav class="container-fluid navbar navbar-expand-md">
-        <a class="navbar-brand" href="#" title="RAKÉTA">
+        <a class="navbar-brand" href="#footer" title="RAKÉTA">
             <img class="text-center logo ms-5" src={{asset('img/ikon1.png')}} alt="logo1.png">
         </a>
         <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item px-4">
-                    <a class="navbar-brand" id="nevkicsi" href="/">@if ($jog == 1) {{$user->diak_nev}} @else {{$user->tanar_nev}} @endif</a>
+                    <a class="navbar-brand" id="nevkicsi" href="/">@if (Auth::user()->jog_id == 1) {{diak::where('fel_id','=',Auth::id())->get()->first()->diak_nev}} @else {{tanar::where('fel_id','=',Auth::id())->get()->first()->tanar_nev}} @endif</a>
                 </li>
                 <li class="nav-item px-4">
                     <a class="nav-link" href="/orarend">Órarend</a>
@@ -43,7 +49,7 @@
                 <li class="nav-item px-4" title="Nincs implementálva!">
                     <a class="nav-link disabled" href="/feljegyzesek">Feljegyzések</a>
                 </li>
-                @if($jog > 2)
+                @if(Auth::user()->jog_id > 2)
                 <li class="nav-item px-4">
                     <a class="nav-link" href="/felvetel">Felvétel</a>
                 </li>
