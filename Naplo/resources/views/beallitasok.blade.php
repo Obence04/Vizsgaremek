@@ -38,7 +38,6 @@
             <form action="/beallitasok" method="post">
                 @csrf
                 <input type="hidden" name="tipus" value="jelszo">
-                <!-- jelszó változtatás -->
                 <div class="input-group mb-2">
                     <span class="input-group-text">Régi jelszó:</span>
                     <input type="password" name="regi" class="form-control">
@@ -70,7 +69,7 @@
                 <button type="submit" class="btn btn-primary mb-2">Jelszó megváltoztatása</button>
             </form>
         </div>
-        
+
     </main>
 @endsection
 

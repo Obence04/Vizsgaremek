@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                <form action="profil/{{$user->fel_id}}" method="post">
+                <form action="/profil/{{$user->fel_id}}" method="post">
                     @csrf
                 @if($diake)
                 <tr>
@@ -54,27 +54,52 @@
                 <tr>
                     <td>Tanuló neve:</td>
                     <td>{{$diak->diak_nev}}</td>
-                    <td>@if($jog > 2) <input type="text" name="dnev" id="dnev" value="{{$diak->diak_nev}}" class="form-control"> @endif</td>
+                    <td>
+                        @if($jog > 2) <input type="text" name="dnev" id="dnev" value="{{$diak->diak_nev}}" class="form-control"> @endif
+                        @error('dnev')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>Születési idő:</td>
                     <td>{{$diak->diak_szuldatum}}</td>
-                    <td>@if($jog > 2) <input type="date" name="dszulido" id="dszulido" value="{{$diak->diak_szuldatum}}" class="form-control"> @endif</td>
+                    <td>
+                        @if($jog > 2) <input type="date" name="dszulido" id="dszulido" value="{{$diak->diak_szuldatum}}" class="form-control"> @endif
+                        @error('dszulido')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>Születési hely:</td>
                     <td>{{$diak->diak_szulhely}}</td>
-                    <td>@if($jog > 2) <input type="text" name="dszulhely" id="dszulhely" value="{{$diak->diak_szulhely}}" class="form-control"> @endif</td>
+                    <td>
+                        @if($jog > 2) <input type="text" name="dszulhely" id="dszulhely" value="{{$diak->diak_szulhely}}" class="form-control"> @endif
+                        @error('dszulhely')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>Anyja neve:</td>
                     <td>{{$diak->diak_anyja}}</td>
-                    <td>@if($jog > 2) <input type="text" name="danyja" id="danyja" value="{{$diak->diak_anyja}}" class="form-control"> @endif</td>
+                    <td>
+                        @if($jog > 2) <input type="text" name="danyja" id="danyja" value="{{$diak->diak_anyja}}" class="form-control"> @endif
+                        @error('danyja')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>Lakcím:</td>
                     <td>{{$diak->diak_lakcim}}</td>
-                    <td><input type="text" name="dlakcim" id="dlakcim" value="{{$diak->diak_lakcim}}" class="form-control"></td>
+                    <td>
+                        <input type="text" name="dlakcim" id="dlakcim" value="{{$diak->diak_lakcim}}" class="form-control">
+                        @error('dlakcim')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>Osztály:</td>
@@ -100,12 +125,22 @@
                 <tr>
                     <td>Felhasználónév:</td>
                     <td>{{$user->fel_nev}}</td>
-                    <td>@if($jog > 2) <input type="text" name="fnev" id="fnev" value="{{$user->fel_nev}}" class="form-control"> @endif</td>
+                    <td>
+                        @if($jog > 2) <input type="text" name="fnev" id="fnev" value="{{$user->fel_nev}}" class="form-control"> @endif
+                        @error('fnev')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>E-mail cím:</td>
                     <td>{{$user->fel_email}}</td>
-                    <td><input type="email" name="femail" id="femail" value="{{$user->fel_email}}" class="form-control"></td>
+                    <td>
+                        <input type="email" name="femail" id="femail" value="{{$user->fel_email}}" class="form-control">
+                        @error('femail')
+                        <span class="fw-bold text-danger">{{$message}}</span>
+                        @enderror
+                    </td>
                 </tr>
                 <tr>
                     <td>Telefonszám:</td>

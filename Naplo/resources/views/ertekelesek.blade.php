@@ -64,6 +64,9 @@
                 </select>
                 <label for="leiras" class="form-label">Értékelés leírása:</label>
                 <input type="text" name="leiras" id="leiras" class="form-control mb-3">
+                @error('leiras')
+                    <span class="fw-bold text-danger">{{$message}}</span><br>
+                @enderror
                 <label for="szazalek" class="form-label">Jegy erőssége (százalék):</label>
                 <input type="number" name="szazalek" id="szazalek" min="25" max="500" value="100" class="form-control mb-3">
                 <table class="table table-striped table-bordered">

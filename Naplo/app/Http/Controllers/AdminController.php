@@ -71,15 +71,21 @@ class AdminController extends Controller
                     'femail' => 'required'
                 ],[
                     'fnev.required' => 'Felhasználónév megadása kötelező!',
-                    'femail.required' => 'Felhasználónév megadása kötelező!'
+                    'femail.required' => 'E-mail cím megadása kötelező!'
                 ]);
                 $data = User::find($id);
                 $data->fel_nev = $request->fnev;
                 $data->fel_email = $request->femail;
+                if (!is_null($request->ftel)) {
+                    $data->fel_telszam = $request->ftel;
+                } else {
+                    $data->fel_telszam = null;
+                }
                 $data->save();
+                return redirect('/profil/'.$id);
             } else {
-                if(isset($request->dnev)){
-                    $data = diak::where('fel_id','=',User::id())->get()->first();
+                if(isset($request->dlakcim)){
+                    $data = diak::where('fel_id','=',Auth::id())->get()->first();
                     if (!is_null($request->dlakcim)) {
                         $data->diak_lakcim = $request->dlakcim;
                     } else {
@@ -87,24 +93,21 @@ class AdminController extends Controller
                     }
                     $data->save();
                 }
-                if(isset($request->femail)){
-                    $request->validate([
-                    ],[
-
-                    ]);
-                }
                 $request->validate([
                     'femail' => 'required'
                 ],[
                     'femail.required' => 'E-mail cím megadása kötelező!'
                 ]);
+                $data = User::find(Auth::id());
+                $data->fel_email = $request->femail;
+                if (!is_null($request->ftel)) {
+                    $data->fel_telszam = $request->ftel;
+                } else {
+                    $data->fel_telszam = null;
+                }
+                $data->save();
+                return redirect('/profil');
             }
-            $request->validate([
-
-            ],[
-
-            ]);
-            $data->
 
         } else {
             return redirect('/belepes');

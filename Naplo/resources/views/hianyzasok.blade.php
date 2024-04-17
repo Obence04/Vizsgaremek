@@ -17,8 +17,6 @@
         use App\Models\osztaly;
         use App\Models\igazolas;
         $datum = date('n');
-        $aktualszin = "#AAAADD";
-        //dd($hianyzasok); //NEM TÖLTI BE AZ ADATOKAT
     @endphp
     @if($jog > 1)
     @if(isset($kiv))

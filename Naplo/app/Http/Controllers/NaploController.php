@@ -269,13 +269,9 @@ class NaploController extends Controller
                 }
 
                 $request->validate([
-                    'ora' => 'required',
-                    'erttip' => 'required',
-                    'ertido' => 'required',
-                    'leiras' => 'required',
-                    'szazalek' => 'required|numeric'
+                    'leiras' => 'required'
                 ],[
-
+                    'leiras.required' => 'Ki kell tölteni a leírás mezőt!'
                 ]);
                 for ($i = 0; $i < $request->diakcnt; $i++) {
                     $jegy = -1;
@@ -308,7 +304,7 @@ class NaploController extends Controller
                     $data->tip_id = $request->erttip;
                     $data->save();
                 }
-                return redirect('/felvetel');
+                return redirect('/ertekelesek');
             } else {
                 return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
             }
