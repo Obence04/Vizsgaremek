@@ -26,21 +26,8 @@ namespace Enaplo_asztali
 
             LbHiba.Text = "";
 
-            //debug
-            TxtNev.KeyDown += Key;
         }
 
-        #region DEBUG CODE
-        public void Key(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F1 )
-            {
-                TxtNev.Text = "Admin";
-                TxtJelszo.Text = "Admin";
-                Belepes(null, null);
-            }
-        }
-        #endregion
 
         public void Belepes(object? sender, EventArgs e)
         {

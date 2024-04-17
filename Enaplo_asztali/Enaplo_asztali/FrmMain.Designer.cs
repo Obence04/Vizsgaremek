@@ -36,16 +36,13 @@
             TSMIFelTanar = new ToolStripMenuItem();
             TSMIFelTantargy = new ToolStripMenuItem();
             TSMITantTanar = new ToolStripMenuItem();
-            TSMIImportalas = new ToolStripMenuItem();
-            diákokToolStripMenuItem = new ToolStripMenuItem();
-            órarendToolStripMenuItem1 = new ToolStripMenuItem();
             TSMIKilepes = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMIFelvetel, TSMIImportalas, TSMIKilepes });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMIFelvetel, TSMIKilepes });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -95,25 +92,6 @@
             TSMITantTanar.Size = new Size(214, 22);
             TSMITantTanar.Text = "tantárgy tanárhoz rendelés";
             // 
-            // TSMIImportalas
-            // 
-            TSMIImportalas.DropDownItems.AddRange(new ToolStripItem[] { diákokToolStripMenuItem, órarendToolStripMenuItem1 });
-            TSMIImportalas.Name = "TSMIImportalas";
-            TSMIImportalas.Size = new Size(75, 20);
-            TSMIImportalas.Text = "Importálás";
-            // 
-            // diákokToolStripMenuItem
-            // 
-            diákokToolStripMenuItem.Name = "diákokToolStripMenuItem";
-            diákokToolStripMenuItem.Size = new Size(115, 22);
-            diákokToolStripMenuItem.Text = "diákok";
-            // 
-            // órarendToolStripMenuItem1
-            // 
-            órarendToolStripMenuItem1.Name = "órarendToolStripMenuItem1";
-            órarendToolStripMenuItem1.Size = new Size(115, 22);
-            órarendToolStripMenuItem1.Text = "órarend";
-            // 
             // TSMIKilepes
             // 
             TSMIKilepes.Name = "TSMIKilepes";
@@ -141,15 +119,12 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem TSMIFelvetel;
-        private ToolStripMenuItem TSMIImportalas;
         private ToolStripMenuItem TSMIKilepes;
         private ToolStripMenuItem TSMIFelDiak;
         private ToolStripMenuItem TSMIFelOszt;
         private ToolStripMenuItem TSMIFelOra;
         private ToolStripMenuItem TSMIFelTanar;
         private ToolStripMenuItem TSMIFelTantargy;
-        private ToolStripMenuItem diákokToolStripMenuItem;
-        private ToolStripMenuItem órarendToolStripMenuItem1;
         private ToolStripMenuItem TSMITantTanar;
     }
 }
