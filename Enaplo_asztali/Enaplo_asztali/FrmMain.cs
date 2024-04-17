@@ -10,11 +10,18 @@ namespace Enaplo_asztali
             InitializeComponent();
             TSMIKilepes.Click += Kilepes;
             TSMIFelDiak.Click += DiakFel;
+            TSMIFelOszt.Click += OsztalyFel;
         }
 
         private void DiakFel(object sender, EventArgs e)
         {
             FrmFelDiak d = new FrmFelDiak();
+            d.ShowDialog();
+        }
+
+        private void OsztalyFel(object sender, EventArgs e)
+        {
+            FrmFelOszt d = new FrmFelOszt();
             d.ShowDialog();
         }
 
