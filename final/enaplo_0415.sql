@@ -131,11 +131,11 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`fel_id`, `fel_nev`, `fel_jelszo`, `fel_email`, `fel_telszam`, `jog_id`, `tema_id`) VALUES
-(2, 'Admin', '$2y$12$eezrsyYnZ6v2rVcx1AVqQOyElxni/RlnZi/YjSdCa8z.4jWKqgt/y', 'admin@admin.hu', NULL, 4, 1),
-(3, 'karoly.gabor', '$2y$12$38fuGpVErx.B8kmrwVNKvuNmqtUSRJZcZMCW9TZFtVp/hAL4ZCmY.', 'karoly@gabor.hu', NULL, 2, 1),
-(4, 'gabor.zsazsa', '$2y$12$MMj8CaJ/Vj8tspBCotmbxOPGA7DeC/eR6CndVwVdk61vnlf6Qk6f6', 'gabor@zsa.zsa', NULL, 2, 1),
-(5, '72012345678', '$2y$12$cCC8.qw5btBjTve/yFfqR.i74e4dq3PjhaV1Pko1t4O.yJiUjxzvm', 'teszt.elek@gmail.com', NULL, 1, 5),
-(6, '72987654321', '$2y$12$ytozBs8vb1FutLdA8w7qPOCriJmIzaZzxHGNsytAsJ.U36QodtuRW', 'trab.antal1@citromail.com', NULL, 1, 1);
+(1, 'Admin', '$2y$12$eezrsyYnZ6v2rVcx1AVqQOyElxni/RlnZi/YjSdCa8z.4jWKqgt/y', 'admin@admin.hu', NULL, 4, 1),
+(2, 'gabor.erika', '$2y$12$MMj8CaJ/Vj8tspBCotmbxOPGA7DeC/eR6CndVwVdk61vnlf6Qk6f6', 'gabor.erika@gmail.com', NULL, 3, 1),
+(2, 'karoly.attila', '$2y$12$38fuGpVErx.B8kmrwVNKvuNmqtUSRJZcZMCW9TZFtVp/hAL4ZCmY.', 'karoly.attila@citromail.com', NULL, 2, 1),
+(4, '72012345678', '$2y$12$cCC8.qw5btBjTve/yFfqR.i74e4dq3PjhaV1Pko1t4O.yJiUjxzvm', 'teszt.elek@gmail.com', NULL, 1, 1),
+(5, '72987654321', '$2y$12$ytozBs8vb1FutLdA8w7qPOCriJmIzaZzxHGNsytAsJ.U36QodtuRW', 'trab.antal1@citromail.com', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -209,22 +209,6 @@ CREATE TABLE `orak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `orak`
---
-
-INSERT INTO `orak` (`ora_id`, `oszt_id`, `ora_datum`, `ora_szam`, `tanit_id`, `ora_terem`) VALUES
-(1, 1, '2024-04-13', 1, 1, '211'),
-(2, 1, '2024-04-13', 2, 1, '211'),
-(3, 1, '2024-04-13', 4, 4, '107'),
-(4, 1, '2024-04-14', 3, 3, 'Tornaterem'),
-(5, 1, '2024-04-15', 9, 2, '117'),
-(6, 1, '2024-04-15', 10, 2, '117'),
-(7, 2, '2024-04-14', 5, 2, '28'),
-(8, 2, '2024-04-15', 6, 2, '28');
-
--- --------------------------------------------------------
-
---
 -- Tábla szerkezet ehhez a táblához `osztalyok`
 --
 
@@ -233,16 +217,6 @@ CREATE TABLE `osztalyok` (
   `oszt_nev` varchar(45) NOT NULL,
   `tanar_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `osztalyok`
---
-
-INSERT INTO `osztalyok` (`oszt_id`, `oszt_nev`, `tanar_id`) VALUES
-(1, '1A', 1),
-(2, '1B', 2);
-
--- --------------------------------------------------------
 
 --
 -- Tábla szerkezet ehhez a táblához `tanarok`
@@ -259,8 +233,8 @@ CREATE TABLE `tanarok` (
 --
 
 INSERT INTO `tanarok` (`tanar_id`, `tanar_nev`, `fel_id`) VALUES
-(1, 'Károly Gábor', 3),
-(2, 'Gábor Zsazsa', 4);
+(1, 'Gábor Erika', 2),
+(2, 'Károly Attila', 3);
 
 -- --------------------------------------------------------
 
@@ -275,18 +249,6 @@ CREATE TABLE `tanitott` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `tanitott`
---
-
-INSERT INTO `tanitott` (`tanit_id`, `tanar_id`, `tant_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 3),
-(4, 2, 4);
-
--- --------------------------------------------------------
-
---
 -- Tábla szerkezet ehhez a táblához `tantargyak`
 --
 
@@ -294,18 +256,6 @@ CREATE TABLE `tantargyak` (
   `tant_id` int(11) NOT NULL,
   `tant_nev` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `tantargyak`
---
-
-INSERT INTO `tantargyak` (`tant_id`, `tant_nev`) VALUES
-(1, 'Matematika'),
-(2, 'Informatika'),
-(3, 'Testnevelés'),
-(4, 'Történelem');
-
--- --------------------------------------------------------
 
 --
 -- Tábla szerkezet ehhez a táblához `temak`
@@ -448,19 +398,19 @@ ALTER TABLE `ertekelesek`
 -- AUTO_INCREMENT a táblához `ertidopontok`
 --
 ALTER TABLE `ertidopontok`
-  MODIFY `ido_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ido_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `erttipusok`
 --
 ALTER TABLE `erttipusok`
-  MODIFY `tip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `tip_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `fel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `fel_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `hianyzasok`
@@ -472,49 +422,49 @@ ALTER TABLE `hianyzasok`
 -- AUTO_INCREMENT a táblához `igazolasok`
 --
 ALTER TABLE `igazolasok`
-  MODIFY `iga_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `iga_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `jogok`
 --
 ALTER TABLE `jogok`
-  MODIFY `jog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `jog_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `orak`
 --
 ALTER TABLE `orak`
-  MODIFY `ora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ora_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `osztalyok`
 --
 ALTER TABLE `osztalyok`
-  MODIFY `oszt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `oszt_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `tanarok`
 --
 ALTER TABLE `tanarok`
-  MODIFY `tanar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tanar_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `tanitott`
 --
 ALTER TABLE `tanitott`
-  MODIFY `tanit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tanit_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `tantargyak`
 --
 ALTER TABLE `tantargyak`
-  MODIFY `tant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `temak`
 --
 ALTER TABLE `temak`
-  MODIFY `tema_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `tema_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Megkötések a kiírt táblákhoz

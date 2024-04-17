@@ -101,7 +101,7 @@
                 @endphp
                 <td class="align-middle" style="width:100px; height:100px" @if($curdate == strtotime($datum)) id="today" @endif>
                 @isset($ora[0])
-                <div class="card" style="filter:drop-shadow(0px 0px 5px rgba(0,0,0,1))">
+                <div class="card kartya">
                     <div class="card-header mt-0 pb-0 color-bg-accent color-background">
                         <h6 class="pb-0">{{$ora[0]->tant_nev}}</h6>
                     </div>

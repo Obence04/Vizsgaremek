@@ -94,7 +94,8 @@ class NaploController extends Controller
             $data->save();
             return redirect('/beallitasok');
         } else if ($request->input('tipus') == 'jelszo'){
-            if (!Auth::attempt(['fel_id' => Auth::id(), 'fel_jelszo' => $request->regi])){
+            $can = hash::check($request->regi, User::Where('fel_id','=',Auth::id())->first()->fel_jelszo);
+            if (!$can) {
                 return redirect('/beallitasok')->withErrors(['msg' => 'Helytelen jelszó!']);
             }
             $request->validate([
@@ -136,16 +137,13 @@ class NaploController extends Controller
                     'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
+                    'ora' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('oszt_id','=',diak::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->oszt_id)->orderby('ora_datum')->orderby('ora_szam')->get(),
+                    'jegyek' => ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('ertekelesek.diak_id','=',diak::where('fel_id','=',Auth::id())->get()->first()->diak_id)->groupby('ertekelesek.ert_id')->orderby('ora_datum','desc')->orderby('ora_szam','desc')->get(),
+                    'hianyzasok' => hianyzas::selectraw('orak.ora_datum, orak.ora_szam, hianyzasok.*, tantargyak.tant_nev')->join('orak','orak.ora_id','hianyzasok.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('hianyzasok.diak_id','=',diak::where('fel_id','=',Auth::id())->get()->first()->diak_id)->groupby('hianyzasok.hia_id')->orderby('ora_datum','desc')->orderby('ora_szam','asc')->get()
                 ]);
-            } else if ($jog == 2){
+            } else{
                 return view('fooldal',[
                     'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
-                    'jog' => $jog,
-                    'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
-                ]);
-            } else {
-                return view('fooldal',[
-                    'user' => User::find(Auth::id()),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                 ]);
@@ -231,12 +229,16 @@ class NaploController extends Controller
                     'tantargyak' => tantargy::join('tanitott','tanitott.tant_id','tantargyak.tant_id')->join('orak','orak.tanit_id','tanitott.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('diakok','diakok.oszt_id','osztalyok.oszt_id')->where('diakok.fel_id','=',Auth::id())->groupby('tanitott.tant_id')->orderby('tantargyak.tant_nev')->get()
                 ]);
             } else if ($jog > 1){
+                $osztalyok = osztaly::select('osztalyok.oszt_id','osztalyok.oszt_nev')->join('orak','orak.oszt_id','osztalyok.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->distinct()->get();
+                if (count($osztalyok) == 0) {
+                    return redirect('/')->withErrors(['msg' => 'Nincsenek órái, amikhez értékelést lehetne felvenni!']);
+                }
                 return view('ertekelesek',[
                     'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                     'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('orak.oszt_id')->orderby('ora_datum')->orderby('ora_szam')->get(),
-                    'osztalyok' => osztaly::select('osztalyok.oszt_id','osztalyok.oszt_nev')->join('orak','orak.oszt_id','osztalyok.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->distinct()->get()
+                    'osztalyok' => $osztalyok
                 ]);
             }
         } else {
@@ -261,7 +263,7 @@ class NaploController extends Controller
                     'atlagok' => ertekeles::selectraw('ertekelesek.diak_id, avg(ert_jegy * (ert_szazalek / 100)) as `jegy` ')->join('diakok','diakok.diak_id','ertekelesek.diak_id')->where('diakok.oszt_id','=',$osztaly)->groupby('ertekelesek.diak_id')->orderby('diak_nev')->get(),
                 ]);
             } else {
-                return redirect('/');
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
             }
         } else {
             return redirect('/belepes');
@@ -325,7 +327,7 @@ class NaploController extends Controller
                 }
                 return redirect('/felvetel');
             } else {
-                return redirect('/');
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
             }
         } else {
             return redirect('/belepes');
@@ -345,12 +347,16 @@ class NaploController extends Controller
                     'hianyzasok' => hianyzas::select('orak.ora_datum','orak.ora_szam','tanarok.tanar_nev','tantargyak.tant_nev','hianyzasok.hia_keses','igazolasok.*')->join('igazolasok','igazolasok.iga_id','hianyzasok.iga_id')->join('orak','orak.ora_id','hianyzasok.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('diakok','diakok.diak_id','hianyzasok.diak_id')->where('diakok.fel_id','=',Auth::id())->get()
                 ]);
             } else if ($jog > 1){
+                $osztalyok = osztaly::select('osztalyok.oszt_id','osztalyok.oszt_nev')->join('orak','orak.oszt_id','osztalyok.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->distinct()->get();
+                if (count($osztalyok) == 0) {
+                return redirect('/')->withErrors(['msg' => 'Nincsenek órái, amikhez hiányzást lehetne felvenni!']);
+                }
                 return view('hianyzasok',[
                     'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
                     'orak' => ora::join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->orderby('orak.oszt_id')->orderby('ora_datum')->orderby('ora_szam')->get(),
-                    'osztalyok' => osztaly::select('osztalyok.oszt_id','osztalyok.oszt_nev')->join('orak','orak.oszt_id','osztalyok.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.fel_id','=',User::find(Auth::id())->fel_id)->distinct()->get()
+                    'osztalyok' => $osztalyok
                 ]);
             }
         } else {
@@ -374,7 +380,7 @@ class NaploController extends Controller
                     'diakok' => diak::select('diakok.diak_id','diakok.diak_nev')->where('diakok.oszt_id','=',$osztaly)->orderby('diak_nev')->get(),
                 ]);
             } else {
-                return redirect('/');
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
             }
         } else {
             return redirect('/belepes');
@@ -408,7 +414,7 @@ class NaploController extends Controller
                 }
                 return redirect('/hianyzasok');
             } else {
-                return redirect('/');
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
             }
         } else {
             return redirect('/belepes');

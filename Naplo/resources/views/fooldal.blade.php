@@ -11,147 +11,121 @@
 @include('header')
 
     <main class="container text-center">
-        <button type="button" class="btn btn-secondary mt-5" onclick="Napinezet()">Napi nézet</button>
-        <button type="button" class="btn btn-secondary mt-5" onclick="Hetinezet()">Heti nézet</button>
-        <div class="table-responsive pt-3">
-            <table class="table table-bordered border-dark align-middle" id="orarend">
-                <thead>
-                    <tr>
-                        <th>Hétfő</th>
-                        <th>Kedd</th>
-                        <th>Szerda</th>
-                        <th>Csütörtök</th>
-                        <th>Péntek</th>
-                        <th>Szombat</th>
-                        <th>Vasárnap</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Matek</td>
-                        <td>Irodalom</td>
-                        <td>Erkölcstan</td>
-                        <td>Nyelvtan</td>
-                        <td>Történelem</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Irodalom</td>
-                        <td>Erkölcstan</td>
-                        <td>Nyelvtan</td>
-                        <td>Történelem</td>
-                        <td>Vizuális kultúra</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Erkölcstan</td>
-                        <td>Nyelvtan</td>
-                        <td>Történelem</td>
-                        <td>Vizuális kultúra</td>
-                        <td>Matek</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Nyelvtan</td>
-                        <td>Történelem</td>
-                        <td>Vizuális kultúra</td>
-                        <td>Matek</td>
-                        <td>Irodalom</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Történelem</td>
-                        <td>Vizuális kultúra</td>
-                        <td>Matek</td>
-                        <td>Irodalom</td>
-                        <td>Erkölcstan</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Vizuális kultúra</td>
-                        <td>Matek</td>
-                        <td>Irodalom</td>
-                        <td>Erkölcstan</td>
-                        <td>Nyelvtan</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        @if($jog == 1)
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            @isset($ora)
+            <div class="col p-4">
+                <a href="/orarend">
+                        <div class="card kartya">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <p class="text-center mb-0"><b>Következő óra</b></p>
+                                <hr class="my-1">
+                                <h6 class="pb-0">{{$ora[0]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <p>{{$ora[0]->tanar_nev}}</p>
+                                </div>
+                                <div class="col text-end">
+                                    <p>{{$ora[0]->ora_terem}}</p>
+                                </div>
+                                <p>{{$ora[0]->ora_datum}}</p>
+                            </div>
+                        </div>
+                    </a>
+            </div>
+            @endisset
+            @isset($jegyek[0])
+            <div class="col p-4">
+                <a href="/orarend">
+                        <div class="card kartya">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <p class="text-center mb-0"><b>Értékelés</b></p>
+                                <hr class="my-1">
+                                <h6 class="pb-0">{{$jegyek[0]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <p>{{$jegyek[0]->ido_nev}}</p>
+                                    <p>{{$jegyek[0]->tip_nev}}</p>
+                                </div>
+                                <div class="col text-end">
+                                    <p>{{$jegyek[0]->ert_leiras}}</p>
+                                </div>
+                                <p>{{$jegyek[0]->ora_datum}}</p>
+                            </div>
+                        </div>
+                    </a>
+            </div>
+
+            @endisset
+            @isset($jegyek[1])
+            <div class="col mx-auto p-4">
+                <a href="/orarend">
+                        <div class="card kartya">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <p class="text-center mb-0"><b>Értékelés</b></p>
+                                <hr class="my-1">
+                                <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <p>{{$jegyek[1]->ido_nev}}</p>
+                                    <p>{{$jegyek[1]->tip_nev}}</p>
+                                </div>
+                                <div class="col text-end">
+                                    <p>{{$jegyek[1]->ert_leiras}}</p>
+                                </div>
+                                <p>{{$jegyek[1]->ora_datum}}</p>
+                            </div>
+                        </div>
+                </a>
+            </div>
+            @endisset
+            @isset($hianyok[0])
+            <div class="col mx-auto p-4">
+                <a href="/hianyzasok">
+                    <p class="text-center"><b>Értékelés</b></p>
+                        <div class="card kartya">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <p>{{$jegyek[1]->tanar_nev}}</p>
+                                </div>
+                                <div class="col text-end">
+                                <p>{{$jegyek[1]->ora_terem}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endisset
+            @isset($hianyok[1])
+            <div class="col mx-auto p-4">
+                <a href="/hianyok">
+                    <p class="text-center"><b>Értékelés</b></p>
+                        <div class="card kartya">
+                            <div class="card-header mt-0 pb-0 color-bg-accent color-background">
+                                <h6 class="pb-0">{{$jegyek[1]->tant_nev}}</h6>
+                            </div>
+                            <div class="row px-2 mt-1" style="font-size: 10pt">
+                                <div class="col text-start">
+                                    <p>{{$jegyek[1]->tanar_nev}}</p>
+                                </div>
+                                <div class="col text-end">
+                                <p>{{$jegyek[1]->ora_terem}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endisset
         </div>
-        <div class="table-responsive">
-            <table class="table table-bordered border-dark align-middle">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th scope="col">Szeptember</th>
-                        <th scope="col">Október</th>
-                        <th scope="col">November</th>
-                        <th scope="col">December</th>
-                        <th scope="col">Január</th>
-                        <th scope="col">Félév</th>
-                        <th scope="col">Február</th>
-                        <th scope="col">Március</th>
-                        <th scope="col">Április</th>
-                        <th scope="col">Május</th>
-                        <th scope="col">Június</th>
-                        <th scope="col">Év vége</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><a href="">Gyerek1</a></th>
-                        <th></th>
-                        <td>1, 5</td>
-                        <td>2</td>
-                        <td>4, 2</td>
-                        <td>3</td>
-                        <td>5, 5, 4</td>
-                        <td></td>
-                        <td>5</td>
-                        <td></td>
-                        <td>4</td>
-                        <td></td>
-                        <td>2, 4, 4</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="">Gyerek2</a></th>
-                        <th></th>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>1, 5, 3</td>
-                        <td></td>
-                        <td>1</td>
-                        <td>5, 1</td>
-                        <td></td>
-                        <td>3, 3, 3</td>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>5, 5, 4</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="">Gyerek3</a></th>
-                        <th></th>
-                        <td>3</td>
-                        <td>2, 2</td>
-                        <td>3</td>
-                        <td>3, 4</td>
-                        <td>1, 5, 3</td>
-                        <td></td>
-                        <td>5, 5, 4</td>
-                        <td></td>
-                        <td></td>
-                        <td>1, 5, 3</td>
-                        <td>3, 3, 3</td>
-                    </tr>
-            </table>
-        </div>
-        <div class="row">
+        @else
+        <h1>Üdv, {{$user->tanar_nev}}</h1>
+        @isset($ora)
             <div class="col mx-auto p-4">
                 <a href="">
                     <div class="card kartya rounded-3">
@@ -163,21 +137,19 @@
                     </div>
                 </a>
             </div>
-            <div class="col mx-auto p-4">
-                <a href="">
-                    <div class="card kartya rounded-3">
-                        <div class="card-header rounded-top-1">
-                        Üzenet
-                        </div>
-                        <div>
-                            <p class="text-center"><b>Hiányzás</b></p>
-                            <p>2024. 01. 08.</p>
-                            <p>1. óráról hiányzott</p>
-                        </div>
+        @else
+        <div class="col mx-auto p-4">
+            <a href="">
+                <div class="card kartya rounded-3">
+                    <div class="card-header rounded-top-1">
+                    Következő óra
                     </div>
-                </a>
-            </div>
+                    <p class="text-center"><b>úgy néz ki, hogy nem lesz órája...</b></p>
+                </div>
+            </a>
         </div>
+        @endisset
+        @endif
     </main>
 @endsection
 

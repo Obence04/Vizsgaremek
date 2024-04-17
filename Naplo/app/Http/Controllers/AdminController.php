@@ -39,7 +39,7 @@ class AdminController extends Controller
         if (Auth::check()){
             if (Auth::user()->jog_id > 2){
                 return view('felvetel',[
-                    'user'          => User::find(Auth::user()->fel_id),
+                    'user'          => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog'           => User::find(Auth::user()->fel_id)->jog_id,
                     'tanardb'       => tanar::count(),
                     'tanarok'       => tanar::all(),

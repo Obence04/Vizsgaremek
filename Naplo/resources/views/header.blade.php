@@ -1,7 +1,7 @@
 @section('header')
 <header class="color-bg-primary fw-bold">
     <nav class="container-fluid navbar navbar-expand">
-        <a class="navbar-brand ms-3" id="nevnagy" href="/">@if ($jog > 2) {{$user->fel_nev}} @elseif($jog == 2) {{$user->tanar_nev}} @else {{$user->diak_nev}} @endif</a>
+        <a class="navbar-brand ms-3" id="nevnagy" href="/">@if ($jog == 1) {{$user->diak_nev}} @else {{$user->tanar_nev}} @endif</a>
         <span id="datumkicsi" class="navbar-text ms-3 pe-3 pt-2 fs-5"></span>
         <ul class="navbar-nav ms-auto">
             <span id="datumnagy" class="navbar-text pe-3 pt-2 fs-5"></span>
@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item px-4">
-                    <a class="navbar-brand" id="nevkicsi" href="/">@if ($jog > 2) {{$user->fel_nev}} @elseif($jog == 2) {{$user->tanar_nev}} @else {{$user->diak_nev}} @endif</a>
+                    <a class="navbar-brand" id="nevkicsi" href="/">@if ($jog == 1) {{$user->diak_nev}} @else {{$user->tanar_nev}} @endif</a>
                 </li>
                 <li class="nav-item px-4">
                     <a class="nav-link" href="/orarend">Órarend</a>
@@ -43,8 +43,36 @@
                 <li class="nav-item px-4" title="Nincs implementálva!">
                     <a class="nav-link disabled" href="/feljegyzesek">Feljegyzések</a>
                 </li>
+                @if($jog > 2)
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/felvetel">Felvétel</a>
+                </li>
+                @endif
             </ul>
         </div>
     </nav>
 </header>
+@error('msg')
+<div id="uzenet" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="text-center">{{$message}}</p>
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("uzenet");
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+         modal.style.display = "none";
+      }
+    }
+</script>
+@enderror
 @endsection
