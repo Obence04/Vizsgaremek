@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nemeth.attila\\Desktop\\Vizsgaremek\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {}
+    "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nemeth.attila\\Desktop\\Vizsgaremek\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {
+    "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nemeth.attila\\Desktop\\Vizsgaremek\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
+        "projectUniqueName": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
         "projectName": "Enaplo_asztali",
-        "projectPath": "C:\\Users\\nemeth.attila\\Desktop\\Vizsgaremek\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
-        "packagesPath": "C:\\Users\\nemeth.attila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nemeth.attila\\Desktop\\Vizsgaremek\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\obj\\",
+        "projectPath": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
+        "packagesPath": "C:\\Users\\Atesz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nemeth.attila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Atesz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -38,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -72,7 +77,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

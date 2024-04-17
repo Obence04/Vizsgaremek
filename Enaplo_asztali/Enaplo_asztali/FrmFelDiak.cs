@@ -36,20 +36,28 @@ namespace Enaplo_asztali
             }
             DateTPSzuldatum.Value = DateTime.Now;
             Close();
-
         }
 
         private void AdatMentes(object sender, EventArgs e)
         {
                 Adatbazis Ab = new Adatbazis();
-                string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString(), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
+                string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
                 Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123")}', '{adatok[6]}', null, '1', '1')");
                 DiakFeltolt();
                 Ab.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
+                foreach (TextBox txt in Controls.OfType<TextBox>())
+                {
+                    txt.Text = "";
+                }
+                DateTPSzuldatum.Value = DateTime.Now;
+                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OsztalyFeltolt();
         }
 
         private void OsztalyFeltolt()
         {
+            osztalyok.Clear();
+            CBBOsztaly.Items.Clear();
             Adatbazis Ab = new Adatbazis();
             Ab.Lekerdezes("SELECT oszt_id, oszt_nev FROM osztalyok");
             while(Ab.Dr.Read())

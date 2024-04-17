@@ -57,7 +57,7 @@ namespace Enaplo_asztali
                 Server = "localhost",
                 Port = 3306,
                 UserID = "root",
-                Database= "enaplo_sz1"
+                Database= "enaplo"
 
             };
             MySqlConnection con = new MySqlConnection(build.ToString());

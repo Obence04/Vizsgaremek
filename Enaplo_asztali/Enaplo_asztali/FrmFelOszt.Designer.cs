@@ -72,6 +72,7 @@
             BtnMentes.TabIndex = 4;
             BtnMentes.Text = "Mentés";
             BtnMentes.UseVisualStyleBackColor = false;
+            BtnMentes.Click += AdatMentes;
             // 
             // BtnElvetes
             // 
@@ -82,15 +83,15 @@
             BtnElvetes.TabIndex = 5;
             BtnElvetes.Text = "Elvetés";
             BtnElvetes.UseVisualStyleBackColor = false;
+            BtnElvetes.Click += Elvet;
             // 
             // LblTanar
             // 
-            LblTanar.AutoSize = true;
             LblTanar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             LblTanar.ForeColor = Color.Red;
             LblTanar.Location = new Point(12, 81);
             LblTanar.Name = "LblTanar";
-            LblTanar.Size = new Size(41, 21);
+            LblTanar.Size = new Size(306, 53);
             LblTanar.TabIndex = 6;
             LblTanar.Text = "hiba";
             LblTanar.Visible = false;
@@ -117,6 +118,7 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmFelOszt";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FrmFelOszt";
             Load += OnLoad;
             ResumeLayout(false);

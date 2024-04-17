@@ -35,6 +35,7 @@
             TSMIFelOra = new ToolStripMenuItem();
             TSMIFelTanar = new ToolStripMenuItem();
             TSMIFelTantargy = new ToolStripMenuItem();
+            TSMITantTanar = new ToolStripMenuItem();
             TSMIImportalas = new ToolStripMenuItem();
             diákokToolStripMenuItem = new ToolStripMenuItem();
             órarendToolStripMenuItem1 = new ToolStripMenuItem();
@@ -53,7 +54,7 @@
             // 
             // TSMIFelvetel
             // 
-            TSMIFelvetel.DropDownItems.AddRange(new ToolStripItem[] { TSMIFelDiak, TSMIFelOszt, TSMIFelOra, TSMIFelTanar, TSMIFelTantargy });
+            TSMIFelvetel.DropDownItems.AddRange(new ToolStripItem[] { TSMIFelDiak, TSMIFelOszt, TSMIFelOra, TSMIFelTanar, TSMIFelTantargy, TSMITantTanar });
             TSMIFelvetel.Name = "TSMIFelvetel";
             TSMIFelvetel.Size = new Size(59, 20);
             TSMIFelvetel.Text = "Felvétel";
@@ -61,32 +62,38 @@
             // TSMIFelDiak
             // 
             TSMIFelDiak.Name = "TSMIFelDiak";
-            TSMIFelDiak.Size = new Size(118, 22);
+            TSMIFelDiak.Size = new Size(214, 22);
             TSMIFelDiak.Text = "diák";
             // 
             // TSMIFelOszt
             // 
             TSMIFelOszt.Name = "TSMIFelOszt";
-            TSMIFelOszt.Size = new Size(118, 22);
+            TSMIFelOszt.Size = new Size(214, 22);
             TSMIFelOszt.Text = "osztály";
             // 
             // TSMIFelOra
             // 
             TSMIFelOra.Name = "TSMIFelOra";
-            TSMIFelOra.Size = new Size(118, 22);
+            TSMIFelOra.Size = new Size(214, 22);
             TSMIFelOra.Text = "órarend";
             // 
             // TSMIFelTanar
             // 
             TSMIFelTanar.Name = "TSMIFelTanar";
-            TSMIFelTanar.Size = new Size(118, 22);
+            TSMIFelTanar.Size = new Size(214, 22);
             TSMIFelTanar.Text = "tanár";
             // 
             // TSMIFelTantargy
             // 
             TSMIFelTantargy.Name = "TSMIFelTantargy";
-            TSMIFelTantargy.Size = new Size(118, 22);
+            TSMIFelTantargy.Size = new Size(214, 22);
             TSMIFelTantargy.Text = "tantárgy";
+            // 
+            // TSMITantTanar
+            // 
+            TSMITantTanar.Name = "TSMITantTanar";
+            TSMITantTanar.Size = new Size(214, 22);
+            TSMITantTanar.Text = "tantárgy tanárhoz rendelés";
             // 
             // TSMIImportalas
             // 
@@ -143,5 +150,6 @@
         private ToolStripMenuItem TSMIFelTantargy;
         private ToolStripMenuItem diákokToolStripMenuItem;
         private ToolStripMenuItem órarendToolStripMenuItem1;
+        private ToolStripMenuItem TSMITantTanar;
     }
 }
