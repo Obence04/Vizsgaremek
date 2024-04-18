@@ -57,6 +57,7 @@
             // 
             // CBBOsztFonok
             // 
+            CBBOsztFonok.DropDownStyle = ComboBoxStyle.DropDownList;
             CBBOsztFonok.FormattingEnabled = true;
             CBBOsztFonok.Location = new Point(130, 41);
             CBBOsztFonok.Name = "CBBOsztFonok";

@@ -63,7 +63,7 @@ namespace Enaplo_asztali
             tanarok.Clear();
             CBBOsztFonok.Items.Clear();
             Adatbazis Ab = new Adatbazis();
-            Ab.Lekerdezes("SELECT tanar_id, tanar_nev FROM tanarok WHERE NOT EXISTS (SELECT osztalyok.tanar_id from osztalyok)");
+            Ab.Lekerdezes("SELECT tanar_id, tanar_nev FROM tanarok WHERE tanar_id NOT IN (SELECT tanar_id FROM osztalyok)");
             while (Ab.Dr.Read())
             {
                 tanarok.Add((int.Parse(Ab.Dr[0].ToString()), Ab.Dr[1].ToString()));

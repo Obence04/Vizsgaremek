@@ -40,7 +40,23 @@ namespace Enaplo_asztali
 
         private void AdatMentes(object sender, EventArgs e)
         {
-                Adatbazis Ab = new Adatbazis();
+            Adatbazis Ab = new();
+            Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxbxFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxbxFelNev.Text}-123")}', '{TxbxEmail.Text}', null, 2, 1)");
+            Ab.Lekerdezes($"SELECT fel_id FROM felhasznalok WHERE fel_nev ='{TxbxFelNev.Text}';");
+            Ab.Dr.Read();
+            int felid = int.Parse(Ab.Dr[0].ToString());
+            Ab.Dr.Close();
+            Ab.Hozzaadas($"INSERT INTO tanarok VALUES(null, '{TxbxTanarNev.Text}', '{felid}')");
+            foreach (TextBox txt in Controls.OfType<TextBox>())
+            {
+                txt.Text = "";
+            }
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TanarokFeltoltes();
+
+
+
+            Adatbazis Ab = new Adatbazis();
                 string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
                 Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123")}', '{adatok[6]}', null, '1', '1')");
                 DiakFeltolt();

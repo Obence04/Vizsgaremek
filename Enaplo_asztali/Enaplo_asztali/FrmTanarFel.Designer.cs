@@ -33,9 +33,9 @@
             label3 = new Label();
             BtnMentes = new Button();
             BtnElvet = new Button();
-            TxbxTanarNev = new TextBox();
-            TxbxEmail = new TextBox();
-            TxbxFelNev = new TextBox();
+            TxtTanarNev = new TextBox();
+            TxtEmail = new TextBox();
+            TxtFelNev = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -85,35 +85,35 @@
             BtnElvet.Text = "Elvetés";
             BtnElvet.UseVisualStyleBackColor = false;
             // 
-            // TxbxTanarNev
+            // TxtTanarNev
             // 
-            TxbxTanarNev.Location = new Point(130, 6);
-            TxbxTanarNev.Name = "TxbxTanarNev";
-            TxbxTanarNev.Size = new Size(188, 23);
-            TxbxTanarNev.TabIndex = 5;
+            TxtTanarNev.Location = new Point(130, 6);
+            TxtTanarNev.Name = "TxtTanarNev";
+            TxtTanarNev.Size = new Size(188, 23);
+            TxtTanarNev.TabIndex = 5;
             // 
-            // TxbxEmail
+            // TxtEmail
             // 
-            TxbxEmail.Location = new Point(130, 44);
-            TxbxEmail.Name = "TxbxEmail";
-            TxbxEmail.Size = new Size(188, 23);
-            TxbxEmail.TabIndex = 6;
+            TxtEmail.Location = new Point(130, 44);
+            TxtEmail.Name = "TxtEmail";
+            TxtEmail.Size = new Size(188, 23);
+            TxtEmail.TabIndex = 6;
             // 
-            // TxbxFelNev
+            // TxtFelNev
             // 
-            TxbxFelNev.Location = new Point(130, 86);
-            TxbxFelNev.Name = "TxbxFelNev";
-            TxbxFelNev.Size = new Size(188, 23);
-            TxbxFelNev.TabIndex = 7;
+            TxtFelNev.Location = new Point(130, 86);
+            TxtFelNev.Name = "TxtFelNev";
+            TxtFelNev.Size = new Size(188, 23);
+            TxtFelNev.TabIndex = 7;
             // 
             // FrmTanarFel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 308);
-            Controls.Add(TxbxFelNev);
-            Controls.Add(TxbxEmail);
-            Controls.Add(TxbxTanarNev);
+            Controls.Add(TxtFelNev);
+            Controls.Add(TxtEmail);
+            Controls.Add(TxtTanarNev);
             Controls.Add(BtnElvet);
             Controls.Add(BtnMentes);
             Controls.Add(label3);
@@ -134,8 +134,8 @@
         private Label label3;
         private Button BtnMentes;
         private Button BtnElvet;
-        private TextBox TxbxTanarNev;
-        private TextBox TxbxEmail;
-        private TextBox TxbxFelNev;
+        private TextBox TxtTanarNev;
+        private TextBox TxtEmail;
+        private TextBox TxtFelNev;
     }
 }

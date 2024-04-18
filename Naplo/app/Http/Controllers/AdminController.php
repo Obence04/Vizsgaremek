@@ -134,11 +134,58 @@ class AdminController extends Controller
     public function VisszaallitPost(Request $request, $id){
         if (Auth::check()){
             if (Auth::user()->jog_id > 3){
-                return view('profil',[
+                $data = User::find($id);
+                $data->fel_jelszo = hash::make('RKT-'.$data->fel_email.'-123');
+                $data->save();
+                return redirect('/profil/'.$id);
+            } else {
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function ProfilKeres(){
+        if (Auth::check()){
+            if (Auth::user()->jog_id > 2){
+                return view('profilkeres',[
                     'user' => Auth::user(),
-                    'mod' => User::find($id),
                     'jog' => Auth::user()->jog_id,
                     'tema' => tema::find(Auth::user()->tema_id)->tema_nev
+                ]);
+            } else {
+                return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);
+            }
+        } else {
+            return redirect('/belepes');
+        }
+    }
+
+    public function ProfilKeresPost(Request $request){
+        if (Auth::check()){
+            if (Auth::user()->jog_id > 2){
+                $request->validate([
+                    'keres' => 'required'
+                ]);
+                $talalat = -1;
+                switch($request->opcio) {
+                    case 'nev':
+                        $talalat = User::whereraw('fel_nev LIKE \'%'.$request->keres.'%\'')->get();
+                        break;
+                    case 'email':
+                        $talalat = User::whereraw('fel_email LIKE \'%'.$request->keres.'%\'')->get();
+                        break;
+                    default:
+                        break;
+                }
+
+                return view('profilkeres',[
+                    'user' => Auth::user(),
+                    'jog' => Auth::user()->jog_id,
+                    'tema' => tema::find(Auth::user()->tema_id)->tema_nev,
+
+                    'talalatok' => $talalat
                 ]);
             } else {
                 return redirect('/')->withErrors(['msg' => 'Nem engedélyezett művelet!']);

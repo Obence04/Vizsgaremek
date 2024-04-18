@@ -36,14 +36,14 @@ namespace Enaplo_asztali
         }
         private void AdatMentes(object sender, EventArgs e)
         {
-            if (tanar.Where(x => x.email.Contains(TxbxEmail.Text)).Count() > 1)
+            if (tanar.Where(x => x.email.Contains(TxtEmail.Text)).Count() > 1)
             {
                 MessageBox.Show("Ilyen email cím már létezik!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 foreach (TextBox txt in Controls.OfType<TextBox>())
                 {
                     txt.Text = "";
                 }
-            } else if (tanar.Where(x => x.uname.Contains(TxbxFelNev.Text)).Count() > 1)
+            } else if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 1)
             {
                 MessageBox.Show("Ilyen felhasználónév már létezik!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 foreach (TextBox txt in Controls.OfType<TextBox>())
@@ -54,7 +54,12 @@ namespace Enaplo_asztali
             else
             {
                 Adatbazis Ab = new();
-                Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxbxFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxbxFelNev.Text}-123")}', '{TxbxEmail.Text}', null, 2, 1)");
+                Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxtFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxtFelNev.Text}-123")}', '{TxtEmail.Text}', null, 2, 1)");
+                Ab.Lekerdezes($"SELECT fel_id FROM felhasznalok WHERE fel_nev ='{TxtFelNev.Text}';");
+                Ab.Dr.Read();
+                int felid = int.Parse(Ab.Dr[0].ToString());
+                Ab.Dr.Close();
+                Ab.Hozzaadas($"INSERT INTO tanarok VALUES(null, '{TxtTanarNev.Text}', '{felid}')");
                 foreach (TextBox txt in Controls.OfType<TextBox>())
                 {
                     txt.Text = "";

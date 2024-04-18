@@ -25,8 +25,12 @@ Route::post('/beallitasok',[NaploController::class, 'BeallitasokPost']);
 Route::get('/profil',[NaploController::class, 'Profil']);
 Route::get('/profil/{id}',[AdminController::class,'Profil']);
 Route::post('/profil/{id}',[AdminController::class,'ProfilPost']);
+
 Route::get('/visszaallit/{id}',[AdminController::class,'Visszaallit']);
 Route::post('/visszaallit/{id}',[AdminController::class,'VisszaallitPost']);
+
+Route::get('/profilkeres',[AdminController::class, 'ProfilKeres']);
+Route::post('/profilkeres',[AdminController::class, 'ProfilKeresPost']);
 
 //értékelések
 Route::get('/ertekelesek',[NaploController::class, 'Ertekelesek']);

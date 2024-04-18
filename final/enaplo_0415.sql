@@ -40,14 +40,6 @@ CREATE TABLE `diakok` (
   `fel_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
---
--- A tábla adatainak kiíratása `diakok`
---
-
-INSERT INTO `diakok` (`diak_id`, `diak_nev`, `diak_szuldatum`, `diak_szulhely`, `diak_anyja`, `diak_lakcim`, `oszt_id`, `fel_id`) VALUES
-(72012345678, 'Teszt Elek Jr.', '2004-05-14', 'Vác', 'Mária József', 'Gyula, Gyula u. 1.', 1, 4),
-(72987654321, 'Trab Antal', '2004-05-01', 'Budapest', 'Locsolók Anna', 'Budapest XXIII., Antal u. 3/2', 2, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -131,11 +123,7 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`fel_id`, `fel_nev`, `fel_jelszo`, `fel_email`, `fel_telszam`, `jog_id`, `tema_id`) VALUES
-(1, 'Admin', '$2y$12$eezrsyYnZ6v2rVcx1AVqQOyElxni/RlnZi/YjSdCa8z.4jWKqgt/y', 'admin@admin.hu', NULL, 4, 1),
-(2, 'gabor.erika', '$2y$12$MMj8CaJ/Vj8tspBCotmbxOPGA7DeC/eR6CndVwVdk61vnlf6Qk6f6', 'gabor.erika@gmail.com', NULL, 3, 1),
-(3, 'karoly.attila', '$2y$12$38fuGpVErx.B8kmrwVNKvuNmqtUSRJZcZMCW9TZFtVp/hAL4ZCmY.', 'karoly.attila@citromail.com', NULL, 2, 1),
-(4, '72012345678', '$2y$12$cCC8.qw5btBjTve/yFfqR.i74e4dq3PjhaV1Pko1t4O.yJiUjxzvm', 'teszt.elek@gmail.com', NULL, 1, 1),
-(5, '72987654321', '$2y$12$ytozBs8vb1FutLdA8w7qPOCriJmIzaZzxHGNsytAsJ.U36QodtuRW', 'trab.antal1@citromail.com', NULL, 1, 1);
+(1, 'Admin', '$2y$12$eezrsyYnZ6v2rVcx1AVqQOyElxni/RlnZi/YjSdCa8z.4jWKqgt/y', 'admin@admin.hu', NULL, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -218,10 +206,6 @@ CREATE TABLE `osztalyok` (
   `tanar_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-INSERT INTO `osztalyok` (`oszt_id`, `oszt_nev`, `tanar_id`) VALUES
-(1, '4', 2),
-(2, '3', 3);
-
 --
 -- Tábla szerkezet ehhez a táblához `tanarok`
 --
@@ -237,9 +221,7 @@ CREATE TABLE `tanarok` (
 --
 
 INSERT INTO `tanarok` (`tanar_id`, `tanar_nev`, `fel_id`) VALUES
-(1, 'Admin János', 1),
-(2, 'Gábor Erika', 2),
-(3, 'Károly Attila', 3);
+(1, 'Admin János', 1);
 
 -- --------------------------------------------------------
 

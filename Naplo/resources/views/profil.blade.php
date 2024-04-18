@@ -18,11 +18,15 @@
     @if(isset($mod))
     <div>
         <h1>Biztosan visszállítja a kiválasztott felhasználó jelszavát?</h1>
-        <button onclick="history.back()" class="btn btn-danger">NEM</button>
-        <button href="visszaallit/{{$mod->fel_id}}" class="btn btn-success">IGEN</button>
+        <form action="/visszaallit/{{$mod->fel_id}}" method="post">
+            @csrf
+            <a href="/profil/{{$mod->fel_id}}" class="btn btn-danger">NEM</a>
+            <button type="submit" class="btn btn-success">IGEN</button>
+        </form>
     </div>
     @else
     <div>
+        @if($jog > 2) <a href="/profilkeres" class="btn btn-primary py-2 my-2">Fiók keresése</a>@endif
         <?php
 
         $diake = $user->jog_id == 1 ? true : false;
