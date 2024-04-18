@@ -62,27 +62,15 @@ namespace Enaplo_asztali
         }
         private void TantargyFeltolt(string nev)
         {
-            //probléma
-            if (string.IsNullOrEmpty(nev))
-            {
-                Adatbazis Ab = new Adatbazis();
-                Ab.Lekerdezes("SELECT * FROM tantargyak, tanitott");
-                while (Ab.Dr.Read())
-                {
-                    tantargyak.Add((int.Parse(Ab.Dr[0].ToString()), Ab.Dr[1].ToString()));
-                }
-                CbbxTant.Items.AddRange([.. tantargyak.Select(x => x.nev)]);
+            CbbxTant.Items.Clear();
+            tantargyak.Clear();
+            Adatbazis Ab = new Adatbazis();
+            Ab.Lekerdezes($"SELECT tantargyak.* FROM tantargyak");
+            while (Ab.Dr.Read())
+            { 
+                tantargyak.Add((int.Parse(Ab.Dr[0].ToString()), Ab.Dr[1].ToString()));
             }
-            else
-            {
-                Adatbazis Ab = new Adatbazis();
-                Ab.Lekerdezes($"SELECT tantargyak.* FROM tanarok NATURAL JOIN tanitott NATURAL JOIN tantargyak WHERE tanitott.tanar_id != {tanarok.Find(x => x.nev == nev).id}");
-                while (Ab.Dr.Read())
-                {
-                    tantargyak.Add((int.Parse(Ab.Dr[0].ToString()), Ab.Dr[1].ToString()));
-                }
-                CbbxTant.Items.AddRange([.. tantargyak.Select(x => x.nev)]);
-            }
+            CbbxTant.Items.AddRange([.. tantargyak.Select(x => x.nev)]);
         }
         private void AdatMentes(object sender, EventArgs e)
         {

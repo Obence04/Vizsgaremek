@@ -46,6 +46,7 @@
             // 
             // CbbOsztaly
             // 
+            CbbOsztaly.DropDownStyle = ComboBoxStyle.DropDownList;
             CbbOsztaly.FormattingEnabled = true;
             CbbOsztaly.Location = new Point(130, 6);
             CbbOsztaly.Name = "CbbOsztaly";
@@ -118,6 +119,7 @@
             // 
             // CbbTantargy
             // 
+            CbbTantargy.DropDownStyle = ComboBoxStyle.DropDownList;
             CbbTantargy.FormattingEnabled = true;
             CbbTantargy.Location = new Point(130, 116);
             CbbTantargy.Name = "CbbTantargy";

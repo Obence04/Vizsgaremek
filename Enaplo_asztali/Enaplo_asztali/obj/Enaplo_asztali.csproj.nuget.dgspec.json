@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {}
+    "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {
+    "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
+        "projectUniqueName": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
         "projectName": "Enaplo_asztali",
-        "projectPath": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
-        "packagesPath": "C:\\Users\\Bence\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\obj\\",
+        "projectPath": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\Enaplo_asztali.csproj",
+        "packagesPath": "C:\\Users\\Atesz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Bence\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Atesz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

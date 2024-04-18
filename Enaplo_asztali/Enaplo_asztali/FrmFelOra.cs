@@ -81,6 +81,7 @@ namespace Enaplo_asztali
 
         private void TanitottFeltolt()
         {
+            //; 
             Adatbazis Ab = new Adatbazis();
             Ab.Lekerdezes("SELECT * FROM tanitott");
             while (Ab.Dr.Read())
@@ -103,9 +104,17 @@ namespace Enaplo_asztali
         private void AdatMentes(object sender, EventArgs e)
         {
             Adatbazis Ab = new Adatbazis();
-            //átnézésre szorulhat
-            string[] adat = { osztalyok.Find(x => x.nev == CbbOsztaly.Text).id.ToString(), DtpOra.Value.ToString("yyyy-MM-dd"), NudOraSzam.Value.ToString(), tanitott.FindAll(x => x.tanarid == tanarok.Find(x => x.nev == CbbTantargy.Text.Trim().Split('-')[0]).tanarid).Find(x => x.tantid == tanarok.Find(x => x.nev == CbbTantargy.Text.Trim().Split('-')[1]).tanarid).ToString(), TxbxTerem.Text };
-            Ab.Hozzaadas($"INSERT INTO orak VALUES (null, '{adat[0]}', '{adat[1]}', '{adat[2]}', '{adat[3]}', '{adat[4]}')");
+            //hibás
+            string tanitottid = "";
+            Ab.Lekerdezes($"SELECT tanitott.tanit_id FROM tanitott, tanarok, tantargyak WHERE tanitott.tant_id = tantargyak.tant_id AND tanarok.tanar_id = tanitott.tanar_id AND tantargyak.tant_nev LIKE '{CbbTantargy.Text.Split('-')[0]}' AND tanarok.tanar_nev LIKE '{CbbTantargy.Text.Split('-')[1]}'");
+            while (Ab.Dr.Read())
+            {
+                tanitottid = Ab.Dr[0].ToString();
+            }
+            Ab.Lezaras();
+            Adatbazis Adat = new Adatbazis();
+            string[] adat = { osztalyok.Find(x => x.nev == CbbOsztaly.Text).id.ToString(), DtpOra.Value.ToString("yyyy-MM-dd"), NudOraSzam.Value.ToString(), tanitottid, TxbxTerem.Text.ToString() };
+            Adat.Hozzaadas($"INSERT INTO orak VALUES (null, {adat[0]}, {adat[1]}, {adat[2]}, {adat[3]}, {adat[4]})");
             foreach (TextBox txt in Controls.OfType<TextBox>())
             {
                 txt.Text = "";
