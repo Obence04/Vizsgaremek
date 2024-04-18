@@ -106,7 +106,7 @@ namespace Enaplo_asztali
             Adatbazis Ab = new Adatbazis();
             //hibás
             string tanitottid = "";
-            Ab.Lekerdezes($"SELECT tanitott.tanit_id FROM tanitott, tanarok, tantargyak WHERE tanitott.tant_id = tantargyak.tant_id AND tanarok.tanar_id = tanitott.tanar_id AND tantargyak.tant_nev LIKE '{CbbTantargy.Text.Split('-')[0]}' AND tanarok.tanar_nev LIKE '{CbbTantargy.Text.Split('-')[1]}'");
+            Ab.Lekerdezes($"SELECT tanitott.tanit_id FROM tanitott, tanarok, tantargyak WHERE tanitott.tant_id = tantargyak.tant_id AND tanarok.tanar_id = tanitott.tanar_id AND tantargyak.tant_nev LIKE '{CbbTantargy.Text.Split(" - ")[0]}' AND tanarok.tanar_nev LIKE '{CbbTantargy.Text.Split(" - ")[1]}'");
             while (Ab.Dr.Read())
             {
                 tanitottid = Ab.Dr[0].ToString();
@@ -114,7 +114,7 @@ namespace Enaplo_asztali
             Ab.Lezaras();
             Adatbazis Adat = new Adatbazis();
             string[] adat = { osztalyok.Find(x => x.nev == CbbOsztaly.Text).id.ToString(), DtpOra.Value.ToString("yyyy-MM-dd"), NudOraSzam.Value.ToString(), tanitottid, TxbxTerem.Text.ToString() };
-            Adat.Hozzaadas($"INSERT INTO orak VALUES (null, {adat[0]}, {adat[1]}, {adat[2]}, {adat[3]}, {adat[4]})");
+            Adat.Hozzaadas($"INSERT INTO orak VALUES (null, '{adat[0]}', '{adat[1]}', '{adat[2]}', '{adat[3]}', '{adat[4]}')");
             foreach (TextBox txt in Controls.OfType<TextBox>())
             {
                 txt.Text = "";

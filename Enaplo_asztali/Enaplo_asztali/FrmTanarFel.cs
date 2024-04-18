@@ -22,7 +22,7 @@ namespace Enaplo_asztali
         }
         private void OnLoad(object sender, EventArgs e)
         {
-            TanarokFeltoltes();   
+            TanarokFeltoltes();
         }
         private void TanarokFeltoltes()
         {
@@ -43,7 +43,8 @@ namespace Enaplo_asztali
                 {
                     txt.Text = "";
                 }
-            } else if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 1)
+            }
+            else if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 1)
             {
                 MessageBox.Show("Ilyen felhasználónév már létezik!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 foreach (TextBox txt in Controls.OfType<TextBox>())
@@ -53,8 +54,8 @@ namespace Enaplo_asztali
             }
             else
             {
-                Adatbazis Ab = new();
-                Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxtFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxtFelNev.Text}-123")}', '{TxtEmail.Text}', null, 2, 1)");
+                Adatbazis Ab = new Adatbazis();
+                Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxtFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxtFelNev.Text}-123", 12)}', '{TxtEmail.Text}', null, 2, 1)");
                 Ab.Lekerdezes($"SELECT fel_id FROM felhasznalok WHERE fel_nev ='{TxtFelNev.Text}';");
                 Ab.Dr.Read();
                 int felid = int.Parse(Ab.Dr[0].ToString());

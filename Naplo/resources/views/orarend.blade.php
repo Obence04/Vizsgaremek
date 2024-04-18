@@ -13,7 +13,7 @@
 <main class="container-fluid text-center">
     @php
         use App\Models\ora;
-        $datum = date('y-m-d');
+        $datum = date('y-m-d',strtotime('2024-04-23'));
         $aktualszin = "#AAAADD";
     @endphp
     <div class="table-responsive-xxl pt-5">

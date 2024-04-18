@@ -135,7 +135,7 @@ class AdminController extends Controller
         if (Auth::check()){
             if (Auth::user()->jog_id > 3){
                 $data = User::find($id);
-                $data->fel_jelszo = hash::make('RKT-'.$data->fel_email.'-123');
+                $data->fel_jelszo = hash::make('RKT-'.$data->fel_nev.'-123');
                 $data->save();
                 return redirect('/profil/'.$id);
             } else {

@@ -40,34 +40,18 @@ namespace Enaplo_asztali
 
         private void AdatMentes(object sender, EventArgs e)
         {
-            Adatbazis Ab = new();
-            Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxbxFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxbxFelNev.Text}-123")}', '{TxbxEmail.Text}', null, 2, 1)");
-            Ab.Lekerdezes($"SELECT fel_id FROM felhasznalok WHERE fel_nev ='{TxbxFelNev.Text}';");
-            Ab.Dr.Read();
-            int felid = int.Parse(Ab.Dr[0].ToString());
-            Ab.Dr.Close();
-            Ab.Hozzaadas($"INSERT INTO tanarok VALUES(null, '{TxbxTanarNev.Text}', '{felid}')");
+            Adatbazis Ab = new Adatbazis();
+            string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
+            Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123", 12)}', '{adatok[6]}', null, '1', '1')");
+            DiakFeltolt();
+            Ab.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
             foreach (TextBox txt in Controls.OfType<TextBox>())
             {
                 txt.Text = "";
             }
+            DateTPSzuldatum.Value = DateTime.Now;
             MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            TanarokFeltoltes();
-
-
-
-            Adatbazis Ab = new Adatbazis();
-                string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
-                Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123")}', '{adatok[6]}', null, '1', '1')");
-                DiakFeltolt();
-                Ab.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
-                DateTPSzuldatum.Value = DateTime.Now;
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                OsztalyFeltolt();
+            OsztalyFeltolt();
         }
 
         private void OsztalyFeltolt()
@@ -76,11 +60,11 @@ namespace Enaplo_asztali
             CBBOsztaly.Items.Clear();
             Adatbazis Ab = new Adatbazis();
             Ab.Lekerdezes("SELECT oszt_id, oszt_nev FROM osztalyok");
-            while(Ab.Dr.Read())
+            while (Ab.Dr.Read())
             {
                 osztalyok.Add((int.Parse(Ab.Dr[0].ToString()), Ab.Dr[1].ToString()));
             }
-            CBBOsztaly.Items.AddRange([ ..osztalyok.Select(x => x.nev)]);
+            CBBOsztaly.Items.AddRange([.. osztalyok.Select(x => x.nev)]);
         }
 
         private void DiakFeltolt()
@@ -104,7 +88,7 @@ namespace Enaplo_asztali
                     if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
                 }
                 LblOsztaly.Text = "Nincs osztály az adatbázisban.";
-                LblOsztaly.Visible = true; 
+                LblOsztaly.Visible = true;
             }
         }
 
