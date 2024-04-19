@@ -9,6 +9,30 @@
 @section('content')
 
 @include('header')
+<?php
+    if(count($jovo) > 0){
+        $idok = [
+            '800' ,
+            '855' ,
+            '950' ,
+            '1045',
+            '1140',
+            '1245',
+            '1340',
+            '1430',
+            '1510',
+            '1605'
+        ];
+        $ora =  [];
+        //$oraszam = date('hm') < $idok[$ora->ora_szam];
+        foreach ($ora as $row) {
+            if(date('Hi') < $idok[$row->ora_szam-1]){
+                array_push($jelenlegiora, ($idok[$row->ora_szam-1]));
+            }
+            //echo($ora->where('ora_szam','>' date('Hi') < $idok[$row->ora_szam-1]));
+        }
+    }
+?>
     <main class="container text-center">
         @if($jog == 1)
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">

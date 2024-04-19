@@ -39,16 +39,6 @@ namespace Enaplo_asztali
             }
             (string nev, string jelszo) felh = (TxtNev.Text, TxtJelszo.Text);
 
-            MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder()
-            {
-                Server = "localhost",
-                Port = 3306,
-                UserID = "root",
-                Database= "enaplo"
-
-            };
-            MySqlConnection con = new MySqlConnection(build.ToString());
-            con.Open();
             Adatbazis ab = new Adatbazis();
             ab.Lekerdezes("SELECT COUNT(fel_id) FROM felhasznalok WHERE fel_nev = '" + felh.nev + "';");
             ab.Dr.Read();
@@ -90,7 +80,7 @@ namespace Enaplo_asztali
                 return;
             }
             (string nev, int jog) user = (felh.nev, int.Parse(ab.Dr[1].ToString()));
-            con.Close();
+            ab.Lezaras();
             DialogResult = DialogResult.OK;
             FrmMain.user = user;
             this.Close();
