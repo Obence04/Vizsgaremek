@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="table-responsive-xxl pt-5">
-            <table class="table table-striped table-bordered mb-0 mx-auto text-center" id="table">
+            <table class="table table-striped mb-0 mx-auto text-center" id="table">
                 <thead>
                     <tr>
                         <td class="align-middle">{{osztaly::find($user->oszt_id)->oszt_nev}}</td>

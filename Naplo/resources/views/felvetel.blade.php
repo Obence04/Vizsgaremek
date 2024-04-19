@@ -140,7 +140,7 @@
                             </p>
                             @else
                                 <label for="tantargy_id" class="form-label mb-1">Tantárgy:</label>
-                                <select name="tantargy_id" id="tanartargy_id" class="form-select" multiple>
+                                <select name="tantargy_id" id="tanartargy_id" class="form-select">
                                     @foreach ($tantargyak as $row)
                                         <option value="{{$row->tant_id}}">{{$row->tant_nev}}</option>
                                     @endforeach
@@ -164,7 +164,7 @@
                             <input type="hidden" name="tipus" value="órarend">
                             @if($osztalydb == 0)
                                 <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 osztályt!</a>
+                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
                                 <label for="osztaly" class="form-label mb-1">Osztály:</label>

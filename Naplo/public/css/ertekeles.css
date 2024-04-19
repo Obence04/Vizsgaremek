@@ -3,6 +3,22 @@
 .card{
     width: 60%;
 }
+
+#table {
+	margin-top: 2%;
+	border: 1px solid black;
+	height: 600px;
+    width: 80%;
+    border-collapse: separate;
+    background-color: var(--accent);
+    font-weight: bold;
+}
+
+td {
+	text-align: center;
+	border: 1px solid black;
+}
+
 /*
 @media only screen and (max-width:768px){
     .belepteto {

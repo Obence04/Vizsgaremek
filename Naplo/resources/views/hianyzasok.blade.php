@@ -65,7 +65,7 @@
                         <option value="{{$row->ora_id}}">@php echo($row->oszt_nev.': '.date('Y.m.d. ',strtotime($row->ora_datum)).' '.$row->ora_szam.'. óra - '.$row->tant_nev); @endphp</option>
                     @endforeach
                 </select>
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped mb-0 mx-auto text-center" id="table">
                     <thead>
                         <tr>
                             <td>{{$osztaly->oszt_nev}}</td>

@@ -130,7 +130,7 @@
                     <td>Felhasználónév:</td>
                     <td>{{$user->fel_nev}}</td>
                     <td>
-                        @if($jog > 2) <input type="text" name="fnev" id="fnev" value="{{$user->fel_nev}}" class="form-control"> @endif
+                        @if($jog > 3) <input type="text" name="fnev" id="fnev" value="{{$user->fel_nev}}" class="form-control"> @endif
                         @error('fnev')
                         <span class="fw-bold text-danger">{{$message}}</span>
                         @enderror
@@ -155,7 +155,7 @@
                     <td>Jog:</td>
                     <td>{{jog::find($user->jog_id)->jog_nev}}</td>
                     <td>
-                        @if($jog > 2)
+                        @if($jog > 3)
                         <select name="fjog" id="fjog" class="form-select">
                             @foreach (jog::all() as $row)
                             <option value="{{$row->jog_id}}" @if($user->jog_id == $row->jog_id) selected @endif>{{$row->jog_nev}}</option>
@@ -167,14 +167,14 @@
                 <tr>
                     <td>Téma:</td>
                     <td>{{tema::find($user->tema_id)->tema_nev}}</td>
-                    @if(!isset($id))<td><a href="/beallitasok" class="btn btn-primary">Módosítás</a></td>@endif
+                    @if(!isset($id) && $user->fel_id != Auth::id())<td><a href="/beallitasok" class="btn btn-primary">Módosítás</a></td>@endif
                 </tr>
             </tbody>
 
         </table>
         <button type="submit" class="btn btn-primary">Módosítások végrehajtása</button>
         </form>
-        @isset($id) <a href="/visszaallit/{{$id}}" class="btn btn-primary">Jelszó vissaállítása</a> @endisset
+        @if(isset($id) && $jog > 3) <a href="/visszaallit/{{$id}}" class="btn btn-primary">Jelszó vissaállítása</a> @endif
     </div>
     @endif
 </main>
