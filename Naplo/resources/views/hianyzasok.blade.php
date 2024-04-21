@@ -91,7 +91,7 @@
                         @endfor
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-primary">Értékelések mentése</button>
+                <button type="submit" class="btn btn-primary">Hiányzások mentése</button>
             </form>
         </div>
     </div>
