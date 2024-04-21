@@ -127,16 +127,33 @@ class NaploController extends Controller
                     'user' => diak::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
-                    'jovo' => ora::selectraw('tantargyak.tant_nev, tanarok.tanar_nev, orak.ora_terem, orak.ora_datum, orak.ora_szam')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('oszt_id','=',diak::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->oszt_id)->where('orak.ora_datum','>=',date('Y-m-d'))->orderby('ora_datum')->orderby('ora_szam')->limit(5)->get(),
-                    'jegyek' => ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('ertekelesek.diak_id','=',diak::where('fel_id','=',Auth::id())->get()->first()->diak_id)->groupby('ertekelesek.ert_id')->orderby('ora_datum','desc')->orderby('ora_szam','desc')->get(),
-                    'hianyzasok' => hianyzas::selectraw('orak.ora_datum, orak.ora_szam, hianyzasok.*, tantargyak.tant_nev')->join('orak','orak.ora_id','hianyzasok.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('hianyzasok.diak_id','=',diak::where('fel_id','=',Auth::id())->get()->first()->diak_id)->groupby('hianyzasok.hia_id')->orderby('ora_datum','desc')->orderby('ora_szam','asc')->get()
+                    'jovo' => ora::selectraw('tantargyak.tant_nev, tanarok.tanar_nev, orak.ora_terem, orak.ora_datum, orak.ora_szam')
+                    ->join('tanitott','tanitott.tanit_id','orak.tanit_id')
+                    ->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')
+                    ->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')
+                    ->where('oszt_id','=',diak::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->oszt_id)
+                    ->where('orak.ora_datum','>=',date('Y-m-d'))
+                    ->orderby('ora_datum')->orderby('ora_szam')->limit(5)->get(),
+                    'jegyek' => ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')
+                    ->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')
+                    ->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')
+                    ->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('ertekelesek.diak_id','=',diak::where('fel_id','=',Auth::id())->get()->first()->diak_id)
+                    ->groupby('ertekelesek.ert_id')->orderby('ora_datum','desc')->orderby('ora_szam','desc')->get(),
+                    'hianyzasok' => hianyzas::selectraw('orak.ora_datum, orak.ora_szam, hianyzasok.*, tantargyak.tant_nev')
+                    ->join('orak','orak.ora_id','hianyzasok.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')
+                    ->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('hianyzasok.diak_id','=',diak::where('fel_id','=',Auth::id())->get()->first()->diak_id)
+                    ->groupby('hianyzasok.hia_id')->orderby('ora_datum','desc')->orderby('ora_szam','asc')->get()
                 ]);
             } else{
                 return view('fooldal',[
                     'user' => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog' => $jog,
                     'tema' => tema::find(User::find(Auth::id())->tema_id)->tema_nev,
-                    'jovo' => ora::selectraw('tantargyak.tant_nev, osztalyok.oszt_nev, orak.ora_terem, orak.ora_datum, orak.ora_szam')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->where('tanarok.tanar_id','=',tanar::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->tanar_id)->where('orak.ora_datum','>=',date('Y-m-d'))->orderby('ora_datum')->orderby('ora_szam')->limit(5)->get(),
+                    'jovo' => ora::selectraw('tantargyak.tant_nev, osztalyok.oszt_nev, orak.ora_terem, orak.ora_datum, orak.ora_szam')
+                    ->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')
+                    ->join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')
+                    ->where('tanarok.tanar_id','=',tanar::where('fel_id','=',User::find(Auth::id())->fel_id)->first()->tanar_id)
+                    ->where('orak.ora_datum','>=',date('Y-m-d'))->orderby('ora_datum')->orderby('ora_szam')->limit(5)->get(),
                 ]);
             }
         } else {
