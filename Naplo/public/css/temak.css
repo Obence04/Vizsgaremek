@@ -26,23 +26,6 @@ body[data-theme="dark"]{
     --accent: #21171F;
 }
 
-/*body[data-theme="dark"]{
-    --text: #F7DBFF;
-    --text-secondary: #F9E5FF;
-    --background: #2A0934;
-    --primary: #C91BFE;
-    --secondary: #8601AF;
-    --accent: #3A004C;
-}*/
-
-/*body[data-theme="blue2"]{
-    --text: #051542;
-    --background: #EAEFFF;
-    --primary: #2F66FE;
-    --secondary: #678FFE;
-    --accent: #4778FF;
-}*/
-
 body[data-theme="blue"]{
     --text: #0E1833;
     --text-secondary: #DBE5FF;
@@ -51,15 +34,6 @@ body[data-theme="blue"]{
     --secondary: #265AE8;
     --accent: #103498;
 }
-
-/*body[data-theme="red"]{
-    --text: #FFE2DC;
-    --text-secondary: #33100C;
-    --background: #A6190C;
-    --primary: #EF3827;
-    --secondary: #F69288;
-    --accent: #FDEDEB;
-}*/
 
 body[data-theme="red"]{
     --text: #33100C;

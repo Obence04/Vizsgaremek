@@ -1,13 +1,13 @@
 Diák:
 pl.:
-72012345678
-RKT-2004-05-14
+72123456789
+RKT-2004-05-14-123
 
 
 Tanár:
 pl.:
-karoly.gabor
-RKT-karoly.gabor-123
+horvath.adrian
+RKT-horvath.adrian-123
 
 
 Admin:

@@ -1,4 +1,4 @@
-{ /* Dátum */
+{
     let datum = new Date();
     let Ev = datum.getFullYear();
     let Ho = datum.getMonth();
@@ -28,13 +28,4 @@
 
     document.getElementById("datumnagy").innerHTML =  Ev + ". " + Honev(Ho) + " " + Nap + ".";
     document.getElementById("datumkicsi").innerHTML =  Ev + ". " + ("0"+(Ho+1)).slice(-2) + ". " + Nap + ".";
-}
-
-{ /* Napi-Heti nézet */
-    function Napinezet() {
-        document.getElementById("orarend").style.display = "none";
-    }
-    function Hetinezet() {
-        document.getElementById("orarend").style = "";
-    }
 }

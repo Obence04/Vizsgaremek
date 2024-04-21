@@ -56,6 +56,7 @@
             // 
             TxtJelszo.Location = new Point(108, 55);
             TxtJelszo.Name = "TxtJelszo";
+            TxtJelszo.PasswordChar = '*';
             TxtJelszo.Size = new Size(140, 23);
             TxtJelszo.TabIndex = 1;
             // 

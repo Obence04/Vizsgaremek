@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title') Hiányzások @endsection
+@section('title') Hiányzások -  @endsection
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/hianyzasok.css')}}">
@@ -65,13 +65,13 @@
                         <option value="{{$row->ora_id}}">@php echo($row->oszt_nev.': '.date('Y.m.d. ',strtotime($row->ora_datum)).' '.$row->ora_szam.'. óra - '.$row->tant_nev); @endphp</option>
                     @endforeach
                 </select>
-                <table class="table table-striped mb-0 mx-auto text-center" id="table">
+                <table class="table table-striped mx-auto text-center" id="table">
                     <thead>
                         <tr>
-                            <td>{{$osztaly->oszt_nev}}</td>
-                            <td>Név</td>
-                            <td>Hiányzás</td>
-                            <td>Késés</td>
+                            <th>{{$osztaly->oszt_nev}}</th>
+                            <th>Név</th>
+                            <th>Hiányzás</th>
+                            <th>Késés</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title') Órarend @endsection
+@section('title') Beállítások -  @endsection
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/stilus.css')}}">

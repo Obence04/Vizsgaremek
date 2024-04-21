@@ -51,6 +51,3 @@ function Atszinez(elem){
 
 Kivalasztas('osztaly');
 
-//document.querySelector("#osztfelv").addEventListener("click", Felvetel_Osztaly());
-
-

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title') Értékelések @endsection
+@section('title') Értékelések -  @endsection
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/ertekeles.css')}}">
@@ -72,10 +72,9 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td>{{$osztaly->oszt_nev}}</td>
-                            <td>Név</td>
-                            <td>Átlag</td>
-                            <td>Jegy</td>
+                            <th>{{$osztaly->oszt_nev}}</th>
+                            <th>Név</th>
+                            <th>Jegy</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +83,6 @@
                         <tr>
                             <td></td>
                             <td>{{$diakok[$i]->diak_nev}}</td>
-                            <td>@if(isset($atlagok[$i])) @if($atlagok[$i]->diak_id == $diakok[$i]->diak_id) {{$atlagok[$i]->atlag}} @endif @else 0 @endif</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     @for ($j = 1; $j < 6; $j++)
@@ -105,20 +103,20 @@
     @endif
     @else
     <div class="text-center">
-        <div class="card mt-5 w-25" id="ertreszlet">
-            <div class="card-header">
+        <div class="card kartya mt-5 w-25 mx-auto" id="ertreszlet">
+            <div class="card-header color-bg-accent color-background">
                 <h1 id="erttantargy">tantárgy</h1>
             </div>
             <div class="row">
                 <div class="col-3">
                     <h3 id="ertjegy">2</h3>
-                    <p id="ertszazalek" style="font-size: 10pt">0</p>
+                    <p style="font-size: 10pt">súly: <span id="ertszazalek"></span> %</p>
                 </div>
                 <div class="col-9">
-                    <p id="ertdatum">ad</p>
-                    <p id="ertido">a</p>
-                    <p id="erttip">a</p>
-                    <p id="ertleiras">a</p>
+                    <p id="ertdatum"></p>
+                    <p id="ertido"></p>
+                    <p id="erttip"></p>
+                    <p id="ertleiras"></p>
                 </div>
             </div>
         </div>
@@ -157,9 +155,9 @@
                                 } elseif ($honap > 12) {
                                     $honap = $j-4;
                                 }
-                                $ert    = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->groupby('ertekelesek.ert_id')->get();
-                                $felev  = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->where('ertekelesek.ido_id','=',2)->groupby('ertekelesek.ert_id')->get();
-                                $evvege = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->where('ertekelesek.ido_id','=',3)->groupby('ertekelesek.ert_id')->get();
+                                $ert    = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('ertekelesek.diak_id','=',$user->diak_id)->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->groupby('ertekelesek.ert_id')->get();
+                                $felev  = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('ertekelesek.diak_id','=',$user->diak_id)->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->where('ertekelesek.ido_id','=',2)->groupby('ertekelesek.ert_id')->get();
+                                $evvege = ertekeles::selectraw('orak.ora_datum, orak.ora_szam, ertekelesek.*, tantargyak.tant_nev, erttipusok.tip_nev, ertidopontok.ido_nev')->join('erttipusok','erttipusok.tip_id','ertekelesek.tip_id')->join('ertidopontok','ertidopontok.ido_id','ertekelesek.ido_id')->join('orak','orak.ora_id','ertekelesek.ora_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->where('ertekelesek.diak_id','=',$user->diak_id)->where('tanitott.tant_id','=',$tantargyak[$i]->tant_id)->where('ertekelesek.ido_id','=',3)->groupby('ertekelesek.ert_id')->get();
                                 echo('<td>');
                                 if ($j == 5 && count($felev) != 0) {
                                     ?> <a href="#top" onClick='ertekelesReszlet({{$felev[0]}})'>{{$felev[0]->ert_jegy}}</a> <?php

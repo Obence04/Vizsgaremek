@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title') Profil @endsection
+@section('title') Profil keresés - @endsection
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/profil.css')}}">

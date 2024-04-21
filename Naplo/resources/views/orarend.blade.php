@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title') Órarend @endsection
+@section('title') Órarend -  @endsection
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/orarend.css')}}">
@@ -99,7 +99,7 @@
                         $ora = ora::join('osztalyok','osztalyok.oszt_id','orak.oszt_id')->join('tanitott','tanitott.tanit_id','orak.tanit_id')->join('tanarok','tanarok.tanar_id','tanitott.tanar_id')->join('tantargyak','tantargyak.tant_id','tanitott.tant_id')->whereRaw('orak.oszt_id = '.$user->oszt_id.' AND orak.ora_datum = "'.date('Y-m-d',$curdate).'" AND orak.ora_szam = '.($i+1))->get();
                     }
                 @endphp
-                <td class="align-middle" style="width:100px; height:100px" @if($curdate == strtotime($datum)) id="today" @endif>
+                <td class="align-middle" @if($curdate == strtotime($datum)) id="today" @endif>
                 @isset($ora[0])
                 <div class="card kartya">
                     <div class="card-header mt-0 pb-0 color-bg-accent color-background">

@@ -119,7 +119,7 @@ namespace Enaplo_asztali
             {
                 txt.Text = "";
             }
-            DtpOra.Value = DateTime.Now;
+            NudOraSzam.Value++;
             MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
