@@ -21,5 +21,28 @@ Route::get('/orarend',[NaploController::class, 'Orarend']);
 Route::get('/beallitasok',[NaploController::class, 'Beallitasok']);
 Route::post('/beallitasok',[NaploController::class, 'BeallitasokPost']);
 
+//profil
+Route::get('/profil',[NaploController::class, 'Profil']);
+Route::get('/profil/{id}',[AdminController::class,'Profil']);
+Route::post('/profil/{id}',[AdminController::class,'ProfilPost']);
+
+Route::get('/visszaallit/{id}',[AdminController::class,'Visszaallit']);
+Route::post('/visszaallit/{id}',[AdminController::class,'VisszaallitPost']);
+
+Route::get('/profilkeres',[AdminController::class, 'ProfilKeres']);
+Route::post('/profilkeres',[AdminController::class, 'ProfilKeresPost']);
+
 //értékelések
 Route::get('/ertekelesek',[NaploController::class, 'Ertekelesek']);
+Route::get('/ertekelesek/{osztaly}',[NaploController::class, 'Ertekelesek_osztkiv']);
+Route::post('/ertekelesek/{osztaly}',[NaploController::class, 'ErtekelesekPost']);
+
+//hiányzások
+Route::get('/hianyzasok',[NaploController::class, 'Hianyzasok']);
+Route::get('/hianyzasok/{osztaly}',[NaploController::class, 'Hianyzasok_osztkiv']);
+Route::post('/hianyzasok/{osztaly}',[NaploController::class, 'HianyzasokPost']);
+
+//igazolások
+Route::get('/igazolasok/{osztaly}',[NaploController::class, 'Igazolasok_osztkiv']);
+Route::post('/igazolasok/{osztaly}',[NaploController::class, 'IgazolasokPost']);
+

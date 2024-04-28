@@ -1,0 +1,28 @@
+@import url('stilus.css');
+
+.btn{
+    --bs-btn-active-bg:var(--primary);
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    --bs-btn-color:var(--text-secondary);
+    --bs-btn-border-color:var(--text-secondary);
+    --bs-btn-hover-border-color:var(--text);
+    --bs-btn-active-border-color:var(--background);
+    --bs-btn-hover-color:var(--text-secondary);
+}
+
+.btn-secondary{
+    background-color: var(--secondary);
+    --bs-btn-color: var(--text);
+    --bs-btn-border-color:var(--background);
+    --bs-btn-hover-border-color:var(--text-secondary);
+    --bs-btn-active-border-color:var(--text);
+
+    --bs-btn-hover-color:var(--text-secondary);
+}
+
+.btn:hover{
+    background-color: var(--accent);
+}

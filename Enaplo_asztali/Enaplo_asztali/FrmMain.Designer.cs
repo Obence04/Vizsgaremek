@@ -35,25 +35,23 @@
             TSMIFelOra = new ToolStripMenuItem();
             TSMIFelTanar = new ToolStripMenuItem();
             TSMIFelTantargy = new ToolStripMenuItem();
-            TSMIImportalas = new ToolStripMenuItem();
-            diákokToolStripMenuItem = new ToolStripMenuItem();
-            órarendToolStripMenuItem1 = new ToolStripMenuItem();
+            TSMITantTanar = new ToolStripMenuItem();
             TSMIKilepes = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMIFelvetel, TSMIImportalas, TSMIKilepes });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMIFelvetel, TSMIKilepes });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(329, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // TSMIFelvetel
             // 
-            TSMIFelvetel.DropDownItems.AddRange(new ToolStripItem[] { TSMIFelDiak, TSMIFelOszt, TSMIFelOra, TSMIFelTanar, TSMIFelTantargy });
+            TSMIFelvetel.DropDownItems.AddRange(new ToolStripItem[] { TSMIFelDiak, TSMIFelOszt, TSMIFelOra, TSMIFelTanar, TSMIFelTantargy, TSMITantTanar });
             TSMIFelvetel.Name = "TSMIFelvetel";
             TSMIFelvetel.Size = new Size(59, 20);
             TSMIFelvetel.Text = "Felvétel";
@@ -61,51 +59,38 @@
             // TSMIFelDiak
             // 
             TSMIFelDiak.Name = "TSMIFelDiak";
-            TSMIFelDiak.Size = new Size(118, 22);
+            TSMIFelDiak.Size = new Size(214, 22);
             TSMIFelDiak.Text = "diák";
             // 
             // TSMIFelOszt
             // 
             TSMIFelOszt.Name = "TSMIFelOszt";
-            TSMIFelOszt.Size = new Size(118, 22);
+            TSMIFelOszt.Size = new Size(214, 22);
             TSMIFelOszt.Text = "osztály";
             // 
             // TSMIFelOra
             // 
             TSMIFelOra.Name = "TSMIFelOra";
-            TSMIFelOra.Size = new Size(118, 22);
+            TSMIFelOra.Size = new Size(214, 22);
             TSMIFelOra.Text = "órarend";
             // 
             // TSMIFelTanar
             // 
             TSMIFelTanar.Name = "TSMIFelTanar";
-            TSMIFelTanar.Size = new Size(118, 22);
+            TSMIFelTanar.Size = new Size(214, 22);
             TSMIFelTanar.Text = "tanár";
             // 
             // TSMIFelTantargy
             // 
             TSMIFelTantargy.Name = "TSMIFelTantargy";
-            TSMIFelTantargy.Size = new Size(118, 22);
+            TSMIFelTantargy.Size = new Size(214, 22);
             TSMIFelTantargy.Text = "tantárgy";
             // 
-            // TSMIImportalas
+            // TSMITantTanar
             // 
-            TSMIImportalas.DropDownItems.AddRange(new ToolStripItem[] { diákokToolStripMenuItem, órarendToolStripMenuItem1 });
-            TSMIImportalas.Name = "TSMIImportalas";
-            TSMIImportalas.Size = new Size(75, 20);
-            TSMIImportalas.Text = "Importálás";
-            // 
-            // diákokToolStripMenuItem
-            // 
-            diákokToolStripMenuItem.Name = "diákokToolStripMenuItem";
-            diákokToolStripMenuItem.Size = new Size(115, 22);
-            diákokToolStripMenuItem.Text = "diákok";
-            // 
-            // órarendToolStripMenuItem1
-            // 
-            órarendToolStripMenuItem1.Name = "órarendToolStripMenuItem1";
-            órarendToolStripMenuItem1.Size = new Size(115, 22);
-            órarendToolStripMenuItem1.Text = "órarend";
+            TSMITantTanar.Name = "TSMITantTanar";
+            TSMITantTanar.Size = new Size(214, 22);
+            TSMITantTanar.Text = "tantárgy tanárhoz rendelés";
             // 
             // TSMIKilepes
             // 
@@ -117,13 +102,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(329, 118);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Főmenü";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -134,14 +119,12 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem TSMIFelvetel;
-        private ToolStripMenuItem TSMIImportalas;
         private ToolStripMenuItem TSMIKilepes;
         private ToolStripMenuItem TSMIFelDiak;
         private ToolStripMenuItem TSMIFelOszt;
         private ToolStripMenuItem TSMIFelOra;
         private ToolStripMenuItem TSMIFelTanar;
         private ToolStripMenuItem TSMIFelTantargy;
-        private ToolStripMenuItem diákokToolStripMenuItem;
-        private ToolStripMenuItem órarendToolStripMenuItem1;
+        private ToolStripMenuItem TSMITantTanar;
     }
 }

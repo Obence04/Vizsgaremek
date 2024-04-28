@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Enaplo_asztali")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff750b8651f08dfb6b626d27f6c3da03d36007e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce073659f2f0f84bb28dff562a67feb27751fab8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Enaplo_asztali")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Enaplo_asztali")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

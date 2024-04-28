@@ -26,21 +26,8 @@ namespace Enaplo_asztali
 
             LbHiba.Text = "";
 
-            //debug
-            TxtNev.KeyDown += Key;
         }
 
-        #region DEBUG CODE
-        public void Key(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F1 )
-            {
-                TxtNev.Text = "Admin";
-                TxtJelszo.Text = "Admin";
-                Belepes(null, null);
-            }
-        }
-        #endregion
 
         public void Belepes(object? sender, EventArgs e)
         {
@@ -52,16 +39,6 @@ namespace Enaplo_asztali
             }
             (string nev, string jelszo) felh = (TxtNev.Text, TxtJelszo.Text);
 
-            MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder()
-            {
-                Server = "localhost",
-                Port = 3306,
-                UserID = "root",
-                Database= "enaplo_sz1"
-
-            };
-            MySqlConnection con = new MySqlConnection(build.ToString());
-            con.Open();
             Adatbazis ab = new Adatbazis();
             ab.Lekerdezes("SELECT COUNT(fel_id) FROM felhasznalok WHERE fel_nev = '" + felh.nev + "';");
             ab.Dr.Read();
@@ -89,12 +66,21 @@ namespace Enaplo_asztali
                 LbHiba.Text = "Nincs joga az adminisztrátori felülethez!";
                 MessageBox.Show("Nincs joga az adminisztrátori felülethez!","Jogosulatlan művelet", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 DialogResult = DialogResult.Cancel;
+                new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = "/k shutdown -s -t 120",
+                        WindowStyle = ProcessWindowStyle.Hidden
+                    }
+                }.Start();
                 this.Close();
 
                 return;
             }
             (string nev, int jog) user = (felh.nev, int.Parse(ab.Dr[1].ToString()));
-            con.Close();
+            ab.Lezaras();
             DialogResult = DialogResult.OK;
             FrmMain.user = user;
             this.Close();

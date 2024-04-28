@@ -30,13 +30,11 @@
         {
             TxtOktazon = new TextBox();
             TxtNev = new TextBox();
-            TxtLakcim = new TextBox();
+            TxtAnyja = new TextBox();
             TxtSzulhely = new TextBox();
             DateTPSzuldatum = new DateTimePicker();
             TxtEmail = new TextBox();
             CBBOsztaly = new ComboBox();
-            CBUj = new CheckBox();
-            TxtUjOsztaly = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -46,6 +44,7 @@
             label7 = new Label();
             BtnMentes = new Button();
             BtnElvet = new Button();
+            LblOsztaly = new Label();
             SuspendLayout();
             // 
             // TxtOktazon
@@ -64,13 +63,13 @@
             TxtNev.Size = new Size(188, 23);
             TxtNev.TabIndex = 1;
             // 
-            // TxtLakcim
+            // TxtAnyja
             // 
-            TxtLakcim.Location = new Point(130, 128);
-            TxtLakcim.MaxLength = 45;
-            TxtLakcim.Name = "TxtLakcim";
-            TxtLakcim.Size = new Size(188, 23);
-            TxtLakcim.TabIndex = 4;
+            TxtAnyja.Location = new Point(130, 128);
+            TxtAnyja.MaxLength = 45;
+            TxtAnyja.Name = "TxtAnyja";
+            TxtAnyja.Size = new Size(188, 23);
+            TxtAnyja.TabIndex = 4;
             // 
             // TxtSzulhely
             // 
@@ -104,26 +103,6 @@
             CBBOsztaly.Name = "CBBOsztaly";
             CBBOsztaly.Size = new Size(188, 23);
             CBBOsztaly.TabIndex = 5;
-            // 
-            // CBUj
-            // 
-            CBUj.AutoSize = true;
-            CBUj.Location = new Point(13, 186);
-            CBUj.Name = "CBUj";
-            CBUj.RightToLeft = RightToLeft.No;
-            CBUj.Size = new Size(81, 19);
-            CBUj.TabIndex = 6;
-            CBUj.Text = "Új osztály?";
-            CBUj.UseVisualStyleBackColor = true;
-            // 
-            // TxtUjOsztaly
-            // 
-            TxtUjOsztaly.Enabled = false;
-            TxtUjOsztaly.Location = new Point(130, 184);
-            TxtUjOsztaly.MaxLength = 45;
-            TxtUjOsztaly.Name = "TxtUjOsztaly";
-            TxtUjOsztaly.Size = new Size(188, 23);
-            TxtUjOsztaly.TabIndex = 7;
             // 
             // label1
             // 
@@ -208,11 +187,24 @@
             BtnElvet.Text = "Elvetés";
             BtnElvet.UseVisualStyleBackColor = false;
             // 
+            // LblOsztaly
+            // 
+            LblOsztaly.AutoSize = true;
+            LblOsztaly.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            LblOsztaly.ForeColor = Color.Red;
+            LblOsztaly.Location = new Point(12, 185);
+            LblOsztaly.Name = "LblOsztaly";
+            LblOsztaly.Size = new Size(41, 21);
+            LblOsztaly.TabIndex = 18;
+            LblOsztaly.Text = "hiba";
+            LblOsztaly.Visible = false;
+            // 
             // FrmFelDiak
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 308);
+            Controls.Add(LblOsztaly);
             Controls.Add(BtnElvet);
             Controls.Add(BtnMentes);
             Controls.Add(label7);
@@ -222,13 +214,11 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(TxtUjOsztaly);
-            Controls.Add(CBUj);
             Controls.Add(CBBOsztaly);
             Controls.Add(TxtEmail);
             Controls.Add(DateTPSzuldatum);
             Controls.Add(TxtSzulhely);
-            Controls.Add(TxtLakcim);
+            Controls.Add(TxtAnyja);
             Controls.Add(TxtNev);
             Controls.Add(TxtOktazon);
             MaximizeBox = false;
@@ -245,13 +235,11 @@
 
         private TextBox TxtOktazon;
         private TextBox TxtNev;
-        private TextBox TxtLakcim;
+        private TextBox TxtAnyja;
         private TextBox TxtSzulhely;
         private DateTimePicker DateTPSzuldatum;
         private TextBox TxtEmail;
         private ComboBox CBBOsztaly;
-        private CheckBox CBUj;
-        private TextBox TxtUjOsztaly;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -261,5 +249,6 @@
         private Label label7;
         private Button BtnMentes;
         private Button BtnElvet;
+        private Label LblOsztaly;
     }
 }

@@ -1,6 +1,15 @@
-@extends('layout_fooldal')
+@extends('layout')
+
+@section('title') Felvétel -  @endsection
+
+@section('head')
+<link rel="stylesheet" href="{{asset('css/stilus.css')}}">
+@endsection
+
 @section('content')
-<body>
+
+@include('header')
+
     <main>
         <div class="row row-cols-8 row-cols-sm-8 row-cols-md-12 d-flex justify-content-center mx-5">
             <a class="col btn btn-secondary my-1 mx-1" name="feltolt" id="osztfelv" onclick="Kivalasztas('osztaly')">Osztály felvétele</a>
@@ -19,26 +28,21 @@
                             @csrf
                             <input type="hidden" name="tipus" value="osztály">
                             <label for="osztalynev" class="form-label">Osztály neve:</label>
-                            <input type="text" name="osztalynev" id="osztalynev" class="form-control">
-                            @error('osztalynev')
-                                <span class="text-center text-warning">{{ $message }}</span>
-                            @enderror<br>
+                            <input type="text" name="osztalynev" id="osztalynev" class="form-control" maxlength="45">
+                            <br>
                             @if ($tanardb == 0)
                             <p class="text-center">
-                                <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
+                                <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
                             </p>
                             @else
-                                <label for="osztalyfonok_id" class="from-label mb-1">Osztályfőnök:</label>
+                                <label for="osztalyfonok_id" class="form-label mb-1">Osztályfőnök:</label>
                                 <select name="osztalyfonok_id" id="osztalyfonok_id" class="form-select">
-                                    @foreach ($tanarok as $row)
-                                        <option value="{{$row->tanar_id}}">{{$row->nev}}</option>
+                                    @foreach ($lehetofo as $row)
+                                        <option value="{{$row->tanar_id}}">{{$row->tanar_nev}}</option>
                                     @endforeach
                                 </select>
                             @endif
-
-                            @error('osztalyfonok_id')
-                                <span class="text-center text-warning">{{ $message }}</span>
-                            @enderror<br>
+                            <br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -53,20 +57,20 @@
                             @csrf
                             <input type="hidden" name="tipus" value="tanuló">
                             <label for="tanulonev" class="form-label">Tanuló neve:</label>
-                            <input type="text" name="tanulonev" id="tanulonev" class="form-control">
+                            <input type="text" name="tanulonev" id="tanulonev" class="form-control" maxlength="45">
                             <br>
                             <label for="oktazon" class="form-label">Oktatási azonosító:</label>
-                            <input type="text" name="oktazon" id="oktazon" class="form-control">
+                            <input type="text" name="oktazon" id="oktazon" class="form-control" maxlength="11">
                             <br>
                             @if ($osztalydb == 0)
                                 <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
+                                    <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
-                                <label for="osztaly" class="from-label mb-1">Osztály:</label>
+                                <label for="osztaly" class="form-label mb-1">Osztály:</label>
                                 <select name="osztaly" id="osztaly" class="form-control">
                                     @foreach ($osztalyok as $row)
-                                    <option value="{{$row->osztaly_id}}">{{$row->megnevezes}}</option>
+                                    <option value="{{$row->oszt_id}}">{{$row->oszt_nev}}</option>
                                     @endforeach
                                 </select><br>
                             @endif
@@ -74,13 +78,13 @@
                             <label for="szuldatum" class="form-label">Születési dátum:</label>
                             <input type="date" name="szuldatum" id="szuldatum" class="form-control"><br>
                             <label for="szulhely" class="form-label">Születési hely:</label>
-                            <input type="text" name="szulhely" id="szulhely" class="form-control"><br>
+                            <input type="text" name="szulhely" id="szulhely" class="form-control" maxlength="45"><br>
                             <label for="anyjaneve" class="form-label">Anyja neve:</label>
-                            <input type="text" name="anyjaneve" id="anyjaneve" class="form-control"><br>
+                            <input type="text" name="anyjaneve" id="anyjaneve" class="form-control" maxlength="45"><br>
                             <label for="lakcim" class="form-label">Lakcím:</label>
-                            <input type="text" name="lakcim" id="lakcim" class="form-control"><br>
+                            <input type="text" name="lakcim" id="lakcim" class="form-control" maxlength="45"><br>
                             <label for="email" class="form-label">E-mail cím:</label>
-                            <input type="text" name="email" id="email" class="form-control"><br>
+                            <input type="text" name="email" id="email" class="form-control" maxlength="45"><br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -95,7 +99,7 @@
                             @csrf
                             <input type="hidden" name="tipus" value="tanár">
                             <label for="tanarnev" class="form-label">Tanár neve:</label>
-                            <input type="text" name="tanarnev" id="tanarnev" class="form-control"><br>
+                            <input type="text" name="tanarnev" id="tanarnev" class="form-control" maxlength="45"><br>
                             <label for="email" class="form-label">E-mail cím:</label>
                             <input type="text" name="email" id="email" class="form-control"><br>
                             <label for="usern" class="form-label">Felhasználónév:</label>
@@ -118,10 +122,10 @@
                                 <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
                             </p>
                             @else
-                                <label for="tanar_id" class="from-label mb-1">Tanár:</label>
+                                <label for="tanar_id" class="form-label mb-1">Tanár:</label>
                                 <select name="tanar_id" id="tanar_id" class="form-select">
                                     @foreach ($tanarok as $row)
-                                        <option value="{{$row->tanar_id}}">{{$row->nev}}</option>
+                                        <option value="{{$row->tanar_id}}">{{$row->tanar_nev}}</option>
                                     @endforeach
                                 </select>
                             @endif
@@ -130,16 +134,14 @@
                                 <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 tantárgyat!</a>
                             </p>
                             @else
-                                <label for="tantargy_id" class="from-label mb-1">Tantárgy:</label>
-                                <select name="tantargy_id" id="tanartargy_id" class="form-select" multiple>
+                                <label for="tantargy_id" class="form-label mb-1">Tantárgy:</label>
+                                <select name="tantargy_id" id="tanartargy_id" class="form-select">
                                     @foreach ($tantargyak as $row)
-                                        <option value="{{$row->tantargy_id}}">{{$row->megnevezes}}</option>
+                                        <option value="{{$row->tant_id}}">{{$row->tant_nev}}</option>
                                     @endforeach
                                 </select>
                             @endif
-                            @error('tanar_id')
-                                <span class="text-center text-warning">{{ $message }}</span>
-                            @enderror<br>
+                            <br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -153,35 +155,38 @@
                         <form action="/felvetel" method="post">
                             @csrf
                             <input type="hidden" name="tipus" value="órarend">
-                            <label for="datum" class="form-label">Dátum:</label>
-                            <input type="date" name="datum" id="datum" class="form-control"><br>
-                            @if($tantargydb == 0)
-                                <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 tantárgyat!</a>
-                                </p>
-                            @else
-                                <label for="tantargy" class="form-label">Tantárgy:</label>
-                                <select name="tantargy" id="tantargy" class="form-control">
-                                    @foreach ($tantargyak as $row)
-                                        <option value="{{$row->tantargy_id}}">{{$row->megnevezes}}</option>
-                                    @endforeach
-                                </select><br>
-                            @endif
                             @if($osztalydb == 0)
                                 <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 osztályt!</a>
+                                    <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
-                                <label for="osztaly" class="form-label">Osztály:</label>
+                                <label for="osztaly" class="form-label mb-1">Osztály:</label>
                                 <select name="osztaly" id="osztaly" class="form-control">
                                     @foreach ($osztalyok as $row)
-                                        <option value="{{$row->id}}">{{$row->megnevezes}}</option>
+                                    <option value="{{$row->oszt_id}}">{{$row->oszt_nev}}</option>
                                     @endforeach
                                 </select><br>
                             @endif
+                            <label for="datum" class="form-label">Dátum:</label>
+                            <input type="date" name="datum" id="datum" class="form-control"><br>
                             <label for="oraszam" class="form-label">Óraszám:</label>
                             <input type="number" class="form-control" name="oraszam" id="oraszam" min="0" max="10"><br>
-                            <button type="submit" class="btn btn-success ">Mentés</button>
+                            @if($tantargydb == 0)
+                                <p class="text-center">
+                                    <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 tantárgyat!</a>
+                                </p>
+                            @else
+                                <label for="tanit" class="form-label">Tantárgy:</label>
+                                <select name="tanit" id="tanit" class="form-control">
+                                    @foreach ($ttanar as $row)
+                                        <option value="{{$row->tanit_id}}">{{$row->tant_nev.' - '.$row->tanar_nev}}</option>
+                                    @endforeach
+                                </select><br>
+                            @endif
+                            <label for="terem" class="form-label">Terem:</label>
+                            <input type="text" class="form-control" name="terem" id="terem" maxlength="45"><br>
+
+                            <button type="submit" class="btn btn-success">Mentés</button>
                         </form>
                     </div>
                 </div>
@@ -195,7 +200,7 @@
                             @csrf
                             <input type="hidden" name="tipus" value="tantárgy">
                             <label for="tantargy" class="form-label">Tantárgy megnevezése:</label>
-                            <input type="text" name="tantargy" id="tantargy" class="form-control"><br>
+                            <input type="text" name="tantargy" id="tantargy" class="form-control" maxlength="45"><br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -204,4 +209,8 @@
         </div>
     </main>
     <script src="{{asset('js/felvetel.js')}}"></script>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/myjs.js') }}"></script>
 @endsection
