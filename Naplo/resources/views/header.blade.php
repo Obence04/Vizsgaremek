@@ -58,11 +58,40 @@
         </div>
     </nav>
 </header>
+
+@isset($errors)
+@if(count($errors) > 0)
+<div id="uzenet" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        @foreach ($errors->all() as $row)
+            <p class="text-center text-danger mb-1">{{$row}}</p>
+        @endforeach
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("uzenet");
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+         modal.style.display = "none";
+      }
+    }
+</script>
+@endif
+@endisset
+
 @error('msg')
 <div id="uzenet" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <p class="text-center">{{$message}}</p>
+        <span class="close">&times;</span>
+        <p class="text-center">{{$message}}</p>
     </div>
 </div>
 <script>

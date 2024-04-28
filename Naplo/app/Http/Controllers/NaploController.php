@@ -308,12 +308,17 @@ class NaploController extends Controller
                 } else if ($request->diakcnt < 1) {
                     return redirect('/felvetel');
                 }
+                if ($request->ertido == 1) {
+                    $request->validate([
+                        'leiras' => 'required'
+                    ],[
+                        'leiras.required' => 'Ki kell tölteni a leírás mezőt!'
+                    ]);
+                } else {
+                    $request->leiras = ertidopont::find($request->ertido)->ido_nev;
+                    $request->szazalek = 100;
+                }
 
-                $request->validate([
-                    'leiras' => 'required'
-                ],[
-                    'leiras.required' => 'Ki kell tölteni a leírás mezőt!'
-                ]);
                 for ($i = 0; $i < $request->diakcnt; $i++) {
                     $jegy = -1;
                     switch($request->{'diak'.$i}) {

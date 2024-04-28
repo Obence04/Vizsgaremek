@@ -45,6 +45,7 @@
         @else
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
             @foreach ($talalatok as $row)
+            @if ($row->jog_id != 4)
             <div class="col">
                 <a href="/profil/{{$row->fel_id}}">
                 <div class="card">
@@ -53,6 +54,7 @@
                 </div>
                 </a>
             </div>
+            @endif
         @endforeach
         </div>
         @endif

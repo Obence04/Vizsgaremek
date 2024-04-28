@@ -167,7 +167,7 @@
                 <tr>
                     <td>Téma:</td>
                     <td>{{tema::find($user->tema_id)->tema_nev}}</td>
-                    @if(!isset($id) && $user->fel_id != Auth::id())<td><a href="/beallitasok" class="btn btn-primary">Módosítás</a></td>@endif
+                    @if($user->fel_id == Auth::id())<td><a href="/beallitasok" class="btn btn-primary">Módosítás</a></td>@endif
                 </tr>
             </tbody>
 

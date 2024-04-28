@@ -69,7 +69,7 @@
                 @enderror
                 <label for="szazalek" class="form-label">Jegy erőssége (százalék):</label>
                 <input type="number" name="szazalek" id="szazalek" min="25" max="500" value="100" class="form-control mb-3">
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered table-responsive-xxl">
                     <thead>
                         <tr>
                             <th>{{$osztaly->oszt_nev}}</th>
@@ -120,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive-xxl pt-5">
+        <div class="table-responsive-xxl py-5">
             <table class="table table-striped mb-0 mx-auto text-center" id="table">
                 <thead>
                     <tr>

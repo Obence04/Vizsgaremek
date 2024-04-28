@@ -149,7 +149,7 @@
         @if(count($hianyzasok) == 0)
             <h3>Még nem rögzítettek egyetlen hiányzást sem...</h3>
         @else
-        <div class="table-responsive-xxl pt-5">
+        <div class="table-responsive-xxl py-5">
             <table class="table table-striped table-bordered mb-0 mx-auto text-center" id="table">
                 <thead>
                     <tr>

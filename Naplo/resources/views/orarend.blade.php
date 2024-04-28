@@ -16,7 +16,7 @@
         $datum = date('y-m-d');
         $aktualszin = "#AAAADD";
     @endphp
-    <div class="table-responsive-xxl pt-5">
+    <div class="table-responsive-xxl py-5">
     <table class="table mb-0 mx-auto text-center" id="table">
         <thead>
             <tr id="days">
@@ -42,8 +42,6 @@
                     const honap = datum.getMonth();
                     const nap = datum.getDate();
                     const NapSorsz = datum.getDay();
-
-                    console.log(NapSorsz);
                     for (let i = 0; i < 7; i++) {
                         let day = NapSorsz-1+i;
                         if (day < 0) {
@@ -52,7 +50,6 @@
                         if (day > 6) {
                             day = day- 7;
                         }
-                        console.log(day);
                         const td = document.createElement("td");
                         const br = document.createElement("br");
                         const text1 = document.createTextNode(Week(day) + ", ");

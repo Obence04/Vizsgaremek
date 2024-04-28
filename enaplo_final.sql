@@ -76,15 +76,15 @@ CREATE TABLE `ertekelesek` (
 --
 
 INSERT INTO `ertekelesek` (`ert_id`, `ora_id`, `diak_id`, `ert_leiras`, `ert_jegy`, `ert_szazalek`, `ido_id`, `tip_id`) VALUES
-(1, 67, 75012345678, 'Tesztelési módszerek', 3, 50, 1, 1),
-(2, 67, 75123456789, 'Tesztelési módszerek', 4, 50, 1, 1),
-(3, 67, 75012345678, 'Év végi', 4, 100, 3, 8),
-(4, 67, 75123456789, 'Év végi', 5, 100, 3, 8),
-(5, 1, 72012345678, 'Hálózati topológiák', 5, 200, 1, 2),
-(6, 34, 73012345678, 'OSI modell', 2, 100, 1, 3),
-(7, 34, 73123456789, 'OSI modell', 3, 100, 1, 3),
-(8, 65, 74012345678, 'Síkgeometria', 1, 100, 1, 7),
-(9, 65, 74123456789, 'Síkgeometria', 1, 100, 1, 7);
+(1, 67, 75012345678, 'Tesztelési módszerek', 3, 50, 1, 2),
+(2, 67, 75123456789, 'Tesztelési módszerek', 4, 50, 1, 2),
+(3, 67, 75012345678, 'Év végi', 4, 100, 3, 9),
+(4, 67, 75123456789, 'Év végi', 5, 100, 3, 9),
+(5, 1, 72012345678, 'Hálózati topológiák', 5, 200, 1, 3),
+(6, 34, 73012345678, 'OSI modell', 2, 100, 1, 4),
+(7, 34, 73123456789, 'OSI modell', 3, 100, 1, 4),
+(8, 65, 74012345678, 'Síkgeometria', 1, 100, 1, 8),
+(9, 65, 74123456789, 'Síkgeometria', 1, 100, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -122,14 +122,15 @@ CREATE TABLE `erttipusok` (
 --
 
 INSERT INTO `erttipusok` (`tip_id`, `tip_nev`) VALUES
-(1, 'Írásbeli röpdolgozat'),
-(2, 'Írásbeli témazáró dolgozat'),
-(3, 'Szóbeli felelet'),
-(4, 'Órai munka'),
-(5, 'Projektfeladat'),
-(6, 'Házi dolgozat'),
-(7, 'Házi feladat'),
-(8, 'Gyakorlati feladat');
+(1, 'Évközi / Évvégi értékelés'),
+(2, 'Írásbeli röpdolgozat'),
+(3, 'Írásbeli témazáró dolgozat'),
+(4, 'Szóbeli felelet'),
+(5, 'Órai munka'),
+(6, 'Projektfeladat'),
+(7, 'Házi dolgozat'),
+(8, 'Házi feladat'),
+(9, 'Gyakorlati feladat');
 
 -- --------------------------------------------------------
 

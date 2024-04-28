@@ -17,7 +17,6 @@ namespace Enaplo_asztali
         {
             InitializeComponent();
         }
-        //NINCS KÉSZ
         private void OnLoad( object sender, EventArgs e)
         {
             LblTanar.Visible = false;

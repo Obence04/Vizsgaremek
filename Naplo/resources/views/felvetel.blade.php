@@ -28,26 +28,21 @@
                             @csrf
                             <input type="hidden" name="tipus" value="osztály">
                             <label for="osztalynev" class="form-label">Osztály neve:</label>
-                            <input type="text" name="osztalynev" id="osztalynev" class="form-control">
-                            @error('osztalynev')
-                                <span class="text-center text-warning">{{ $message }}</span>
-                            @enderror<br>
+                            <input type="text" name="osztalynev" id="osztalynev" class="form-control" maxlength="45">
+                            <br>
                             @if ($tanardb == 0)
                             <p class="text-center">
-                                <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
+                                <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tanar')">Vegyen fel legalább 1 tanárt!</a>
                             </p>
                             @else
                                 <label for="osztalyfonok_id" class="form-label mb-1">Osztályfőnök:</label>
                                 <select name="osztalyfonok_id" id="osztalyfonok_id" class="form-select">
-                                    @foreach ($tanarok as $row)
+                                    @foreach ($lehetofo as $row)
                                         <option value="{{$row->tanar_id}}">{{$row->tanar_nev}}</option>
                                     @endforeach
                                 </select>
                             @endif
-
-                            @error('osztalyfonok_id')
-                                <span class="text-center text-warning">{{ $message }}</span>
-                            @enderror<br>
+                            <br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -62,14 +57,14 @@
                             @csrf
                             <input type="hidden" name="tipus" value="tanuló">
                             <label for="tanulonev" class="form-label">Tanuló neve:</label>
-                            <input type="text" name="tanulonev" id="tanulonev" class="form-control">
+                            <input type="text" name="tanulonev" id="tanulonev" class="form-control" maxlength="45">
                             <br>
                             <label for="oktazon" class="form-label">Oktatási azonosító:</label>
-                            <input type="text" name="oktazon" id="oktazon" class="form-control">
+                            <input type="text" name="oktazon" id="oktazon" class="form-control" maxlength="11">
                             <br>
                             @if ($osztalydb == 0)
                                 <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
+                                    <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
                                 <label for="osztaly" class="form-label mb-1">Osztály:</label>
@@ -83,13 +78,13 @@
                             <label for="szuldatum" class="form-label">Születési dátum:</label>
                             <input type="date" name="szuldatum" id="szuldatum" class="form-control"><br>
                             <label for="szulhely" class="form-label">Születési hely:</label>
-                            <input type="text" name="szulhely" id="szulhely" class="form-control"><br>
+                            <input type="text" name="szulhely" id="szulhely" class="form-control" maxlength="45"><br>
                             <label for="anyjaneve" class="form-label">Anyja neve:</label>
-                            <input type="text" name="anyjaneve" id="anyjaneve" class="form-control"><br>
+                            <input type="text" name="anyjaneve" id="anyjaneve" class="form-control" maxlength="45"><br>
                             <label for="lakcim" class="form-label">Lakcím:</label>
-                            <input type="text" name="lakcim" id="lakcim" class="form-control"><br>
+                            <input type="text" name="lakcim" id="lakcim" class="form-control" maxlength="45"><br>
                             <label for="email" class="form-label">E-mail cím:</label>
-                            <input type="text" name="email" id="email" class="form-control"><br>
+                            <input type="text" name="email" id="email" class="form-control" maxlength="45"><br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -104,7 +99,7 @@
                             @csrf
                             <input type="hidden" name="tipus" value="tanár">
                             <label for="tanarnev" class="form-label">Tanár neve:</label>
-                            <input type="text" name="tanarnev" id="tanarnev" class="form-control"><br>
+                            <input type="text" name="tanarnev" id="tanarnev" class="form-control" maxlength="45"><br>
                             <label for="email" class="form-label">E-mail cím:</label>
                             <input type="text" name="email" id="email" class="form-control"><br>
                             <label for="usern" class="form-label">Felhasználónév:</label>
@@ -146,9 +141,7 @@
                                     @endforeach
                                 </select>
                             @endif
-                            @error('tanar_id')
-                                <span class="text-center text-warning">{{ $message }}</span>
-                            @enderror<br>
+                            <br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>
@@ -164,7 +157,7 @@
                             <input type="hidden" name="tipus" value="órarend">
                             @if($osztalydb == 0)
                                 <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
+                                    <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('osztaly')">Vegyen fel legalább 1 osztályt!</a>
                                 </p>
                             @else
                                 <label for="osztaly" class="form-label mb-1">Osztály:</label>
@@ -180,7 +173,7 @@
                             <input type="number" class="form-control" name="oraszam" id="oraszam" min="0" max="10"><br>
                             @if($tantargydb == 0)
                                 <p class="text-center">
-                                    <a class="btn btn-primary my-3" name="atiranyit" id="cigany" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 tantárgyat!</a>
+                                    <a class="btn btn-primary my-3" name="atiranyit" onclick="Kivalasztas('tantargy')">Vegyen fel legalább 1 tantárgyat!</a>
                                 </p>
                             @else
                                 <label for="tanit" class="form-label">Tantárgy:</label>
@@ -191,7 +184,7 @@
                                 </select><br>
                             @endif
                             <label for="terem" class="form-label">Terem:</label>
-                            <input type="text" class="form-control" name="terem" id="terem"><br>
+                            <input type="text" class="form-control" name="terem" id="terem" maxlength="45"><br>
 
                             <button type="submit" class="btn btn-success">Mentés</button>
                         </form>
@@ -207,7 +200,7 @@
                             @csrf
                             <input type="hidden" name="tipus" value="tantárgy">
                             <label for="tantargy" class="form-label">Tantárgy megnevezése:</label>
-                            <input type="text" name="tantargy" id="tantargy" class="form-control"><br>
+                            <input type="text" name="tantargy" id="tantargy" class="form-control" maxlength="45"><br>
                             <button type="submit" class="btn btn-success ">Mentés</button>
                         </form>
                     </div>

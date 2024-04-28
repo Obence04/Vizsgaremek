@@ -66,13 +66,22 @@ class AdminController extends Controller
                     }
                     $data->save();
                 }
-                $request->validate([
-                    'fnev' => 'required',
-                    'femail' => 'required'
-                ],[
-                    'fnev.required' => 'Felhasználónév megadása kötelező!',
-                    'femail.required' => 'E-mail cím megadása kötelező!'
-                ]);
+                if (Auth::user()->jog_id == 4) {
+                    $request->validate([
+                        'fnev' => 'required',
+                        'femail' => 'required'
+                    ],[
+                        'fnev.required' => 'Felhasználónév megadása kötelező!',
+                        'femail.required' => 'E-mail cím megadása kötelező!'
+                    ]);
+                } else {
+                    $request->validate([
+                        'femail' => 'required'
+                    ],[
+                        'femail.required' => 'E-mail cím megadása kötelező!'
+                    ]);
+                }
+
                 $data = User::find($id);
                 $data->fel_nev = $request->fnev;
                 $data->fel_email = $request->femail;
@@ -86,7 +95,7 @@ class AdminController extends Controller
             } else {
                 if(isset($request->dlakcim)){
                     $data = diak::where('fel_id','=',Auth::id())->get()->first();
-                    if (!is_null($request->dlakcim)) {
+                    if ($request->dlakcim != 'nincs') {
                         $data->diak_lakcim = $request->dlakcim;
                     } else {
                         $data->diak_lakcim = null;
@@ -202,6 +211,7 @@ class AdminController extends Controller
                     'user'          => tanar::where('fel_id', '=', User::find(Auth::id())->fel_id)->get()->first(),
                     'jog'           => User::find(Auth::user()->fel_id)->jog_id,
                     'tanardb'       => tanar::count(),
+                    'lehetofo'      => tanar::select('tanar_id', 'tanar_nev')->whereRaw('tanar_id NOT IN (SELECT tanar_id FROM osztalyok)')->get(),
                     'tanarok'       => tanar::all(),
 
                     'osztalydb'     => osztaly::count(),
@@ -237,7 +247,7 @@ class AdminController extends Controller
         else if ($request->input('tipus') == "tanuló"){
             $request->validate([
                 'tanulonev' => 'required',
-                'oktazon' => 'unique:diakok,diak_id',
+                'oktazon' => 'required|numeric|unique:diakok,diak_id',
                 'osztaly' => 'required',
                 'szuldatum' => 'required',
                 'szulhely' => 'required',
@@ -246,6 +256,8 @@ class AdminController extends Controller
                 'email' => 'required'
             ],[
                 'tanulonev.required' => 'Nem adott meg nevet!',
+                'oktazon.required' => 'Nem adott meg oktatási azonosítót!',
+                'oktazon.numeric' => 'Az oktatási azonosító csak szám lehet!',
                 'oktazon.unique' => 'Ez az oktatási azonosító már benne van az adatbázisban!',
                 'osztaly.required' => 'Nem adta meg az osztályt!',
                 'szuldatum.required' => 'Nem adta meg a tanuló születési idejét!',
@@ -304,6 +316,7 @@ class AdminController extends Controller
             $data->save();
         }
         else if ($request->input('tipus') == "tanított"){
+
             $request->validate([
                 'tanar_id' => 'required',
                 'tantargy_id' => 'required'
@@ -311,6 +324,11 @@ class AdminController extends Controller
                 'tanar_id.required' => 'Nem választott ki tanárt!',
                 'tantargy_id.required' => 'Nem választott ki tantárgyat!'
             ]);
+            $check = tanitott::where('tanar_id','=',$request->tanar_id)->where('tant_id','=',$request->tantargy_id)->count();
+            if ($check > 0) {
+                return redirect('/felvetel')->withErrors(['msg' => 'Ilyen kombináció már létezik!']);
+            }
+
             $data = new tanitott;
             $data->tanar_id = $request->tanar_id;
             $data->tant_id = $request->tantargy_id;
@@ -324,6 +342,16 @@ class AdminController extends Controller
                 'datum' => 'Nem adott meg dátumot',
                 'oraszam.required' => 'Nem adta meg az óraszámot!'
             ]);
+
+            $check = orak::where('oszt_id','=',$request->osztaly)->where('ora_datum','=',$request->datum)->where('ora_szam','=',$request->oraszam)->count();
+            if ($check > 0) {
+                return redirect('/felvetel')->withErrors(['msg' => 'Erre az órára már van az osztálynak órája!']);
+            }
+            $check = orak::join('tanitott','tanitott.tanit_id','orak.tanit_id')->where('ora_datum','=',$request->datum)->where('ora_szam','=',$request->oraszam)->where('tanitott.tanit_id','=',$request->tanit)->count();
+            if ($check > 0) {
+                return redirect('/felvetel')->withErrors(['msg' => 'Erre az órára már van az adott tanárnak órája!']);
+            }
+
             $data = new ora;
             $data->oszt_id = $request->osztaly;
             $data->ora_datum = $request->datum;
@@ -338,11 +366,17 @@ class AdminController extends Controller
             ],[
                 'tantargy.required' => 'Nem adott meg tantárgyat!'
             ]);
+
+            $check = tantargy::where('tant_nev','=',$request->tantargy)->count();
+            if ($check > 0) {
+                return redirect('/felvetel')->withErrors(['msg' => 'Már létezik ez a tantárgy!']);
+            }
+
             $data = new tantargy;
             $data->tant_nev = $request->tantargy;
             $data->save();
         }
         else return redirect('/404');
-        return redirect('felvetel');
+        return redirect('/felvetel')->withErrors(['msg' => 'Sikeres felvétel!']);
     }
 }
