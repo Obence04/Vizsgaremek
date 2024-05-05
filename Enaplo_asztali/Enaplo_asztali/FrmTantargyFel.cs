@@ -31,22 +31,31 @@ namespace Enaplo_asztali
             {
                 return;
             }
-            TxbxTant.Text = "";
+            TxbxTant.ResetText();
             Close();
         }
         private void AdatMentes(object sender, EventArgs e)
         {
+            LblHiba.Visible = false;
             if (tantargy.Contains(TxbxTant.Text))
             {
-                MessageBox.Show("Ilyen tantárgy már létezik!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TxbxTant.Text = "";
-                return;
+                LblHiba.Text = "Ilyen tantárgy már létezik!";
+                LblHiba.Visible = true;
+                TxbxTant.ResetText();
+                TxbxTant.Focus();
+            }
+            else if (string.IsNullOrWhiteSpace(TxbxTant.Text))
+            {
+                LblHiba.Text = "Üres mező!";
+                LblHiba.Visible = true;
+                TxbxTant.ResetText();
+                TxbxTant.Focus();
             }
             else
             {
                 Adatbazis Ab = new();
                 Ab.Hozzaadas($"INSERT INTO tantargyak VALUES (null, '{TxbxTant.Text}')");
-                TxbxTant.Text = "";
+                TxbxTant.ResetText();
                 TantargyFeltolt();
                 MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

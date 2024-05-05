@@ -221,3 +221,4 @@ C:\Users\olah.bence\Desktop\Vizsgaremek\GitHub\Enaplo_asztali\Enaplo_asztali\obj
 C:\Users\olah.bence\Desktop\Vizsgaremek\GitHub\Enaplo_asztali\Enaplo_asztali\obj\Debug\net8.0-windows\Enaplo_asztali.csproj.CopyComplete
 C:\Users\olah.bence\Desktop\Vizsgaremek\GitHub\Enaplo_asztali\Enaplo_asztali\obj\Debug\net8.0-windows\Enaplo_asztali.genruntimeconfig.cache
 C:\Users\olah.bence\Desktop\Vizsgaremek\GitHub\Enaplo_asztali\Enaplo_asztali\obj\Debug\net8.0-windows\ref\Enaplo_asztali.dll
+C:\Users\Atesz\Desktop\Vizsgaremek\Enaplo_asztali\Enaplo_asztali\obj\Debug\net8.0-windows\Enaplo_asztali.Properties.Resources.resources

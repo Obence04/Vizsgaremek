@@ -40,18 +40,69 @@ namespace Enaplo_asztali
 
         private void AdatMentes(object sender, EventArgs e)
         {
-            Adatbazis Ab = new Adatbazis();
-            string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
-            Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123", 12)}', '{adatok[6]}', null, '1', '1')");
-            DiakFeltolt();
-            Ab.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
+            bool hiba = false;
             foreach (TextBox txt in Controls.OfType<TextBox>())
             {
-                txt.Text = "";
+                if (string.IsNullOrWhiteSpace(txt.Text) == true)
+                {
+                    hiba = true;
+                }
             }
-            DateTPSzuldatum.Value = DateTime.Now;
-            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            OsztalyFeltolt();
+            if (string.IsNullOrWhiteSpace(CBBOsztaly.Text))
+            {
+                hiba = true;
+            }
+            LblHiba.Visible = false;
+            Adatbazis Ab = new Adatbazis();
+            List<string> emailcimek = new List<string>();
+            Ab.Lekerdezes("SELECT fel_email FROM felhasznalok WHERE jog_id = 1");
+            while (Ab.Dr.Read())
+            {
+                emailcimek.Add(Ab.Dr[0].ToString());
+            }
+            Ab.Lezaras();
+            Adatbazis okt = new Adatbazis();
+            List<string> oktazon = new List<string>();
+            okt.Lekerdezes("SELECT diakok.diak_id FROM diakok");
+            while (okt.Dr.Read())
+            {
+                oktazon.Add(okt.Dr[0].ToString());
+            }
+            if (oktazon.Contains(TxtOktazon.Text))
+            {
+                LblHiba.Text = "Ilyen oktatási azonosító már létezik!";
+                LblHiba.Visible = true;
+                TxtOktazon.ResetText();
+                TxtOktazon.Focus();
+            }
+            else if (emailcimek.Contains(TxtEmail.Text))
+            {
+                LblHiba.Text = "Ilyen email cím már létezik!";
+                LblHiba.Visible = true;
+                TxtEmail.ResetText();
+                TxtEmail.Focus();
+            }
+            else if (hiba)
+            {
+                LblHiba.Text = "Hibás adatbevitel, üres az egyik mező!";
+                LblHiba.Visible = true;
+            }
+            else
+            {
+                Adatbazis adatbazis = new Adatbazis();
+                string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
+                adatbazis.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123", 12)}', '{adatok[6]}', null, '1', '1')");
+                DiakFeltolt();
+                adatbazis.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
+                foreach (TextBox txt in Controls.OfType<TextBox>())
+                {
+                    txt.Text = "";
+                }
+                DateTPSzuldatum.Value = DateTime.Now;
+                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OsztalyFeltolt();
+            }
+            
         }
 
         private void OsztalyFeltolt()
@@ -79,7 +130,7 @@ namespace Enaplo_asztali
 
         private void OnLoad(object sender, EventArgs e)
         {
-            LblOsztaly.Visible = false;
+            LblHiba.Visible = false;
             OsztalyFeltolt();
             if (osztalyok.Count == 0)
             {
@@ -87,8 +138,8 @@ namespace Enaplo_asztali
                 {
                     if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
                 }
-                LblOsztaly.Text = "Nincs osztály az adatbázisban.";
-                LblOsztaly.Visible = true;
+                LblHiba.Text = "Nincs osztály az adatbázisban.";
+                LblHiba.Visible = true;
             }
         }
 

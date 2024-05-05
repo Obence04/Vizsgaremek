@@ -28,114 +28,293 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            BtnMentes = new Button();
-            BtnElvet = new Button();
-            TxtTanarNev = new TextBox();
-            TxtEmail = new TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTanarFel));
+            panel1 = new Panel();
+            label4 = new Label();
+            panel2 = new Panel();
             TxtFelNev = new TextBox();
+            TxtEmail = new TextBox();
+            TxtTanarNev = new TextBox();
+            BtnElvet = new Button();
+            BtnMentes = new Button();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            LblHiba = new Label();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // panel1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(66, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Tanár neve:";
+            panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(label4);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(704, 70);
+            panel1.TabIndex = 8;
             // 
-            // label2
+            // label4
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 47);
-            label2.Name = "label2";
-            label2.Size = new Size(67, 15);
-            label2.TabIndex = 1;
-            label2.Text = "E-mail cím:";
+            label4.Anchor = AnchorStyles.None;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label4.Location = new Point(275, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(153, 28);
+            label4.TabIndex = 0;
+            label4.Text = "Tanár felvétele";
             // 
-            // label3
+            // panel2
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 89);
-            label3.Name = "label3";
-            label3.Size = new Size(90, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Felhasználónév:";
-            // 
-            // BtnMentes
-            // 
-            BtnMentes.BackColor = Color.FromArgb(192, 255, 192);
-            BtnMentes.Location = new Point(12, 242);
-            BtnMentes.Name = "BtnMentes";
-            BtnMentes.Size = new Size(150, 54);
-            BtnMentes.TabIndex = 3;
-            BtnMentes.Text = "Mentés";
-            BtnMentes.UseVisualStyleBackColor = false;
-            // 
-            // BtnElvet
-            // 
-            BtnElvet.BackColor = Color.FromArgb(255, 192, 192);
-            BtnElvet.Location = new Point(168, 242);
-            BtnElvet.Name = "BtnElvet";
-            BtnElvet.Size = new Size(150, 54);
-            BtnElvet.TabIndex = 4;
-            BtnElvet.Text = "Elvetés";
-            BtnElvet.UseVisualStyleBackColor = false;
-            // 
-            // TxtTanarNev
-            // 
-            TxtTanarNev.Location = new Point(130, 6);
-            TxtTanarNev.Name = "TxtTanarNev";
-            TxtTanarNev.Size = new Size(188, 23);
-            TxtTanarNev.TabIndex = 5;
-            // 
-            // TxtEmail
-            // 
-            TxtEmail.Location = new Point(130, 44);
-            TxtEmail.Name = "TxtEmail";
-            TxtEmail.Size = new Size(188, 23);
-            TxtEmail.TabIndex = 6;
+            panel2.BackColor = Color.Transparent;
+            panel2.Controls.Add(tableLayoutPanel5);
+            panel2.Controls.Add(tableLayoutPanel4);
+            panel2.Controls.Add(tableLayoutPanel3);
+            panel2.Controls.Add(tableLayoutPanel2);
+            panel2.Controls.Add(tableLayoutPanel1);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 70);
+            panel2.Name = "panel2";
+            panel2.Padding = new Padding(10);
+            panel2.Size = new Size(704, 491);
+            panel2.TabIndex = 9;
             // 
             // TxtFelNev
             // 
-            TxtFelNev.Location = new Point(130, 86);
+            TxtFelNev.Anchor = AnchorStyles.Left;
+            TxtFelNev.Location = new Point(346, 10);
+            TxtFelNev.Margin = new Padding(4);
             TxtFelNev.Name = "TxtFelNev";
-            TxtFelNev.Size = new Size(188, 23);
-            TxtFelNev.TabIndex = 7;
+            TxtFelNev.Size = new Size(241, 29);
+            TxtFelNev.TabIndex = 15;
+            // 
+            // TxtEmail
+            // 
+            TxtEmail.Anchor = AnchorStyles.Left;
+            TxtEmail.Location = new Point(346, 10);
+            TxtEmail.Margin = new Padding(4);
+            TxtEmail.Name = "TxtEmail";
+            TxtEmail.Size = new Size(241, 29);
+            TxtEmail.TabIndex = 14;
+            // 
+            // TxtTanarNev
+            // 
+            TxtTanarNev.Anchor = AnchorStyles.Left;
+            TxtTanarNev.Location = new Point(346, 10);
+            TxtTanarNev.Margin = new Padding(4);
+            TxtTanarNev.Name = "TxtTanarNev";
+            TxtTanarNev.Size = new Size(241, 29);
+            TxtTanarNev.TabIndex = 13;
+            // 
+            // BtnElvet
+            // 
+            BtnElvet.Anchor = AnchorStyles.Bottom;
+            BtnElvet.BackColor = Color.FromArgb(255, 192, 192);
+            BtnElvet.Location = new Point(346, 4);
+            BtnElvet.Margin = new Padding(4);
+            BtnElvet.Name = "BtnElvet";
+            BtnElvet.Size = new Size(334, 42);
+            BtnElvet.TabIndex = 12;
+            BtnElvet.Text = "Elvetés";
+            BtnElvet.UseVisualStyleBackColor = false;
+            // 
+            // BtnMentes
+            // 
+            BtnMentes.Anchor = AnchorStyles.Bottom;
+            BtnMentes.BackColor = Color.FromArgb(192, 255, 192);
+            BtnMentes.Location = new Point(4, 4);
+            BtnMentes.Margin = new Padding(4);
+            BtnMentes.Name = "BtnMentes";
+            BtnMentes.Size = new Size(334, 42);
+            BtnMentes.TabIndex = 11;
+            BtnMentes.Text = "Mentés";
+            BtnMentes.UseVisualStyleBackColor = false;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Left;
+            label3.AutoSize = true;
+            label3.Location = new Point(4, 14);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(119, 21);
+            label3.TabIndex = 10;
+            label3.Text = "Felhasználónév:";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.Location = new Point(4, 14);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 21);
+            label2.TabIndex = 9;
+            label2.Text = "E-mail cím:";
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new Point(4, 14);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 21);
+            label1.TabIndex = 8;
+            label1.Text = "Tanár neve:";
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(TxtTanarNev, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(10, 10);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(684, 50);
+            tableLayoutPanel1.TabIndex = 16;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(label2, 0, 0);
+            tableLayoutPanel2.Controls.Add(TxtEmail, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Top;
+            tableLayoutPanel2.Location = new Point(10, 60);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(684, 50);
+            tableLayoutPanel2.TabIndex = 17;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(label3, 0, 0);
+            tableLayoutPanel3.Controls.Add(TxtFelNev, 1, 0);
+            tableLayoutPanel3.Dock = DockStyle.Top;
+            tableLayoutPanel3.Location = new Point(10, 110);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Size = new Size(684, 50);
+            tableLayoutPanel3.TabIndex = 18;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(LblHiba, 0, 0);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(10, 160);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Size = new Size(684, 321);
+            tableLayoutPanel4.TabIndex = 19;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(BtnMentes, 0, 0);
+            tableLayoutPanel5.Controls.Add(BtnElvet, 1, 0);
+            tableLayoutPanel5.Dock = DockStyle.Bottom;
+            tableLayoutPanel5.Location = new Point(10, 431);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Size = new Size(684, 50);
+            tableLayoutPanel5.TabIndex = 20;
+            // 
+            // LblHiba
+            // 
+            LblHiba.Anchor = AnchorStyles.Top;
+            LblHiba.AutoSize = true;
+            LblHiba.BackColor = Color.Silver;
+            LblHiba.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            LblHiba.ForeColor = Color.Red;
+            LblHiba.Location = new Point(317, 20);
+            LblHiba.Margin = new Padding(3, 20, 3, 0);
+            LblHiba.Name = "LblHiba";
+            LblHiba.Size = new Size(49, 25);
+            LblHiba.TabIndex = 0;
+            LblHiba.Text = "hiba";
+            LblHiba.Visible = false;
             // 
             // FrmTanarFel
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(330, 308);
-            Controls.Add(TxtFelNev);
-            Controls.Add(TxtEmail);
-            Controls.Add(TxtTanarNev);
-            Controls.Add(BtnElvet);
-            Controls.Add(BtnMentes);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            BackgroundImage = Properties.Resources.ikonblurred;
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(704, 561);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            DoubleBuffered = true;
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 4, 4, 4);
+            MaximizeBox = false;
+            MaximumSize = new Size(1000, 700);
+            MinimumSize = new Size(440, 590);
             Name = "FrmTanarFel";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "FrmTanarFel";
+            Text = "Tanár felvétele";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel5.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private Label label3;
+        private Panel panel1;
+        private Label label4;
+        private Panel panel2;
+        private TableLayoutPanel tableLayoutPanel5;
         private Button BtnMentes;
         private Button BtnElvet;
-        private TextBox TxtTanarNev;
-        private TextBox TxtEmail;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Label LblHiba;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Label label3;
         private TextBox TxtFelNev;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label label2;
+        private TextBox TxtEmail;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label label1;
+        private TextBox TxtTanarNev;
     }
 }

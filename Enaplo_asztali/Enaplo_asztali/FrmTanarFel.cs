@@ -28,7 +28,7 @@ namespace Enaplo_asztali
         {
             tanar.Clear();
             Adatbazis Ab = new();
-            Ab.Lekerdezes("SELECT * FROM tanarok");
+            Ab.Lekerdezes("SELECT tanarok.tanar_nev, felhasznalok.fel_email, felhasznalok.fel_nev FROM tanarok INNER JOIN felhasznalok ON tanarok.fel_id = felhasznalok.fel_id");
             while (Ab.Dr.Read())
             {
                 tanar.Add((Ab.Dr[0].ToString(), Ab.Dr[1].ToString(), Ab.Dr[2].ToString()));
@@ -36,21 +36,25 @@ namespace Enaplo_asztali
         }
         private void AdatMentes(object sender, EventArgs e)
         {
-            if (tanar.Where(x => x.email.Contains(TxtEmail.Text)).Count() > 1)
+            LblHiba.Visible = false;
+            if (tanar.Where(x => x.email.Contains(TxtEmail.Text)).Count() > 0 && !string.IsNullOrWhiteSpace(TxtEmail.Text))
             {
-                MessageBox.Show("Ilyen email cím már létezik!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
+                LblHiba.Text = "Ilyen email már létezik!";
+                LblHiba.Visible = true;
+                TxtEmail.ResetText();
+                TxtEmail.Focus();
             }
-            else if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 1)
+            else if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 0 && !string.IsNullOrWhiteSpace(TxtFelNev.Text))
             {
-                MessageBox.Show("Ilyen felhasználónév már létezik!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
+                LblHiba.Text = "Ilyen felhasználónév már létezik!";
+                LblHiba.Visible = true;
+                TxtFelNev.ResetText();
+                TxtFelNev.Focus();
+            }
+            else if (string.IsNullOrWhiteSpace(TxtEmail.Text) || string.IsNullOrWhiteSpace(TxtFelNev.Text) || string.IsNullOrWhiteSpace(TxtTanarNev.Text))
+            {
+                LblHiba.Text = "Egy mező üresen maradt!";
+                LblHiba.Visible = true;
             }
             else
             {

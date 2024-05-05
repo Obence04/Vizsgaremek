@@ -16,10 +16,12 @@ namespace Enaplo_asztali
         public FrmFelOszt()
         {
             InitializeComponent();
+            BtnMentes.Click += AdatMentes;
+            BtnElvetes.Click += Elvet;
         }
         private void OnLoad( object sender, EventArgs e)
         {
-            LblTanar.Visible = false;
+            LblHiba.Visible = false;
             TanarFeltolt();
             if (tanarok.Count == 0)
             {
@@ -27,22 +29,54 @@ namespace Enaplo_asztali
                 {
                     if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
                 }
-                LblTanar.Text = "Nincs tanár az adatbázisban, aki még nem osztályfőnök.";
-                LblTanar.Visible = true;
+                LblHiba.Text = "Nincs tanár az adatbázisban, aki még nem osztályfőnök.";
+                LblHiba.Visible = true;
             }
         }
         private void AdatMentes(object sender, EventArgs e)
         {
-            Adatbazis Ab = new Adatbazis();
-            string[] adatok = { TxtOsztNev.Text, tanarok.Find(x => x.nev == CBBOsztFonok.Text).id.ToString() };
-            Ab.Hozzaadas($"INSERT INTO osztalyok VALUES (null, '{adatok[0]}', '{adatok[1]}')");
-            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            foreach (TextBox txt in Controls.OfType<TextBox>())
+            LblHiba.Visible = false;
+            List<string> osztalyok = new List<string>();
+            Adatbazis oszt = new Adatbazis();
+            oszt.Lekerdezes("SELECT osztalyok.oszt_nev FROM osztalyok");
+            while (oszt.Dr.Read())
             {
-                txt.Text = "";
+                osztalyok.Add(oszt.Dr[0].ToString());
             }
-            CBBOsztFonok.ResetText();
-            TanarFeltolt();
+            if (osztalyok.Contains(TxtOsztNev.Text))
+            {
+                LblHiba.Text = "Ilyen osztály már létezik!";
+                LblHiba.Visible = true;
+                TxtOsztNev.ResetText();
+                TxtOsztNev.Focus();
+            }
+            else if (string.IsNullOrWhiteSpace(TxtOsztNev.Text))
+            {
+                LblHiba.Text = "Az osztálynév mező üres!";
+                LblHiba.Visible = true;
+                TxtOsztNev.ResetText();
+                TxtOsztNev.Focus();
+            }
+            else if (string.IsNullOrWhiteSpace(CBBOsztFonok.Text))
+            {
+                LblHiba.Text = "Nem választott ki tanárt!";
+                LblHiba.Visible = true;
+                TxtOsztNev.ResetText();
+                TxtOsztNev.Focus();
+            }
+            else
+            {
+                Adatbazis Ab = new Adatbazis();
+                string[] adatok = { TxtOsztNev.Text, tanarok.Find(x => x.nev == CBBOsztFonok.Text).id.ToString() };
+                Ab.Hozzaadas($"INSERT INTO osztalyok VALUES (null, '{adatok[0]}', '{adatok[1]}')");
+                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                foreach (TextBox txt in Controls.OfType<TextBox>())
+                {
+                    txt.Text = "";
+                }
+                CBBOsztFonok.ResetText();
+                TanarFeltolt();
+            }
         }
         private void Elvet(object sender, EventArgs e)
         {
@@ -62,7 +96,7 @@ namespace Enaplo_asztali
             tanarok.Clear();
             CBBOsztFonok.Items.Clear();
             Adatbazis Ab = new Adatbazis();
-            Ab.Lekerdezes("SELECT tanar_id, tanar_nev FROM tanarok WHERE tanar_id NOT IN (SELECT tanar_id FROM osztalyok)");
+            Ab.Lekerdezes("SELECT tanar_id, tanar_nev FROM tanarok INNER JOIN felhasznalok ON tanarok.fel_id = felhasznalok.fel_id WHERE tanar_id NOT IN (SELECT tanar_id FROM osztalyok) AND felhasznalok.jog_id NOT IN (1, 4)");
             while (Ab.Dr.Read())
             {
                 tanarok.Add((int.Parse(Ab.Dr[0].ToString()), Ab.Dr[1].ToString()));

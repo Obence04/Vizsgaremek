@@ -26,7 +26,6 @@ namespace Enaplo_asztali
         {
             LblHiba.Visible = false;
             TanarFeltolt();
-            CbbxTanarok.SelectedIndex = 0;
             TantargyFeltolt(CbbxTanarok.Text);
             if (tantargyak.Count == 0)
             {
@@ -45,6 +44,8 @@ namespace Enaplo_asztali
                 LblHiba.Text = "Nincs tanár";
                 LblHiba.Visible = true;
             }
+            CbbxTanarok.SelectedIndex = 0;
+            CbbxTant.SelectedIndex = 0;
         }
         private void IndexValt(object sender, EventArgs e)
         {
@@ -74,11 +75,19 @@ namespace Enaplo_asztali
         }
         private void AdatMentes(object sender, EventArgs e)
         {
-            Adatbazis Ab = new();
-            Ab.Hozzaadas($"INSERT INTO tanitott VALUES (null, '{tanarok.Find(x => x.nev == CbbxTanarok.Text).id}', '{tantargyak.Find(x => x.nev == CbbxTant.Text).id}')");
-            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            TanarFeltolt();
-            TantargyFeltolt(CbbxTanarok.Text);
+            if (string.IsNullOrWhiteSpace(CbbxTanarok.Text) || string.IsNullOrWhiteSpace(CbbxTant.Text))
+            {
+                LblHiba.Text = "Egy mező üresen maradt!";
+                LblHiba.Visible = true;
+            }
+            else
+            {
+                Adatbazis Ab = new();
+                Ab.Hozzaadas($"INSERT INTO tanitott VALUES (null, '{tanarok.Find(x => x.nev == CbbxTanarok.Text).id}', '{tantargyak.Find(x => x.nev == CbbxTant.Text).id}')");
+                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TanarFeltolt();
+                TantargyFeltolt(CbbxTanarok.Text);
+            }
         }
         private void Elvet(object sender, EventArgs e)
         {

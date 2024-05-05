@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBelepes));
             BtnBelepes = new Button();
             TxtNev = new TextBox();
             TxtJelszo = new TextBox();
@@ -101,6 +102,7 @@
             Controls.Add(TxtJelszo);
             Controls.Add(TxtNev);
             Controls.Add(BtnBelepes);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmBelepes";

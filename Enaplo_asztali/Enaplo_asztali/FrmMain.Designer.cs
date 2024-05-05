@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             menuStrip1 = new MenuStrip();
             TSMIFelvetel = new ToolStripMenuItem();
             TSMIFelDiak = new ToolStripMenuItem();
@@ -104,6 +105,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(329, 118);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "FrmMain";
