@@ -8,13 +8,26 @@ namespace Enaplo_asztali
         public FrmMain()
         {
             InitializeComponent();
-            TSMIKilepes.Click += Kilepes;
-            TSMIFelDiak.Click += DiakFel;
-            TSMIFelOszt.Click += OsztalyFel;
-            TSMIFelOra.Click += OraFel;
-            TSMIFelTanar.Click += TanarFel;
-            TSMIFelTantargy.Click += TantargyFel;
-            TSMITantTanar.Click += TantTanarRendel;
+            BtnKilep.Click += Kilepes;
+            BtnFelDiak.Click += DiakFel;
+            BtnFelOszt.Click += OsztalyFel;
+            BtnFelOra.Click += OraFel;
+            BtnFelTanar.Click += TanarFel;
+            BtnFelTantargy.Click += TantargyFel;
+            BtnFelTantTanar.Click += TantTanarRendel;
+            BtnMenu.Click += LegorduloMenu;
+        }
+
+        private void LegorduloMenu(object sender, EventArgs e)
+        {
+            if (PnlLegordMenu.Visible)
+            {
+                PnlLegordMenu.Visible = false;
+            }
+            else
+            {
+                PnlLegordMenu.Visible = true;
+            }
         }
 
         private void DiakFel(object sender, EventArgs e)

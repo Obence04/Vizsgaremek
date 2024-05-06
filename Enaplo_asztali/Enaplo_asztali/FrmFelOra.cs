@@ -102,7 +102,6 @@ namespace Enaplo_asztali
 
         private void AdatMentes(object sender, EventArgs e)
         {
-            // javításra szorul a hibakezelés
             LblHiba.Visible = false;
             int vaneOsztOra = 0;
             int vaneTanarOra = 0;
@@ -113,7 +112,7 @@ namespace Enaplo_asztali
             Adatbazis validTanitott = new Adatbazis();
             int keresettTanitottId = tanitott.Find(x => x.tanarid == tanarok.Find(x => x.nev == CbbTantargy.Text.Split('-')[0]).tanarid && x.tantid == tantargyak.Find(x => x.nev == CbbTantargy.Text.Split('-')[1]).tantid).id;
             validTanitott.Lekerdezes($"SELECT COUNT(tanitott.tanit_id) FROM tanitott INNER JOIN orak ON tanitott.tanit_id = orak.tanit_id WHERE orak.ora_datum = '{DtpOra.Value.ToString("yyyy-MM-dd")}' AND tanitott.tanit_id = {keresettTanitottId}");
-            while (validTanitott.Dr.Read()) { vaneOsztOra = Convert.ToInt32(validTanitott.Dr[0]); }
+            while (validTanitott.Dr.Read()) { vaneTanarOra = Convert.ToInt32(validTanitott.Dr[0]); }
             validTanitott.Lezaras();
             if (vaneOsztOra > 0)
             {

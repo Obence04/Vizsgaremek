@@ -64,7 +64,7 @@ namespace Enaplo_asztali
             if (int.Parse(ab.Dr[1].ToString()) < 2)
             {
                 LbHiba.Text = "Nincs joga az adminisztrátori felülethez!";
-                MessageBox.Show("Nincs joga az adminisztrátori felülethez!","Jogosulatlan művelet", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Nincs joga az adminisztrátori felülethez!", "Jogosulatlan művelet", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 DialogResult = DialogResult.Cancel;
                 new Process()
                 {
