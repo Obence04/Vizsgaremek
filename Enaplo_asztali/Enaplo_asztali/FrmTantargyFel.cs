@@ -43,22 +43,21 @@ namespace Enaplo_asztali
                 LblHiba.Visible = true;
                 TxbxTant.ResetText();
                 TxbxTant.Focus();
+                return;
             }
-            else if (string.IsNullOrWhiteSpace(TxbxTant.Text))
+            if (string.IsNullOrWhiteSpace(TxbxTant.Text))
             {
                 LblHiba.Text = "Üres mező!";
                 LblHiba.Visible = true;
                 TxbxTant.ResetText();
                 TxbxTant.Focus();
+                return;
             }
-            else
-            {
-                Adatbazis Ab = new();
-                Ab.Hozzaadas($"INSERT INTO tantargyak VALUES (null, '{TxbxTant.Text}')");
-                TxbxTant.ResetText();
-                TantargyFeltolt();
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            Adatbazis Ab = new();
+            Ab.Hozzaadas($"INSERT INTO tantargyak VALUES (null, '{TxbxTant.Text}')");
+            TxbxTant.ResetText();
+            TantargyFeltolt();
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void TantargyFeltolt()
         {

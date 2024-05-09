@@ -32,19 +32,19 @@
             panel1 = new Panel();
             label2 = new Label();
             panel2 = new Panel();
+            tableLayoutPanel3 = new TableLayoutPanel();
             BtnElvet = new Button();
             BtnMentes = new Button();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            LblHiba = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
             label1 = new Label();
             TxbxTant = new TextBox();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            LblHiba = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -80,6 +80,21 @@
             panel2.Size = new Size(704, 491);
             panel2.TabIndex = 5;
             // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(BtnElvet, 1, 0);
+            tableLayoutPanel3.Controls.Add(BtnMentes, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Bottom;
+            tableLayoutPanel3.Location = new Point(10, 431);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Size = new Size(684, 50);
+            tableLayoutPanel3.TabIndex = 10;
+            // 
             // BtnElvet
             // 
             BtnElvet.Anchor = AnchorStyles.None;
@@ -104,6 +119,49 @@
             BtnMentes.Text = "Mentés";
             BtnMentes.UseVisualStyleBackColor = false;
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(LblHiba, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(10, 60);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(684, 421);
+            tableLayoutPanel2.TabIndex = 9;
+            // 
+            // LblHiba
+            // 
+            LblHiba.Anchor = AnchorStyles.Top;
+            LblHiba.AutoSize = true;
+            LblHiba.BackColor = Color.Silver;
+            LblHiba.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            LblHiba.ForeColor = Color.Red;
+            LblHiba.Location = new Point(315, 20);
+            LblHiba.Margin = new Padding(3, 20, 3, 0);
+            LblHiba.Name = "LblHiba";
+            LblHiba.Size = new Size(53, 28);
+            LblHiba.TabIndex = 0;
+            LblHiba.Text = "hiba";
+            LblHiba.Visible = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(TxbxTant, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(10, 10);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(684, 50);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Left;
@@ -124,66 +182,9 @@
             TxbxTant.Size = new Size(241, 29);
             TxbxTant.TabIndex = 4;
             // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Controls.Add(label1, 0, 0);
-            tableLayoutPanel1.Controls.Add(TxbxTant, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(10, 10);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(684, 50);
-            tableLayoutPanel1.TabIndex = 8;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(LblHiba, 0, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(10, 60);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(684, 421);
-            tableLayoutPanel2.TabIndex = 9;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(BtnElvet, 1, 0);
-            tableLayoutPanel3.Controls.Add(BtnMentes, 0, 0);
-            tableLayoutPanel3.Dock = DockStyle.Bottom;
-            tableLayoutPanel3.Location = new Point(10, 431);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(684, 50);
-            tableLayoutPanel3.TabIndex = 10;
-            // 
-            // LblHiba
-            // 
-            LblHiba.Anchor = AnchorStyles.Top;
-            LblHiba.AutoSize = true;
-            LblHiba.BackColor = Color.Silver;
-            LblHiba.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            LblHiba.ForeColor = Color.Red;
-            LblHiba.Location = new Point(315, 20);
-            LblHiba.Margin = new Padding(3, 20, 3, 0);
-            LblHiba.Name = "LblHiba";
-            LblHiba.Size = new Size(53, 28);
-            LblHiba.TabIndex = 0;
-            LblHiba.Text = "hiba";
-            LblHiba.Visible = false;
-            // 
             // FrmTantargyFel
             // 
+            AcceptButton = BtnMentes;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ikonblurred;
@@ -194,7 +195,7 @@
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             MaximizeBox = false;
             MaximumSize = new Size(1000, 700);
             MinimumSize = new Size(440, 590);
@@ -204,11 +205,11 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 

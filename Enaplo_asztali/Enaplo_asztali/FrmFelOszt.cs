@@ -49,34 +49,34 @@ namespace Enaplo_asztali
                 LblHiba.Visible = true;
                 TxtOsztNev.ResetText();
                 TxtOsztNev.Focus();
+                return;
             }
-            else if (string.IsNullOrWhiteSpace(TxtOsztNev.Text))
+            if (string.IsNullOrWhiteSpace(TxtOsztNev.Text))
             {
                 LblHiba.Text = "Az osztálynév mező üres!";
                 LblHiba.Visible = true;
                 TxtOsztNev.ResetText();
                 TxtOsztNev.Focus();
+                return;
             }
-            else if (string.IsNullOrWhiteSpace(CBBOsztFonok.Text))
+            if (string.IsNullOrWhiteSpace(CBBOsztFonok.Text))
             {
                 LblHiba.Text = "Nem választott ki tanárt!";
                 LblHiba.Visible = true;
                 TxtOsztNev.ResetText();
                 TxtOsztNev.Focus();
+                return;
             }
-            else
+            Adatbazis Ab = new Adatbazis();
+            string[] adatok = { TxtOsztNev.Text, tanarok.Find(x => x.nev == CBBOsztFonok.Text).id.ToString() };
+            Ab.Hozzaadas($"INSERT INTO osztalyok VALUES (null, '{adatok[0]}', '{adatok[1]}')");
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            foreach (TextBox txt in Controls.OfType<TextBox>())
             {
-                Adatbazis Ab = new Adatbazis();
-                string[] adatok = { TxtOsztNev.Text, tanarok.Find(x => x.nev == CBBOsztFonok.Text).id.ToString() };
-                Ab.Hozzaadas($"INSERT INTO osztalyok VALUES (null, '{adatok[0]}', '{adatok[1]}')");
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
-                CBBOsztFonok.ResetText();
-                TanarFeltolt();
+                txt.Text = "";
             }
+            CBBOsztFonok.ResetText();
+            TanarFeltolt();
         }
         private void Elvet(object sender, EventArgs e)
         {

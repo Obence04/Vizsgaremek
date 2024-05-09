@@ -1,13 +1,69 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\",
+  "WorkspaceRootPath": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\atesz\\desktop\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmbelepes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmrendtanttan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmrendtanttan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmfeloszt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmfeloszt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmfelora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmfelora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmfeldiak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmfeldiak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmtantargyfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmtantargyfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmtanarfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmtanarfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmfeldiak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmfeldiak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmbelepes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmbelepes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmbelepes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmbelepes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\atesz\\desktop\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmbelepes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmfelora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmfelora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmfeloszt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmfeloszt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmrendtanttan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmrendtanttan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmtanarfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmtanarfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|c:\\users\\bence\\documents\\github\\vizsgaremek\\enaplo_asztali\\enaplo_asztali\\frmtantargyfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmtantargyfel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\enaplo_asztali\\frmbelepes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9904B75-811A-4EED-85E8-342CD1ECF6AB}|Enaplo_asztali\\Enaplo_asztali.csproj|solutionrelative:enaplo_asztali\\frmbelepes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,15 +74,191 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmMain.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmMain.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmMain.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmMain.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmMain.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowEEAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:43:01.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FrmBelepes.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmBelepes.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmBelepes.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAowC4AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:42:21.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmTantargyFel.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTantargyFel.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmTantargyFel.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTantargyFel.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmTantargyFel.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwDoAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:33:01.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FrmTantargyFel.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTantargyFel.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmTantargyFel.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTantargyFel.cs [Design]",
+              "RelativeToolTip": "Enaplo_asztali\\FrmTantargyFel.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:32:58.719Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FrmTanarFel.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTanarFel.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmTanarFel.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTanarFel.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmTanarFel.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADwAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:32:54.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FrmTanarFel.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTanarFel.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmTanarFel.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmTanarFel.cs [Design]",
+              "RelativeToolTip": "Enaplo_asztali\\FrmTanarFel.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:32:51.275Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmRendTantTan.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmRendTantTan.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmRendTantTan.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmRendTantTan.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmRendTantTan.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAwwGEAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:48.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FrmRendTantTan.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmRendTantTan.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmRendTantTan.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmRendTantTan.cs [Design]",
+              "RelativeToolTip": "Enaplo_asztali\\FrmRendTantTan.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:45.794Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "FrmFelOszt.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOszt.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmFelOszt.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOszt.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmFelOszt.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAA5wE4AAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:36.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FrmFelOszt.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOszt.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmFelOszt.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOszt.cs [Design]",
+              "RelativeToolTip": "Enaplo_asztali\\FrmFelOszt.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:35.299Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmFelOra.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOra.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmFelOra.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOra.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmFelOra.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAqwCQAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:21.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FrmFelOra.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOra.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmFelOra.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelOra.cs [Design]",
+              "RelativeToolTip": "Enaplo_asztali\\FrmFelOra.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:18.959Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmFelDiak.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelDiak.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmFelDiak.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelDiak.cs",
+              "RelativeToolTip": "Enaplo_asztali\\FrmFelDiak.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAowIUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:07.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FrmFelDiak.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelDiak.cs",
+              "RelativeDocumentMoniker": "Enaplo_asztali\\FrmFelDiak.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmFelDiak.cs [Design]",
+              "RelativeToolTip": "Enaplo_asztali\\FrmFelDiak.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T06:24:06.265Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "FrmBelepes.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.Designer.cs",
               "RelativeDocumentMoniker": "Enaplo_asztali\\FrmBelepes.Designer.cs",
-              "ToolTip": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.Designer.cs",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.Designer.cs",
               "RelativeToolTip": "Enaplo_asztali\\FrmBelepes.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -35,11 +267,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "FrmBelepes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.cs",
               "RelativeDocumentMoniker": "Enaplo_asztali\\FrmBelepes.cs",
-              "ToolTip": "C:\\Users\\Atesz\\Desktop\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.cs [Design]",
+              "ToolTip": "C:\\Users\\Bence\\Documents\\GitHub\\Vizsgaremek\\Enaplo_asztali\\Enaplo_asztali\\FrmBelepes.cs [Design]",
               "RelativeToolTip": "Enaplo_asztali\\FrmBelepes.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T16:27:38.27Z",

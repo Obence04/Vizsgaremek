@@ -43,35 +43,35 @@ namespace Enaplo_asztali
                 LblHiba.Visible = true;
                 TxtEmail.ResetText();
                 TxtEmail.Focus();
+                return;
             }
-            else if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 0 && !string.IsNullOrWhiteSpace(TxtFelNev.Text))
+            if (tanar.Where(x => x.uname.Contains(TxtFelNev.Text)).Count() > 0 && !string.IsNullOrWhiteSpace(TxtFelNev.Text))
             {
                 LblHiba.Text = "Ilyen felhasználónév már létezik!";
                 LblHiba.Visible = true;
                 TxtFelNev.ResetText();
                 TxtFelNev.Focus();
+                return;
             }
-            else if (string.IsNullOrWhiteSpace(TxtEmail.Text) || string.IsNullOrWhiteSpace(TxtFelNev.Text) || string.IsNullOrWhiteSpace(TxtTanarNev.Text))
+            if (string.IsNullOrWhiteSpace(TxtEmail.Text) || string.IsNullOrWhiteSpace(TxtFelNev.Text) || string.IsNullOrWhiteSpace(TxtTanarNev.Text))
             {
                 LblHiba.Text = "Egy mező üresen maradt!";
                 LblHiba.Visible = true;
+                return;
             }
-            else
+            Adatbazis Ab = new Adatbazis();
+            Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxtFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxtFelNev.Text}-123", 12)}', '{TxtEmail.Text}', null, 2, 1)");
+            Ab.Lekerdezes($"SELECT fel_id FROM felhasznalok WHERE fel_nev ='{TxtFelNev.Text}';");
+            Ab.Dr.Read();
+            int felid = int.Parse(Ab.Dr[0].ToString());
+            Ab.Dr.Close();
+            Ab.Hozzaadas($"INSERT INTO tanarok VALUES(null, '{TxtTanarNev.Text}', '{felid}')");
+            foreach (TextBox txt in Controls.OfType<TextBox>())
             {
-                Adatbazis Ab = new Adatbazis();
-                Ab.Hozzaadas($"INSERT INTO felhasznalok VALUES(null, '{TxtFelNev.Text}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{TxtFelNev.Text}-123", 12)}', '{TxtEmail.Text}', null, 2, 1)");
-                Ab.Lekerdezes($"SELECT fel_id FROM felhasznalok WHERE fel_nev ='{TxtFelNev.Text}';");
-                Ab.Dr.Read();
-                int felid = int.Parse(Ab.Dr[0].ToString());
-                Ab.Dr.Close();
-                Ab.Hozzaadas($"INSERT INTO tanarok VALUES(null, '{TxtTanarNev.Text}', '{felid}')");
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TanarokFeltoltes();
+                txt.Text = "";
             }
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TanarokFeltoltes();
         }
         private void Elvet(object sender, EventArgs e)
         {

@@ -14,6 +14,7 @@ namespace Enaplo_asztali
     {
         List<(int id, string nev)> tantargyak = new();
         List<(int id, string nev)> tanarok = new();
+        List<(int id, int tanarid, int tantid)> tanitottak = new();
         public FrmRendTantTan()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace Enaplo_asztali
             LblHiba.Visible = false;
             TanarFeltolt();
             TantargyFeltolt(CbbxTanarok.Text);
+
             if (tantargyak.Count == 0)
             {
                 foreach (Control item in this.Controls)
@@ -35,7 +37,10 @@ namespace Enaplo_asztali
                 }
                 LblHiba.Text = "Nincs tantárgy";
                 LblHiba.Visible = true;
-            } else if (tanarok.Count == 0)
+                return;
+            }
+
+            if (tanarok.Count == 0)
             {
                 foreach (Control item in this.Controls)
                 {
@@ -43,6 +48,15 @@ namespace Enaplo_asztali
                 }
                 LblHiba.Text = "Nincs tanár";
                 LblHiba.Visible = true;
+                return;
+            }
+            
+
+            Adatbazis Ab = new Adatbazis();
+            Ab.Lekerdezes("SELECT * FROM tanitott");
+            while(Ab.Dr.Read())
+            {
+                tanitottak.Add((int.Parse(Ab.Dr[0].ToString()), int.Parse(Ab.Dr[1].ToString()), int.Parse(Ab.Dr[2].ToString())));
             }
             CbbxTanarok.SelectedIndex = 0;
             CbbxTant.SelectedIndex = 0;
@@ -79,15 +93,21 @@ namespace Enaplo_asztali
             {
                 LblHiba.Text = "Egy mező üresen maradt!";
                 LblHiba.Visible = true;
+                return;
             }
-            else
+            int tanarid = tanarok.Find(x => x.nev == CbbxTanarok.Text).id;
+            int tantid = tantargyak.Find(x => x.nev == CbbxTant.Text).id;
+            if (tanitottak.Count(x => (x.tanarid == tanarid && x.tantid == tantid)) > 0)
             {
-                Adatbazis Ab = new();
-                Ab.Hozzaadas($"INSERT INTO tanitott VALUES (null, '{tanarok.Find(x => x.nev == CbbxTanarok.Text).id}', '{tantargyak.Find(x => x.nev == CbbxTant.Text).id}')");
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TanarFeltolt();
-                TantargyFeltolt(CbbxTanarok.Text);
+                LblHiba.Text = "Ilyen tanár-tantárgy kombináció már létezik!";
+                LblHiba.Visible = true;
+                return;
             }
+            Adatbazis Ab = new();
+            Ab.Hozzaadas($"INSERT INTO tanitott VALUES (null, '{tanarid}', '{tantid}')");
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TanarFeltolt();
+            TantargyFeltolt(CbbxTanarok.Text);
         }
         private void Elvet(object sender, EventArgs e)
         {

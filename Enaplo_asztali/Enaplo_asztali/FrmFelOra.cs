@@ -32,23 +32,22 @@ namespace Enaplo_asztali
             TanarFeltolt();
             TantargyFeltolt();
             TantargyCBBFeltolt();
-            if (osztalyok.Count == 0)
+
+            if (osztalyok.Count != 0) return;
+            foreach (Control item in this.Controls)
             {
-                foreach (Control item in this.Controls)
-                {
-                    if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
-                }
-                LblHiba.Visible = true;
-                LblHiba.Text = "Nincs osztály";
-            } else if (tanitott.Count == 0)
-            {
-                foreach (Control item in this.Controls)
-                {
-                    if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
-                }
-                LblHiba.Visible = true;
-                LblHiba.Text = "Nincs tantárgy tanárhoz rendelve";
+                if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
             }
+            LblHiba.Visible = true;
+            LblHiba.Text = "Nincs osztály";
+
+            if (tanitott.Count != 0) return;
+            foreach (Control item in this.Controls)
+            {
+                if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
+            }
+            LblHiba.Visible = true;
+            LblHiba.Text = "Nincs tantárgy tanárhoz rendelve";
         }
 
         private void TantargyCBBFeltolt()
@@ -107,50 +106,56 @@ namespace Enaplo_asztali
             int vaneTanarOra = 0;
             Adatbazis valid = new Adatbazis();
             valid.Lekerdezes($"SELECT COUNT(orak.oszt_id) FROM orak WHERE orak.oszt_id = {osztalyok.Find(x => x.nev == CbbOsztaly.Text).id} AND '{DtpOra.Value.ToString("yyyy-MM-dd")}' = orak.ora_datum AND orak.ora_szam = {NudOraSzam.Value}");
-            while (valid.Dr.Read()) { vaneOsztOra = Convert.ToInt32(valid.Dr[0]); }
+            while (valid.Dr.Read()) 
+            { 
+                vaneOsztOra = Convert.ToInt32(valid.Dr[0]); 
+            }
             valid.Lezaras();
             Adatbazis validTanitott = new Adatbazis();
             int keresettTanitottId = tanitott.Find(x => x.tanarid == tanarok.Find(x => x.nev == CbbTantargy.Text.Split('-')[0]).tanarid && x.tantid == tantargyak.Find(x => x.nev == CbbTantargy.Text.Split('-')[1]).tantid).id;
             validTanitott.Lekerdezes($"SELECT COUNT(tanitott.tanit_id) FROM tanitott INNER JOIN orak ON tanitott.tanit_id = orak.tanit_id WHERE orak.ora_datum = '{DtpOra.Value.ToString("yyyy-MM-dd")}' AND tanitott.tanit_id = {keresettTanitottId}");
-            while (validTanitott.Dr.Read()) { vaneTanarOra = Convert.ToInt32(validTanitott.Dr[0]); }
+            while (validTanitott.Dr.Read()) 
+            { 
+                vaneTanarOra = Convert.ToInt32(validTanitott.Dr[0]); 
+            }
             validTanitott.Lezaras();
             if (vaneOsztOra > 0)
             {
                 LblHiba.Text = "Erre az órára már van az osztálynak órája!";
                 LblHiba.Visible = true;
                 CbbOsztaly.ResetText();
+                return;
             }
-            else if (vaneTanarOra > 0)
+            if (vaneTanarOra > 0)
             {
                 LblHiba.Text = "Erre az órára már van az adott tanárnak órája!";
                 LblHiba.Visible = true;
                 CbbTantargy.ResetText();
+                return;
             }
-            else if (string.IsNullOrWhiteSpace(CbbOsztaly.Text) || string.IsNullOrWhiteSpace(CbbTantargy.Text) || string.IsNullOrWhiteSpace(TxbxTerem.Text))
+            if (string.IsNullOrWhiteSpace(CbbOsztaly.Text) || string.IsNullOrWhiteSpace(CbbTantargy.Text) || string.IsNullOrWhiteSpace(TxbxTerem.Text))
             {
                 LblHiba.Text = "Egy mező üresen maradt!";
                 LblHiba.Visible = true;
+                return;
             }
-            else
+            Adatbazis Ab = new Adatbazis();
+            string tanitottid = "";
+            Ab.Lekerdezes($"SELECT tanitott.tanit_id FROM tanitott, tanarok, tantargyak WHERE tanitott.tant_id = tantargyak.tant_id AND tanarok.tanar_id = tanitott.tanar_id AND tantargyak.tant_nev LIKE '{CbbTantargy.Text.Split(" - ")[0]}' AND tanarok.tanar_nev LIKE '{CbbTantargy.Text.Split(" - ")[1]}'");
+            while (Ab.Dr.Read())
             {
-                Adatbazis Ab = new Adatbazis();
-                string tanitottid = "";
-                Ab.Lekerdezes($"SELECT tanitott.tanit_id FROM tanitott, tanarok, tantargyak WHERE tanitott.tant_id = tantargyak.tant_id AND tanarok.tanar_id = tanitott.tanar_id AND tantargyak.tant_nev LIKE '{CbbTantargy.Text.Split(" - ")[0]}' AND tanarok.tanar_nev LIKE '{CbbTantargy.Text.Split(" - ")[1]}'");
-                while (Ab.Dr.Read())
-                {
-                    tanitottid = Ab.Dr[0].ToString();
-                }
-                Ab.Lezaras();
-                Adatbazis Adat = new Adatbazis();
-                string[] adat = { osztalyok.Find(x => x.nev == CbbOsztaly.Text).id.ToString(), DtpOra.Value.ToString("yyyy-MM-dd"), NudOraSzam.Value.ToString(), tanitottid, TxbxTerem.Text.ToString() };
-                Adat.Hozzaadas($"INSERT INTO orak VALUES (null, '{adat[0]}', '{adat[1]}', '{adat[2]}', '{adat[3]}', '{adat[4]}')");
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
-                NudOraSzam.Value++;
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                tanitottid = Ab.Dr[0].ToString();
             }
+            Ab.Lezaras();
+            Adatbazis Adat = new Adatbazis();
+            string[] adat = { osztalyok.Find(x => x.nev == CbbOsztaly.Text).id.ToString(), DtpOra.Value.ToString("yyyy-MM-dd"), NudOraSzam.Value.ToString(), tanitottid, TxbxTerem.Text.ToString() };
+            Adat.Hozzaadas($"INSERT INTO orak VALUES (null, '{adat[0]}', '{adat[1]}', '{adat[2]}', '{adat[3]}', '{adat[4]}')");
+            foreach (TextBox txt in Controls.OfType<TextBox>())
+            {
+                txt.Text = "";
+            }
+            NudOraSzam.Value++;
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Elvet(object sender, EventArgs e)

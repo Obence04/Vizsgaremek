@@ -74,35 +74,34 @@ namespace Enaplo_asztali
                 LblHiba.Visible = true;
                 TxtOktazon.ResetText();
                 TxtOktazon.Focus();
+                return;
             }
-            else if (emailcimek.Contains(TxtEmail.Text))
+            if (emailcimek.Contains(TxtEmail.Text))
             {
                 LblHiba.Text = "Ilyen email cím már létezik!";
                 LblHiba.Visible = true;
                 TxtEmail.ResetText();
                 TxtEmail.Focus();
+                return;
             }
-            else if (hiba)
+            if (hiba)
             {
                 LblHiba.Text = "Hibás adatbevitel, üres az egyik mező!";
                 LblHiba.Visible = true;
+                return;
             }
-            else
+            Adatbazis adatbazis = new Adatbazis();
+            string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
+            adatbazis.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123", 12)}', '{adatok[6]}', null, '1', '1')");
+            DiakFeltolt();
+            adatbazis.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
+            foreach (TextBox txt in Controls.OfType<TextBox>())
             {
-                Adatbazis adatbazis = new Adatbazis();
-                string[] adatok = { TxtOktazon.Text, TxtNev.Text, DateTPSzuldatum.Value.ToString("yyyy-MM-dd"), TxtSzulhely.Text, TxtAnyja.Text, osztalyok.Find(x => x.nev == CBBOsztaly.Text).id.ToString(), TxtEmail.Text };
-                adatbazis.Hozzaadas($"INSERT INTO felhasznalok VALUES (null, '{adatok[0]}', '{BCrypt.Net.BCrypt.HashPassword($"RKT-{adatok[2]}-123", 12)}', '{adatok[6]}', null, '1', '1')");
-                DiakFeltolt();
-                adatbazis.Hozzaadas($"INSERT INTO diakok VALUES ('{adatok[0]}', '{adatok[1]}', '{adatok[2]}', '{adatok[3]}', '{adatok[4]}', null, '{adatok[5]}', '{diakfelhasznalok.Find(x => x.fel_nev == adatok[0]).fel_id}' )");
-                foreach (TextBox txt in Controls.OfType<TextBox>())
-                {
-                    txt.Text = "";
-                }
-                DateTPSzuldatum.Value = DateTime.Now;
-                MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                OsztalyFeltolt();
+                txt.Text = "";
             }
-            
+            DateTPSzuldatum.Value = DateTime.Now;
+            MessageBox.Show("Sikeres hozzáadás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            OsztalyFeltolt();
         }
 
         private void OsztalyFeltolt()
@@ -132,15 +131,14 @@ namespace Enaplo_asztali
         {
             LblHiba.Visible = false;
             OsztalyFeltolt();
-            if (osztalyok.Count == 0)
+
+            if (osztalyok.Count != 0) return;
+            foreach (Control item in this.Controls)
             {
-                foreach (Control item in this.Controls)
-                {
-                    if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
-                }
-                LblHiba.Text = "Nincs osztály az adatbázisban.";
-                LblHiba.Visible = true;
+                if (item.Name != "BtnElvet" && item is not Label) item.Enabled = false;
             }
+            LblHiba.Text = "Nincs osztály az adatbázisban.";
+            LblHiba.Visible = true;
         }
 
         private void CsakSzam(object sender, KeyPressEventArgs e)

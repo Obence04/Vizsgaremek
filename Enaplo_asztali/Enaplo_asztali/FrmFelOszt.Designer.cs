@@ -237,6 +237,7 @@
             // 
             // FrmFelOszt
             // 
+            AcceptButton = BtnMentes;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ikonblurred;

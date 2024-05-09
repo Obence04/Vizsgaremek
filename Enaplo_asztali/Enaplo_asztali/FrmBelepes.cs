@@ -22,10 +22,7 @@ namespace Enaplo_asztali
             InitializeComponent();
             BtnBelepes.Click += Belepes;
 
-
-
             LbHiba.Text = "";
-
         }
 
 
@@ -47,7 +44,7 @@ namespace Enaplo_asztali
                 LbHiba.Text = "Helytelen felhasználónév vagy jelszó!";
                 return;
             }
-            else if (int.Parse(ab.Dr[0].ToString()) > 1)
+            if (int.Parse(ab.Dr[0].ToString()) > 1)
             {
                 throw new Exception();
             }
